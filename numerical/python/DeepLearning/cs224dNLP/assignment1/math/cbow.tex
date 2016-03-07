@@ -1,0 +1,61 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\title{Your Paper}
+
+\begin{document}
+
+For the CBOW model, our objective function is given by:
+
+\begin{align}
+p_i = \frac{exp(\sum_j W[i]^Tv_j)}{\sum_k exp(\sum_j ( W[k]^T v_j))}
+\end{align}
+
+Also for all $k$,
+
+\begin{align}
+\frac{\partial}{\partial v_k} \left( \sum_j W[i]^T v_k \right)= W[i]
+\end{align}
+
+Along similar lines as the derivation for softmax we have for all $k$,
+
+\begin{align}
+\frac{\partial p_i}{\partial v_k} = p_i.\left( W[i] - \sum_k p_k . W[k] \right)
+\end{align}
+
+
+\end{document}
+
+
+
+\begin{comment}
+
+
+![caption](files/images/cbow2.png)?
+
+%%latex
+
+For the CBOW model, our objective function is given by:
+
+\begin{align}
+p_i = \frac{exp(\sum_j W[i]^Tv_j)}{\sum_k exp(\sum_j ( W[k]^T v_j))}
+\end{align}
+
+Also for all $k$,
+
+\begin{align}
+\frac{\partial}{\partial v_k} \left( \sum_j W[i]^T v_k \right)= W[i]
+\end{align}
+
+Along similar lines as the derivation for softmax we have for all $k$,
+
+\begin{align}
+\frac{\partial p_i}{\partial v_k} = p_i.\left( W[i] - \sum_k p_k . W[k] \right)
+\end{align}
+
+\end{comment}

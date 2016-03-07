@@ -1,0 +1,116 @@
+\documentclass[a4paper]{article}
+
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+
+\title{Your Paper}
+
+\begin{document}
+
+$v_i \in R^{n \times 1}$ : Output vector \\
+$W_1 \in R^{n\times V}$ : Input vectors \\
+
+\[p_i = Pr(word_i|v_i,W_1) = \frac{exp(v_i^TW_1[i])}{\sum_{k=1}^{V} exp(v_i^TW_1[k]) }\]
+
+Let $x_i \in R^{V\times 1}$ be the one-hot vector corresponding to word $i$.\\
+
+\[p_i = \frac{exp(v_i^T W_1 x_i)}{\sum_k exp(v_i^T W_1 x_k)}\]
+
+\[
+	=>\frac{\partial p_i}{\partial W_1} = \frac{1 }{\sum exp(v_i^TW_1x_k)}  \frac{  \partial   }{\partial W_1} exp(v_i^TW_1 y) - \\
+	\frac{exp(v_i^TW_1 x_i)}{ \left \{  \sum exp(v_i^TW_1 x_k) \right \} ^2 }\frac{\partial }{\partial W_1} \sum exp(v_i^T W_1 x_k)
+\]
+
+\[ =  \frac{exp(v_i^T W_1 x_i)}{\sum exp(v_i^T W_1 x_k)} \frac{\partial}{\partial W_1} (v_i^T W_1 x_i) - \\
+\frac{exp(v_i W_1 x_i)}{ \sum exp(v_i^T W_1 x_k) } \sum_k \frac{exp(v_i^T W_1 x_k)}{\sum_l exp(v_i^T W_1 x_l)} \frac{\partial}{\partial W_1} (v_i^T W_1 x_k)
+\]
+
+\[ = p_i  . \left(  (v_i y^T) -  \sum_k p_k (v_i x_k^T) \right)\]
+
+\[ = 
+   \begin{bmatrix}
+             p_1 v_{i1}  & p_2 v_{i2}     & . . .  \\
+              p_1 v_{i1}  & p_2 v_{i2} & . . .  \\
+              \vdots & \vdots & . . .
+  \end{bmatrix} _{n\times V}
+- 
+   \begin{bmatrix}
+             0  & 0 & . . & v_{it}    & . . .  \\
+             0  & 0 & . . & v_{it}    & . . .  \\
+              \vdots & \vdots & . . . & \vdots
+   \end{bmatrix} _{n\times V}
+\]
+
+Similarly, 
+
+\[\frac{\partial p_i}{\partial v_i} = p_i. \left(   \frac{\partial}{\partial v_i}(v_i^T W_1 x_i) - \sum_k p_k. \frac{\partial}{\partial v_i} (v_i^T W_1 x_k) \right)\]
+
+\[ = p_i. \left(   W_1 x_i - \sum_k p_k. W_1 x_k \right)\]
+
+Since $W_1 x_k$ corresponds to the $k^{th}$ column of $W_1$,
+
+\[ \frac{\partial p_i}{\partial v_i} = p_i. \left( W_1 x_i - W_1 p \right)\]
+
+Where : 
+
+\[ p =   \begin{bmatrix}
+             p_1 \\
+              p_2\\
+              \vdots
+  \end{bmatrix}_{V\times 1} \]
+
+\end{document}
+
+
+
+\begin{comment}
+%%latex
+$v_i \in R^{n \times 1}$ : Input vector
+
+$W_1 \in R^{n\times V}$ : Output vectors
+
+$x_i \in R^{V\times 1}$ : One-hot vector for the ith word.
+
+The softmax function is given by:
+
+
+$$p_i = Pr(word_i|v_i,W_1) = \frac{exp(v_i^TW_1[i])}{\sum_{k=1}^{V} exp(v_i^TW_1[k]) } 
+=\frac{exp(v_i^T W_1 x_i)}{\sum_k exp(v_i^T W_1 x_k)}$$
+
+
+Start with the gradients with respect to $W_1$
+$$
+=>\frac{\partial p_i}{\partial W_1} = \frac{1 }{\sum exp(v_i^TW_1x_k)}  \frac{  \partial   }{\partial W_1} exp(v_i^TW_1 y) -    \frac{exp(v_i^TW_1 x_i)}{ \left \{  \sum exp(v_i^TW_1 x_k) \right \} ^2  }\frac{\partial }{\partial W_1} \sum exp(v_i^T W_1 x_k)\\
+=  \frac{exp(v_i^T W_1 x_i)}{\sum exp(v_i^T W_1 x_k)} \frac{\partial}{\partial W_1} (v_i^T W_1 x_i) -     \frac{exp(v_i W_1 x_i)}{ \sum exp(v_i^T W_1 x_k) } \sum_k \frac{exp(v_i^T W_1 x_k)}{\sum_l exp(v_i^T W_1 x_l)} \frac{\partial}{\partial W_1} (v_i^T W_1 x_k)\\
+= p_i  . \left(  (v_i y^T) -  \sum_k p_k (v_i x_k^T) \right)\\
+= p_i.\left(
+       \begin{bmatrix}
+                 p_1 v_{i1}  & p_2 v_{i2}     & . . .  \\
+                  p_1 v_{i1}  & p_2 v_{i2} & . . .  \\
+                  \vdots & \vdots & . . .
+      \end{bmatrix} _{n\times V}
+    - 
+       \begin{bmatrix}
+                 0  & 0 & . . & v_{it}    & . . .  \\
+                 0  & 0 & . . & v_{it}    & . . .  \\
+                  \vdots & \vdots & . . . & \vdots
+       \end{bmatrix} _{n\times V} \right)\\
+$$
+Now for the gradients with respect to $v_i$
+$$
+\frac{\partial p_i}{\partial v_i} = p_i. \left(   \frac{\partial}{\partial v_i}(v_i^T W_1 x_i) - \sum_k p_k. \frac{\partial}{\partial v_i} (v_i^T W_1 x_k) \right)\\
+= p_i. \left(   W_1 x_i - \sum_k p_k. W_1 x_k \right)\\
+=> \frac{\partial p_i}{\partial v_i} = p_i. \left( W_1 x_i - W_1 p \right)
+$$
+Where,
+$$
+p =   \begin{bmatrix}
+                 p_1 \\
+                  p_2\\
+                  \vdots
+      \end{bmatrix}_{V\times 1}
+$$
+\end{comment}
