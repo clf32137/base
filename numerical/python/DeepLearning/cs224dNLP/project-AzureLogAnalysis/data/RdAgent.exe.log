@@ -1,0 +1,551 @@
+[2015/07/07, 10:07:52.333, ERROR, 00008720] No goal-state record exists for container id 'bd787374-fd4c-4dc5-8445-33ccb8d68f71' ip = '100.113.194.67'
+[2015/07/07, 10:07:52.333, ERROR, 00008720] <- WireContainerManager::QueryGoalState(0x0000002DA8DA7860) =0x80070490
+[2015/07/07, 10:07:52.333, ERROR, 00008720] Failing HRESULT detected 0x80070490 [services\fc\fabric\lib\wireprotocol\protocolmanager\wireagentservice.cpp] line 477
+
+[2015/07/07, 10:07:52.333, ERROR, 00008720] ErrorCode=0x80070490
+
+[2015/07/07, 10:07:52.333, ERROR, 00008720] <- WireAgentService::QueryGoalState=0x80070490
+[2015/07/07, 10:07:52.646,  INFO, 00011404] Added 'C:\Applications\7E7297F71542E87CB4DAE4B8217402F4.vhd' to Slot = '0' in VM = 'bd787374-fd4c-4dc5-8445-33ccb8d68f71'		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] <<<Perf Measurement Ends for 	RuntimeVmRole::SetupApplicationVhd_Unsafe	OptType= HotPlugVhd 			Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] Perf Log - Operation: HotPlugVhdErrorCode: 0x0Level: 1		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] <<<Perf Measurement Ends for 	RuntimeVmRole::SetupRoleConfigResources_Unsafe	OptType= SetupApplicationVhd_Unsafe 			Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] Perf Log - Operation: SetupApplicationVhd_UnsafeErrorCode: 0x0Level: 1		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] <<<Perf Measurement Ends for 	RuntimeVmRole::Create	OptType= SetupRoleConfigResources 			Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] Perf Log - Operation: SetupRoleConfigResourcesErrorCode: 0x0Level: 1		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] <<<Perf Measurement Ends for 	RuntimeContainer::SetRolesGoalState_Unsafe	OptType= CreateRole 			Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] Perf Log - Operation: CreateRoleErrorCode: 0x0Level: 1		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] >>>Perf Measurement Starts for 	RuntimeContainer::SetRolesGoalState_Unsafe	OptType= UpdateRole 			Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] Perf Log - Operation: UpdateRoleErrorCode: 0x0Level: 1		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] RuntimeRole::UpdateGoalState - updated stop role timeout to [0]		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] <<<Perf Measurement Ends for 	RuntimeContainer::SetRolesGoalState_Unsafe	OptType= UpdateRole 			Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] Perf Log - Operation: UpdateRoleErrorCode: 0x0Level: 1		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] >>>Perf Measurement Starts for 	RuntimeContainer::SetRolesGoalState_Unsafe	OptType= WireProtocolUpdateContainerGoalState 			Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] Perf Log - Operation: WireProtocolUpdateContainerGoalStateErrorCode: 0x0Level: 1		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] Package information updated to C:\Packages\Agent\Win8-Win8_rd_art_stable_150507-1941_GuestAgentPackage.zip, Incarnation=Win8-Win8_rd_art_stable_150507-1941_GuestAgentPackage.zip.		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] New goal-state for container: bd787374-fd4c-4dc5-8445-33ccb8d68f71, goal-state incarnation: 1.		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] <<<Perf Measurement Ends for 	RuntimeContainer::SetRolesGoalState_Unsafe	OptType= WireProtocolUpdateContainerGoalState 			Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] Perf Log - Operation: WireProtocolUpdateContainerGoalStateErrorCode: 0x0Level: 1		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] Completed work: Type=12, Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71, Flags=00000000, Status=00000000		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] AgentQueueCompletion called		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] Occured Time: ticks = 635718604726462444, format = 0		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] Done with AgentQueueCompletion. Returning status : 0 and gEventCount: 1		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] UdpPingController send success:true. Ip:100.113.194.12.		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] UdpPingController sent to 100.113.193.194:19898.		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] <<<<_Context_Ends: {C3DE3735-8CDA-4BCC-8548-939B479B093B}	Return value = 00000000. 		Context={{ AgentpSetContainerRolesStateWorkerThread: 	Id=bd787374-fd4c-4dc5-8445-33ccb8d68f71 	Incarnation=0}}
+[2015/07/07, 10:07:52.646,  INFO, 00011404] Completed dispatched work item hr=00000000.
+[2015/07/07, 10:07:52.693,  INFO, 00011404] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:07:52.693,  INFO, 00011404] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:07:52.693,  INFO, 00011404] >>>AgentGetState() called.
+[2015/07/07, 10:07:52.693,  INFO, 00011404] There are 1 pending events
+[2015/07/07, 10:07:52.693,  INFO, 00011404] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:07:52.693,  INFO, 00011404] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:07:52.693,  INFO, 00011404] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:07:52.693,  INFO, 00011404] AgentAcknowledgeNotifications called
+[2015/07/07, 10:07:52.693,  INFO, 00011404] AgentpCleanEvents(68111) called. Deleted 1 Events.
+[2015/07/07, 10:07:52.693,  INFO, 00011404] AgentpCleanNotifications(68111) called. Deleted 0 Notifications.
+[2015/07/07, 10:07:52.693,  INFO, 00011404] Done with AgentAcknowledgeNotifications. Returning status : 0
+[2015/07/07, 10:07:56.025,  INFO, 00011404] Goal State Query: Client Ip = 100.113.194.67
+[2015/07/07, 10:07:56.025,  INFO, 00011404] WireProtocolGoalStateDeliveredNotificationCallback for container Id = [bd787374-fd4c-4dc5-8445-33ccb8d68f71]
+[2015/07/07, 10:07:56.025,  INFO, 00011404] AgentpQueueNotification called
+[2015/07/07, 10:07:56.025,  INFO, 00011404] AgentpQueueNotification done. MonitoringScope= 6 EntityStatus=3 EntityId=bd787374-fd4c-4dc5-8445-33ccb8d68f71 Returning status : 0 and AgentNotificationsCount: 1
+[2015/07/07, 10:07:56.025,  INFO, 00011404] UdpPingController send success:true. Ip:100.113.194.12.
+[2015/07/07, 10:07:56.025,  INFO, 00011404] UdpPingController sent to 100.113.193.194:19898.
+[2015/07/07, 10:07:56.025,  INFO, 00011404] Notify sent.
+[2015/07/07, 10:07:56.447,  INFO, 00011404] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:07:56.447,  INFO, 00011404] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:07:56.447,  INFO, 00011404] >>>AgentGetState() called.
+[2015/07/07, 10:07:56.447,  INFO, 00011404] There are 1 pending Notifications
+[2015/07/07, 10:07:56.447,  INFO, 00011404] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:07:56.447,  INFO, 00011404] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:07:56.447,  INFO, 00011404] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:07:56.447,  INFO, 00011404] AgentAcknowledgeNotifications called
+[2015/07/07, 10:07:56.447,  INFO, 00011404] AgentpCleanEvents(68113) called. Deleted 0 Events.
+[2015/07/07, 10:07:56.447,  INFO, 00011404] AgentpCleanNotifications(68113) called. Deleted 1 Notifications.
+[2015/07/07, 10:07:56.447,  INFO, 00011404] Done with AgentAcknowledgeNotifications. Returning status : 0
+[2015/07/07, 10:07:59.766,  INFO, 00011404] Goal State Query: Client Ip = 100.113.194.67
+[2015/07/07, 10:07:59.782,  INFO, 00011404] WireProtocolGoalStateDeliveredNotificationCallback for container Id = [bd787374-fd4c-4dc5-8445-33ccb8d68f71]
+[2015/07/07, 10:08:02.658,  INFO, 00011404] AgentpQueueNotification called
+[2015/07/07, 10:08:02.658,  INFO, 00011404] AgentpQueueNotification done. MonitoringScope= 3 EntityStatus=15 EntityId=bece4db63b3d4567ad25bd52fc36917d.0.GSDKAgent_IN_0:1:bd787374-fd4c-4dc5-8445-33ccb8d68f71:0 Returning status : 0 and AgentNotificationsCount: 1
+[2015/07/07, 10:08:02.658,  INFO, 00011404] UdpPingController send success:true. Ip:100.113.194.12.
+[2015/07/07, 10:08:02.658,  INFO, 00011404] UdpPingController sent to 100.113.193.194:19898.
+[2015/07/07, 10:08:02.658,  INFO, 00011404] Notify sent.
+[2015/07/07, 10:08:02.798,  INFO, 00011404] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:08:02.798,  INFO, 00011404] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:08:02.798,  INFO, 00011404] >>>AgentGetState() called.
+[2015/07/07, 10:08:02.798,  INFO, 00011404] There are 1 pending Notifications
+[2015/07/07, 10:08:02.798,  INFO, 00011404] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:08:02.798,  INFO, 00011404] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:08:02.798,  INFO, 00011404] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:08:02.798,  INFO, 00011404] AgentAcknowledgeNotifications called
+[2015/07/07, 10:08:02.798,  INFO, 00011404] AgentpCleanEvents(68115) called. Deleted 0 Events.
+[2015/07/07, 10:08:02.798,  INFO, 00011404] AgentpCleanNotifications(68115) called. Deleted 1 Notifications.
+[2015/07/07, 10:08:02.798,  INFO, 00011404] Done with AgentAcknowledgeNotifications. Returning status : 0
+[2015/07/07, 10:08:03.361,  INFO, 00011404] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:08:03.361,  INFO, 00011404] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:08:03.361,  INFO, 00011404] >>>AgentGetState() called.
+[2015/07/07, 10:08:03.361,  INFO, 00011404] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:08:16.124,  INFO, 00008720] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:08:16.124,  INFO, 00008720] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:08:16.124,  INFO, 00008720] >>>AgentGetState() called.
+[2015/07/07, 10:08:16.124,  INFO, 00008720] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:08:32.849,  INFO, 00008720] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:08:32.849,  INFO, 00008720] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:08:32.849,  INFO, 00008720] >>>AgentGetState() called.
+[2015/07/07, 10:08:32.849,  INFO, 00008720] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:08:45.031,  INFO, 00008720] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:08:45.031,  INFO, 00008720] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:08:45.031,  INFO, 00008720] >>>AgentGetState() called.
+[2015/07/07, 10:08:45.031,  INFO, 00008720] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:08:50.923,  INFO, 00008720] AgentpQueueNotification called
+[2015/07/07, 10:08:50.923,  INFO, 00008720] AgentpQueueNotification done. MonitoringScope= 3 EntityStatus=15 EntityId=bece4db63b3d4567ad25bd52fc36917d.0.GSDKAgent_IN_0:1:bd787374-fd4c-4dc5-8445-33ccb8d68f71:0 Returning status : 0 and AgentNotificationsCount: 1
+[2015/07/07, 10:08:50.923,  INFO, 00008720] UdpPingController send success:true. Ip:100.113.194.12.
+[2015/07/07, 10:08:50.923,  INFO, 00008720] UdpPingController sent to 100.113.193.194:19898.
+[2015/07/07, 10:08:50.923,  INFO, 00008720] Notify sent.
+[2015/07/07, 10:08:51.423,  INFO, 00008720] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:08:51.423,  INFO, 00008720] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:08:51.423,  INFO, 00008720] >>>AgentGetState() called.
+[2015/07/07, 10:08:51.423,  INFO, 00008720] There are 1 pending Notifications
+[2015/07/07, 10:08:51.423,  INFO, 00008720] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:08:51.439,  INFO, 00008720] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:08:51.439,  INFO, 00008720] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:08:51.439,  INFO, 00008720] AgentAcknowledgeNotifications called
+[2015/07/07, 10:08:51.439,  INFO, 00008720] AgentpCleanEvents(68121) called. Deleted 0 Events.
+[2015/07/07, 10:08:51.439,  INFO, 00008720] AgentpCleanNotifications(68121) called. Deleted 1 Notifications.
+[2015/07/07, 10:08:51.439,  INFO, 00008720] Done with AgentAcknowledgeNotifications. Returning status : 0
+[2015/07/07, 10:09:01.251,  INFO, 00008720] AgentpQueueNotification called
+[2015/07/07, 10:09:01.251,  INFO, 00008720] AgentpQueueNotification done. MonitoringScope= 3 EntityStatus=15 EntityId=bece4db63b3d4567ad25bd52fc36917d.0.GSDKAgent_IN_0:1:bd787374-fd4c-4dc5-8445-33ccb8d68f71:0 Returning status : 0 and AgentNotificationsCount: 1
+[2015/07/07, 10:09:01.251,  INFO, 00008720] UdpPingController send success:true. Ip:100.113.194.12.
+[2015/07/07, 10:09:01.251,  INFO, 00008720] UdpPingController sent to 100.113.193.194:19898.
+[2015/07/07, 10:09:01.251,  INFO, 00008720] Notify sent.
+[2015/07/07, 10:09:01.766,  INFO, 00008720] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:09:01.766,  INFO, 00008720] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:09:01.766,  INFO, 00008720] >>>AgentGetState() called.
+[2015/07/07, 10:09:01.766,  INFO, 00008720] There are 1 pending Notifications
+[2015/07/07, 10:09:01.766,  INFO, 00008720] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:09:01.766,  INFO, 00008720] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:09:01.766,  INFO, 00008720] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:09:01.766,  INFO, 00008720] AgentAcknowledgeNotifications called
+[2015/07/07, 10:09:01.766,  INFO, 00008720] AgentpCleanEvents(68123) called. Deleted 0 Events.
+[2015/07/07, 10:09:01.766,  INFO, 00008720] AgentpCleanNotifications(68123) called. Deleted 1 Notifications.
+[2015/07/07, 10:09:01.766,  INFO, 00008720] Done with AgentAcknowledgeNotifications. Returning status : 0
+[2015/07/07, 10:09:02.317,  INFO, 00008720] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:09:02.317,  INFO, 00008720] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:09:02.317,  INFO, 00008720] >>>AgentGetState() called.
+[2015/07/07, 10:09:02.317,  INFO, 00008720] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:09:06.775,  INFO, 00008720] AgentpQueueNotification called
+[2015/07/07, 10:09:06.775,  INFO, 00008720] AgentpQueueNotification done. MonitoringScope= 3 EntityStatus=15 EntityId=bece4db63b3d4567ad25bd52fc36917d.0.GSDKAgent_IN_0:1:bd787374-fd4c-4dc5-8445-33ccb8d68f71:0 Returning status : 0 and AgentNotificationsCount: 1
+[2015/07/07, 10:09:06.775,  INFO, 00008720] UdpPingController send success:true. Ip:100.113.194.12.
+[2015/07/07, 10:09:06.775,  INFO, 00008720] UdpPingController sent to 100.113.193.194:19898.
+[2015/07/07, 10:09:06.775,  INFO, 00008720] Notify sent.
+[2015/07/07, 10:09:07.150,  INFO, 00008720] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:09:07.150,  INFO, 00008720] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:09:07.150,  INFO, 00008720] >>>AgentGetState() called.
+[2015/07/07, 10:09:07.150,  INFO, 00008720] There are 1 pending Notifications
+[2015/07/07, 10:09:07.150,  INFO, 00008720] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:09:07.150,  INFO, 00008720] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:09:07.150,  INFO, 00008720] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:09:07.150,  INFO, 00008720] AgentAcknowledgeNotifications called
+[2015/07/07, 10:09:07.150,  INFO, 00008720] AgentpCleanEvents(68126) called. Deleted 0 Events.
+[2015/07/07, 10:09:07.150,  INFO, 00008720] AgentpCleanNotifications(68126) called. Deleted 1 Notifications.
+[2015/07/07, 10:09:07.150,  INFO, 00008720] Done with AgentAcknowledgeNotifications. Returning status : 0
+[2015/07/07, 10:09:07.228,  INFO, 00008720] Goal State Query: Client Ip = 100.113.194.67
+[2015/07/07, 10:09:07.228,  INFO, 00008720] WireProtocolGoalStateDeliveredNotificationCallback for container Id = [bd787374-fd4c-4dc5-8445-33ccb8d68f71]
+[2015/07/07, 10:09:12.577,  INFO, 00008720] AgentpQueueNotification called
+[2015/07/07, 10:09:12.577,  INFO, 00008720] AgentpQueueNotification done. MonitoringScope= 3 EntityStatus=15 EntityId=bece4db63b3d4567ad25bd52fc36917d.0.GSDKAgent_IN_0:1:bd787374-fd4c-4dc5-8445-33ccb8d68f71:0 Returning status : 0 and AgentNotificationsCount: 1
+[2015/07/07, 10:09:12.577,  INFO, 00008720] UdpPingController send success:true. Ip:100.113.194.12.
+[2015/07/07, 10:09:12.577,  INFO, 00008720] UdpPingController sent to 100.113.193.194:19898.
+[2015/07/07, 10:09:12.577,  INFO, 00008720] Notify sent.
+[2015/07/07, 10:09:12.952,  INFO, 00008720] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:09:12.952,  INFO, 00008720] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:09:12.952,  INFO, 00008720] >>>AgentGetState() called.
+[2015/07/07, 10:09:12.952,  INFO, 00008720] There are 1 pending Notifications
+[2015/07/07, 10:09:12.952,  INFO, 00008720] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:09:12.952,  INFO, 00008720] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:09:12.952,  INFO, 00008720] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:09:12.952,  INFO, 00008720] AgentAcknowledgeNotifications called
+[2015/07/07, 10:09:12.952,  INFO, 00008720] AgentpCleanEvents(68128) called. Deleted 0 Events.
+[2015/07/07, 10:09:12.952,  INFO, 00008720] AgentpCleanNotifications(68128) called. Deleted 1 Notifications.
+[2015/07/07, 10:09:12.952,  INFO, 00008720] Done with AgentAcknowledgeNotifications. Returning status : 0
+[2015/07/07, 10:09:17.570,  INFO, 00008720] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:09:17.570,  INFO, 00008720] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:09:17.570,  INFO, 00008720] >>>AgentGetState() called.
+[2015/07/07, 10:09:17.570,  INFO, 00008720] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:09:29.131,  INFO, 00008720] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:09:29.131,  INFO, 00008720] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:09:29.131,  INFO, 00008720] >>>AgentGetState() called.
+[2015/07/07, 10:09:29.131,  INFO, 00008720] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:09:45.272,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:09:45.272,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:09:45.272,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:09:45.272,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:10:03.112,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:10:03.112,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:10:03.112,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:10:03.112,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:10:19.889,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:10:19.889,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:10:19.889,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:10:19.889,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:10:36.817,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:10:36.817,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:10:36.817,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:10:36.817,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:10:51.190,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:10:51.190,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:10:51.205,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:10:51.205,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:11:05.546,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:11:05.546,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:11:05.546,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:11:05.546,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:11:06.233,  INFO, 00009016] AgentpQueueNotification called
+[2015/07/07, 10:11:06.233,  INFO, 00009016] AgentpQueueNotification done. MonitoringScope= 3 EntityStatus=15 EntityId=bece4db63b3d4567ad25bd52fc36917d.0.GSDKAgent_IN_0:1:bd787374-fd4c-4dc5-8445-33ccb8d68f71:0 Returning status : 0 and AgentNotificationsCount: 1
+[2015/07/07, 10:11:06.233,  INFO, 00009016] UdpPingController send success:true. Ip:100.113.194.12.
+[2015/07/07, 10:11:06.233,  INFO, 00009016] UdpPingController sent to 100.113.193.194:19898.
+[2015/07/07, 10:11:06.233,  INFO, 00009016] Notify sent.
+[2015/07/07, 10:11:06.249,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:11:06.249,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:11:06.249,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:11:06.249,  INFO, 00009016] There are 1 pending Notifications
+[2015/07/07, 10:11:06.249,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:11:06.249,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:11:06.249,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:11:06.249,  INFO, 00009016] AgentAcknowledgeNotifications called
+[2015/07/07, 10:11:06.249,  INFO, 00009016] AgentpCleanEvents(68138) called. Deleted 0 Events.
+[2015/07/07, 10:11:06.249,  INFO, 00009016] AgentpCleanNotifications(68138) called. Deleted 1 Notifications.
+[2015/07/07, 10:11:06.249,  INFO, 00009016] Done with AgentAcknowledgeNotifications. Returning status : 0
+[2015/07/07, 10:11:11.329,  INFO, 00009016] AgentpQueueNotification called
+[2015/07/07, 10:11:11.329,  INFO, 00009016] AgentpQueueNotification done. MonitoringScope= 3 EntityStatus=15 EntityId=bece4db63b3d4567ad25bd52fc36917d.0.GSDKAgent_IN_0:1:bd787374-fd4c-4dc5-8445-33ccb8d68f71:0 Returning status : 0 and AgentNotificationsCount: 1
+[2015/07/07, 10:11:11.329,  INFO, 00009016] UdpPingController send success:true. Ip:100.113.194.12.
+[2015/07/07, 10:11:11.329,  INFO, 00009016] UdpPingController sent to 100.113.193.194:19898.
+[2015/07/07, 10:11:11.329,  INFO, 00009016] Notify sent.
+[2015/07/07, 10:11:11.548, TRACE, 00009016] NetworkHealthMonitor: Using Local Interface = 100.113.194.12
+[2015/07/07, 10:11:11.641,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:11:11.641,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:11:11.641,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:11:11.641,  INFO, 00009016] There are 1 pending Notifications
+[2015/07/07, 10:11:11.641,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:11:11.657,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:11:11.657,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:11:11.657,  INFO, 00009016] AgentAcknowledgeNotifications called
+[2015/07/07, 10:11:11.657,  INFO, 00009016] AgentpCleanEvents(68140) called. Deleted 0 Events.
+[2015/07/07, 10:11:11.657,  INFO, 00009016] AgentpCleanNotifications(68140) called. Deleted 1 Notifications.
+[2015/07/07, 10:11:11.657,  INFO, 00009016] Done with AgentAcknowledgeNotifications. Returning status : 0
+[2015/07/07, 10:11:21.351,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:11:21.351,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:11:21.351,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:11:21.351,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:11:34.303,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:11:34.303,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:11:34.303,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:11:34.303,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:11:47.211,  INFO, 00009016] AgentpQueueNotification called
+[2015/07/07, 10:11:47.211,  INFO, 00009016] AgentpQueueNotification done. MonitoringScope= 3 EntityStatus=3 EntityId=bece4db63b3d4567ad25bd52fc36917d.0.GSDKAgent_IN_0:1:bd787374-fd4c-4dc5-8445-33ccb8d68f71:0 Returning status : 0 and AgentNotificationsCount: 1
+[2015/07/07, 10:11:47.211,  INFO, 00009016] UdpPingController send success:true. Ip:100.113.194.12.
+[2015/07/07, 10:11:47.211,  INFO, 00009016] UdpPingController sent to 100.113.193.194:19898.
+[2015/07/07, 10:11:47.211,  INFO, 00009016] Notify sent.
+[2015/07/07, 10:11:47.445,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:11:47.445,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:11:47.445,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:11:47.445,  INFO, 00009016] There are 1 pending Notifications
+[2015/07/07, 10:11:47.445,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:11:47.461,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:11:47.461,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:11:47.461,  INFO, 00009016] AgentAcknowledgeNotifications called
+[2015/07/07, 10:11:47.461,  INFO, 00009016] AgentpCleanEvents(68144) called. Deleted 0 Events.
+[2015/07/07, 10:11:47.461,  INFO, 00009016] AgentpCleanNotifications(68144) called. Deleted 1 Notifications.
+[2015/07/07, 10:11:47.461,  INFO, 00009016] Done with AgentAcknowledgeNotifications. Returning status : 0
+[2015/07/07, 10:11:47.476,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:11:47.476,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:11:47.476,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:11:47.476,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:12:02.112,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:12:02.112,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:12:02.112,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:12:02.112,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:12:18.355,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:12:18.355,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:12:18.355,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:12:18.355,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:12:30.485,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:12:30.485,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:12:30.485,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:12:30.485,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:12:45.707,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:12:45.707,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:12:45.707,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:12:45.707,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:12:57.969,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:12:57.969,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:12:57.969,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:12:57.969,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:13:13.866,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:13:13.866,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:13:13.866,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:13:13.866,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:13:27.455,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:13:27.455,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:13:27.455,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:13:27.455,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:13:41.536,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:13:41.536,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:13:41.536,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:13:41.536,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:13:55.898,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:13:55.914,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:13:55.914,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:13:55.914,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:14:13.913,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:14:13.913,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:14:13.913,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:14:13.913,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:14:28.277,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:14:28.277,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:14:28.277,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:14:28.277,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:14:41.810,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:14:41.810,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:14:41.810,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:14:41.810,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:14:54.842,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:14:54.842,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:14:54.842,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:14:54.842,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:15:13.031,  INFO, 00009016] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:15:13.031,  INFO, 00009016] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:15:13.031,  INFO, 00009016] >>>AgentGetState() called.
+[2015/07/07, 10:15:13.031,  INFO, 00009016] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:15:25.275,  INFO, 00008572] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:15:25.275,  INFO, 00008572] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:15:25.275,  INFO, 00008572] >>>AgentGetState() called.
+[2015/07/07, 10:15:25.275,  INFO, 00008572] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:15:43.668,  INFO, 00008572] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:15:43.668,  INFO, 00008572] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:15:43.668,  INFO, 00008572] >>>AgentGetState() called.
+[2015/07/07, 10:15:43.668,  INFO, 00008572] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:15:59.571,  INFO, 00008572] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:15:59.571,  INFO, 00008572] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:15:59.571,  INFO, 00008572] >>>AgentGetState() called.
+[2015/07/07, 10:15:59.571,  INFO, 00008572] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:16:11.565, TRACE, 00008572] NetworkHealthMonitor: Using Local Interface = 100.113.194.12
+[2015/07/07, 10:16:15.346,  INFO, 00008572] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:16:15.346,  INFO, 00008572] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:16:15.346,  INFO, 00008572] >>>AgentGetState() called.
+[2015/07/07, 10:16:15.346,  INFO, 00008572] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:16:28.761,  INFO, 00008572] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:16:28.761,  INFO, 00008572] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:16:28.761,  INFO, 00008572] >>>AgentGetState() called.
+[2015/07/07, 10:16:28.761,  INFO, 00008572] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:16:42.876,  INFO, 00008572] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:16:42.876,  INFO, 00008572] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:16:42.876,  INFO, 00008572] >>>AgentGetState() called.
+[2015/07/07, 10:16:42.876,  INFO, 00008572] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:16:59.758,  INFO, 00008572] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:16:59.758,  INFO, 00008572] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:16:59.758,  INFO, 00008572] >>>AgentGetState() called.
+[2015/07/07, 10:16:59.758,  INFO, 00008572] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:17:16.949,  INFO, 00008572] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:17:16.949,  INFO, 00008572] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:17:16.949,  INFO, 00008572] >>>AgentGetState() called.
+[2015/07/07, 10:17:16.949,  INFO, 00008572] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:17:31.113,  INFO, 00008572] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:17:31.113,  INFO, 00008572] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:17:31.113,  INFO, 00008572] >>>AgentGetState() called.
+[2015/07/07, 10:17:31.113,  INFO, 00008572] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:17:47.756,  INFO, 00008572] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:17:47.756,  INFO, 00008572] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:17:47.756,  INFO, 00008572] >>>AgentGetState() called.
+[2015/07/07, 10:17:47.756,  INFO, 00008572] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:18:00.087,  INFO, 00008572] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:18:00.087,  INFO, 00008572] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:18:00.087,  INFO, 00008572] >>>AgentGetState() called.
+[2015/07/07, 10:18:00.102,  INFO, 00008572] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:18:11.263,  INFO, 00008572] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:18:11.263,  INFO, 00008572] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:18:11.263,  INFO, 00008572] >>>AgentGetState() called.
+[2015/07/07, 10:18:11.263,  INFO, 00008572] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:18:23.702,  INFO, 00008572] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:18:23.702,  INFO, 00008572] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:18:23.702,  INFO, 00008572] >>>AgentGetState() called.
+[2015/07/07, 10:18:23.702,  INFO, 00008572] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:18:36.470,  INFO, 00008572] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:18:36.470,  INFO, 00008572] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:18:36.470,  INFO, 00008572] >>>AgentGetState() called.
+[2015/07/07, 10:18:36.470,  INFO, 00008572] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:18:50.628,  INFO, 00006536] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:18:50.628,  INFO, 00006536] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:18:50.628,  INFO, 00006536] >>>AgentGetState() called.
+[2015/07/07, 10:18:50.628,  INFO, 00006536] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:19:01.670,  INFO, 00006536] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:19:01.670,  INFO, 00006536] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:19:01.670,  INFO, 00006536] >>>AgentGetState() called.
+[2015/07/07, 10:19:01.670,  INFO, 00006536] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:19:18.451,  INFO, 00006536] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:19:18.451,  INFO, 00006536] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:19:18.451,  INFO, 00006536] >>>AgentGetState() called.
+[2015/07/07, 10:19:18.451,  INFO, 00006536] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:19:30.338,  INFO, 00006536] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:19:30.338,  INFO, 00006536] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:19:30.338,  INFO, 00006536] >>>AgentGetState() called.
+[2015/07/07, 10:19:30.338,  INFO, 00006536] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:19:42.596,  INFO, 00006536] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:19:42.596,  INFO, 00006536] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:19:42.596,  INFO, 00006536] >>>AgentGetState() called.
+[2015/07/07, 10:19:42.596,  INFO, 00006536] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:19:59.462,  INFO, 00006536] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:19:59.462,  INFO, 00006536] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:19:59.462,  INFO, 00006536] >>>AgentGetState() called.
+[2015/07/07, 10:19:59.462,  INFO, 00006536] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:20:11.431,  INFO, 00006536] DiskHealthMonitor::NotifyAction - DiskHealthMonitor::DiskHealthMonitorCallback, Enumerating disks.
+[2015/07/07, 10:20:11.447,  INFO, 00006536] Enumerating disks belonging to packs
+[2015/07/07, 10:20:11.447,  INFO, 00006536] Enumerating disks on pack ID {382D5D4B-46B2-4945-9ABF-7A4AC05C5BDD} named 'RDE41D2D5B8426-Dg0' with status = 1 and flags = 0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] <- VdspEnumVdsObject=0x1
+[2015/07/07, 10:20:11.478,  INFO, 00006536] Enumerating disks on pack ID {334BB3FC-08A2-4AEE-AEA4-3CCD7C6A6268} named 'Invalid' with status = 4 and flags = 0x8
+[2015/07/07, 10:20:11.478,  INFO, 00006536] <- VdspEnumVdsObject=0x1
+[2015/07/07, 10:20:11.478,  INFO, 00006536] <- VdspEnumVdsObject=0x1
+[2015/07/07, 10:20:11.478,  INFO, 00006536] Enumerating disks on pack ID {EFC63113-1B21-4139-A05A-8C35B351DB6E} named '(null)' with status = 1 and flags = 0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] <- VdspEnumVdsObject=0x1
+[2015/07/07, 10:20:11.478,  INFO, 00006536] Enumerating disks on pack ID {AAD08432-AE15-4759-8E9D-2E51DAC717A8} named '(null)' with status = 1 and flags = 0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] <- VdspEnumVdsObject=0x1
+[2015/07/07, 10:20:11.478,  INFO, 00006536] <- VdspEnumVdsObject=0x1
+[2015/07/07, 10:20:11.478,  INFO, 00006536] <- VdspEnumVdsObject=0x1
+[2015/07/07, 10:20:11.478,  INFO, 00006536] Enumerating disks not claimed by any provider
+[2015/07/07, 10:20:11.478,  INFO, 00006536] <- VdspEnumVdsObject=0x1
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskHealthMonitor::NotifyAction - DiskHealthMonitor::DiskHealthMonitorCallback, Updating health state of DiskMonitor.
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskHealthMonitor: Count: 9. Update disk monitor health.
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskInfo: Name:'\\?\PhysicalDrive2', DiskAddress:'Port0Path2Target0Lun0', FriendlyName:'SAMSUNG MZ7WD480HCGM-000MV', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_samsung&prod_mz7wd480hcgm-000#4&1a855f68&0&020000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskHealthMonitor::NotifyAction - DiskHealthMonitor::UpdateHealthStatus_Enum, Name:'\\?\PhysicalDrive2', DiskAddress:'Port0Path2Target0Lun0', FriendlyName:'SAMSUNG MZ7WD480HCGM-000MV', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_samsung&prod_mz7wd480hcgm-000#4&1a855f68&0&020000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskInfo: Name:'\\?\PhysicalDrive5', DiskAddress:'Port1Path1Target0Lun0', FriendlyName:'ST2000NM0033-9ZM175', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_&prod_st2000nm0033-9zm#4&2c39cb14&0&010000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskHealthMonitor::NotifyAction - DiskHealthMonitor::UpdateHealthStatus_Enum, Name:'\\?\PhysicalDrive5', DiskAddress:'Port1Path1Target0Lun0', FriendlyName:'ST2000NM0033-9ZM175', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_&prod_st2000nm0033-9zm#4&2c39cb14&0&010000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskInfo: Name:'\\?\PhysicalDrive7', DiskAddress:'Port1Path3Target0Lun0', FriendlyName:'ST2000NM0033-9ZM175', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_&prod_st2000nm0033-9zm#4&2c39cb14&0&030000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskHealthMonitor::NotifyAction - DiskHealthMonitor::UpdateHealthStatus_Enum, Name:'\\?\PhysicalDrive7', DiskAddress:'Port1Path3Target0Lun0', FriendlyName:'ST2000NM0033-9ZM175', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_&prod_st2000nm0033-9zm#4&2c39cb14&0&030000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskInfo: Name:'\\?\PhysicalDrive1', DiskAddress:'Port0Path1Target0Lun0', FriendlyName:'SAMSUNG MZ7WD480HCGM-000MV', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_samsung&prod_mz7wd480hcgm-000#4&1a855f68&0&010000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskHealthMonitor::NotifyAction - DiskHealthMonitor::UpdateHealthStatus_Enum, Name:'\\?\PhysicalDrive1', DiskAddress:'Port0Path1Target0Lun0', FriendlyName:'SAMSUNG MZ7WD480HCGM-000MV', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_samsung&prod_mz7wd480hcgm-000#4&1a855f68&0&010000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskInfo: Name:'\\?\PhysicalDrive0', DiskAddress:'Port0Path0Target0Lun0', FriendlyName:'SAMSUNG MZ7WD480HCGM-000MV', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_samsung&prod_mz7wd480hcgm-000#4&1a855f68&0&000000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskHealthMonitor::NotifyAction - DiskHealthMonitor::UpdateHealthStatus_Enum, Name:'\\?\PhysicalDrive0', DiskAddress:'Port0Path0Target0Lun0', FriendlyName:'SAMSUNG MZ7WD480HCGM-000MV', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_samsung&prod_mz7wd480hcgm-000#4&1a855f68&0&000000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskInfo: Name:'\\?\PhysicalDrive3', DiskAddress:'Port0Path3Target0Lun0', FriendlyName:'SAMSUNG MZ7WD480HCGM-000MV', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_samsung&prod_mz7wd480hcgm-000#4&1a855f68&0&030000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskHealthMonitor::NotifyAction - DiskHealthMonitor::UpdateHealthStatus_Enum, Name:'\\?\PhysicalDrive3', DiskAddress:'Port0Path3Target0Lun0', FriendlyName:'SAMSUNG MZ7WD480HCGM-000MV', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_samsung&prod_mz7wd480hcgm-000#4&1a855f68&0&030000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskInfo: Name:'\\?\PhysicalDrive6', DiskAddress:'Port1Path2Target0Lun0', FriendlyName:'ST2000NM0033-9ZM175', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_&prod_st2000nm0033-9zm#4&2c39cb14&0&020000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskHealthMonitor::NotifyAction - DiskHealthMonitor::UpdateHealthStatus_Enum, Name:'\\?\PhysicalDrive6', DiskAddress:'Port1Path2Target0Lun0', FriendlyName:'ST2000NM0033-9ZM175', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_&prod_st2000nm0033-9zm#4&2c39cb14&0&020000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskInfo: Name:'\\?\PhysicalDrive4', DiskAddress:'Port1Path0Target0Lun0', FriendlyName:'ST2000NM0033-9ZM175', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_&prod_st2000nm0033-9zm#4&2c39cb14&0&000000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskHealthMonitor::NotifyAction - DiskHealthMonitor::UpdateHealthStatus_Enum, Name:'\\?\PhysicalDrive4', DiskAddress:'Port1Path0Target0Lun0', FriendlyName:'ST2000NM0033-9ZM175', AdaptorName:'Standard SATA AHCI Controller', DevicePath:'\\?\scsi#disk&ven_&prod_st2000nm0033-9zm#4&2c39cb14&0&000000#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskInfo: Name:'\\?\PhysicalDrive8', DiskAddress:'Port3Path0Target0Lun1', FriendlyName:'Microsoft Virtual Disk', AdaptorName:'Microsoft VHD Loopback Controller', DevicePath:'\\?\scsi#disk&ven_msft&prod_virtual_disk#2&1f4adffe&0&000001#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskHealthMonitor::NotifyAction - DiskHealthMonitor::UpdateHealthStatus_Enum, Name:'\\?\PhysicalDrive8', DiskAddress:'Port3Path0Target0Lun1', FriendlyName:'Microsoft Virtual Disk', AdaptorName:'Microsoft VHD Loopback Controller', DevicePath:'\\?\scsi#disk&ven_msft&prod_virtual_disk#2&1f4adffe&0&000001#{53f56307-b6bf-11d0-94f2-00a0c91efb8b}', Vds_Status:'1', Vds_Health:'1', HR=0x0
+[2015/07/07, 10:20:11.478,  INFO, 00006536] DiskHealthMonitor::NotifyAction - DiskHealthMonitor::UpdateHealthStatus_Success, TotalDisks:'9', HealthyDisks:'9', OnlineDisks:'9'
+[2015/07/07, 10:20:11.478,  INFO, 00006536] NotifyEntityHealthStateChange:	EntityId: 'DiskHealthMonitor', Context: '(null)', State: '1', StateDetails: '(null)'
+[2015/07/07, 10:20:11.478,  INFO, 00006536] AgentpQueueNotification called
+[2015/07/07, 10:20:11.478,  INFO, 00006536] AgentpQueueNotification done. MonitoringScope= 16 EntityStatus=1 EntityId=DiskHealthMonitor Returning status : 0 and AgentNotificationsCount: 1
+[2015/07/07, 10:20:11.478,  INFO, 00006536] UdpPingController send success:true. Ip:100.113.194.12.
+[2015/07/07, 10:20:11.478,  INFO, 00006536] UdpPingController sent to 100.113.193.194:19898.
+[2015/07/07, 10:20:11.509,  INFO, 00006536] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:20:11.509,  INFO, 00006536] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:20:11.509,  INFO, 00006536] >>>AgentGetState() called.
+[2015/07/07, 10:20:11.509,  INFO, 00006536] There are 1 pending Notifications
+[2015/07/07, 10:20:11.509,  INFO, 00006536] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:20:11.509,  INFO, 00006536] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:20:11.509,  INFO, 00006536] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:20:11.509,  INFO, 00006536] AgentAcknowledgeNotifications called
+[2015/07/07, 10:20:11.509,  INFO, 00006536] AgentpCleanEvents(68181) called. Deleted 0 Events.
+[2015/07/07, 10:20:11.509,  INFO, 00006536] AgentpCleanNotifications(68181) called. Deleted 1 Notifications.
+[2015/07/07, 10:20:11.509,  INFO, 00006536] Done with AgentAcknowledgeNotifications. Returning status : 0
+[2015/07/07, 10:20:16.852,  INFO, 00006536] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:20:16.868,  INFO, 00006536] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:20:16.868,  INFO, 00006536] >>>AgentGetState() called.
+[2015/07/07, 10:20:16.868,  INFO, 00006536] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:20:29.020,  INFO, 00006536] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:20:29.020,  INFO, 00006536] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:20:29.020,  INFO, 00006536] >>>AgentGetState() called.
+[2015/07/07, 10:20:29.020,  INFO, 00006536] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:20:40.682,  INFO, 00006536] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:20:40.698,  INFO, 00006536] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:20:40.698,  INFO, 00006536] >>>AgentGetState() called.
+[2015/07/07, 10:20:40.698,  INFO, 00006536] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:20:51.872,  INFO, 00006536] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:20:51.872,  INFO, 00006536] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:20:51.872,  INFO, 00006536] >>>AgentGetState() called.
+[2015/07/07, 10:20:51.872,  INFO, 00006536] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:21:07.128,  INFO, 00009148] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:21:07.128,  INFO, 00009148] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:21:07.128,  INFO, 00009148] >>>AgentGetState() called.
+[2015/07/07, 10:21:07.128,  INFO, 00009148] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:21:11.581, TRACE, 00003084] NetworkHealthMonitor: Using Local Interface = 100.113.194.12
+[2015/07/07, 10:21:19.426,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:21:19.426,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:21:19.426,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:21:19.426,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:21:37.619,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:21:37.619,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:21:37.619,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:21:37.619,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:21:55.058,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:21:55.058,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:21:55.058,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:21:55.058,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:22:11.565,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:22:11.565,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:22:11.565,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:22:11.565,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:22:23.403,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:22:23.403,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:22:23.403,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:22:23.403,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:22:38.544,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:22:38.544,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:22:38.544,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:22:38.544,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:22:52.079,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:22:52.079,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:22:52.079,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:22:52.095,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:23:07.158,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:23:07.158,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:23:07.158,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:23:07.158,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:23:19.071,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:23:19.071,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:23:19.071,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:23:19.071,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:23:37.070,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:23:37.070,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:23:37.070,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:23:37.070,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:23:50.963,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:23:50.963,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:23:50.963,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:23:50.963,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:24:06.819,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:24:06.819,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:24:06.819,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:24:06.819,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:24:24.324,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:24:24.324,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:24:24.324,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:24:24.324,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:24:41.217,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:24:41.217,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:24:41.217,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:24:41.217,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:24:58.295,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:24:58.295,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:24:58.295,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:24:58.295,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:25:12.138,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:25:12.138,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:25:12.138,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:25:12.138,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:25:26.982,  INFO, 00003084] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:25:26.982,  INFO, 00003084] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:25:26.982,  INFO, 00003084] >>>AgentGetState() called.
+[2015/07/07, 10:25:26.982,  INFO, 00003084] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:25:43.397,  INFO, 00013172] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:25:43.397,  INFO, 00013172] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:25:43.397,  INFO, 00013172] >>>AgentGetState() called.
+[2015/07/07, 10:25:43.397,  INFO, 00013172] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:26:00.034,  INFO, 00013172] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:26:00.034,  INFO, 00013172] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:26:00.034,  INFO, 00013172] >>>AgentGetState() called.
+[2015/07/07, 10:26:00.034,  INFO, 00013172] AgentGetState Returning	00000000.<<<
+[2015/07/07, 10:26:11.604, TRACE, 00013172] NetworkHealthMonitor: Using Local Interface = 100.113.194.12
+[2015/07/07, 10:26:17.060,  INFO, 00013172] Subject name = am4prdapp09.fc.core.windows.net
+[2015/07/07, 10:26:17.060,  INFO, 00013172] Legacy mode. Epoch number not found. Allowing message.
+[2015/07/07, 10:26:17.060,  INFO, 00013172] >>>AgentGetState() called.
