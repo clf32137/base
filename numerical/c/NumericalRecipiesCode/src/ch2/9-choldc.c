@@ -10,8 +10,10 @@ void choldc(float **a, int n, float p[])
 		for (j=i;j<=n;j++) {
 			for (sum=a[i][j],k=i-1;k>=1;k--) sum -= a[i][k]*a[j][k];//This is equation (2.9.4). Remember that A for the lower part is actually L
 			if (i == j) {
-				if (sum <= 0.0)
+				if (sum <= 0.0){
+					printf("Sum of terms was %f\n",sum);
 					nrerror("choldc failed");
+				}
 				p[i]=sqrt(sum);
 			} else a[j][i]=sum/p[i]; //And this is equation 2.9.5
 		}

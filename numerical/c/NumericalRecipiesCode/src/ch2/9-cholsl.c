@@ -27,9 +27,10 @@
 */
 
 #include <stdio.h>
-#include "parameters.h"
+#include "../../include/fileio.h"
 
-void cholslinv( matrix,
+void cholslinv( 
+       matrix,
 	     np,
 	     dp,
 	     b,
@@ -37,18 +38,18 @@ void cholslinv( matrix,
 
   /* Inputs */
 
-     double matrix[NMAT][NMAT];
+     float matrix[NMAT][NMAT];
      long   np;
-     double dp[NMAT];
-     double b[NMAT];
-     double x[NMAT];
+     float dp[NMAT];
+     float b[NMAT];
+     float x[NMAT];
 
 {
   
   /* Locals */
 
   long i,k;                           /* Dummy variables */
-  double sum;                         /* Temp variable */
+  float sum;                         /* Temp variable */
 
  /**********
  **       **

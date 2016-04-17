@@ -14,3 +14,5 @@ C:\Users\rohit\Dropbox\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debu
 C:\Users\rohit\Dropbox\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\MathNet.Numerics.dll
 C:\Users\rohit\Dropbox\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\MathNet.Numerics.xml
 C:\Users\rohit\Dropbox\numerical\c#\NumericalRecipies\NumericalRecipies\obj\Debug\NumericalRecipies.csprojResolveAssemblyReference.cache
+C:\Users\rohit\git\base\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\NumericalRecipies.exe.config
+C:\Users\rohit\git\base\numerical\c#\NumericalRecipies\NumericalRecipies\obj\Debug\NumericalRecipies.csprojResolveAssemblyReference.cache

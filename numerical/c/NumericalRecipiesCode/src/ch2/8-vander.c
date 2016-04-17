@@ -1,5 +1,5 @@
 #define NRANSI
-#include "nrutil.h"
+#include "../include/nrutil.h"
 
 void vander(double x[], double w[], double q[], int n)
 {

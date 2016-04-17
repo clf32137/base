@@ -10,8 +10,8 @@ namespace NumericalRecipies.ch02
     class QRdcmp
     {
         private int n;
-        private final double[][] qt, r; // Stored QT and R.
-        private boolean sing; // Indicates whether A is singular.
+        private double[][] qt, r; // Stored QT and R.
+        private bool sing; // Indicates whether A is singular.
         
         public QRdcmp(MatDoub a)
         {

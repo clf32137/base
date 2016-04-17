@@ -1,7 +1,7 @@
 ﻿using System;
 
 using System.Collections.Generic;
-using MathNet.Numerics.LinearAlgebra.Solvers;
+//using MathNet.Numerics.LinearAlgebra.Solvers;
 
 
 namespace nr

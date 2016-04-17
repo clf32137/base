@@ -4,6 +4,7 @@
 
 //Toeplitz matrices tend to occur in deconvolution and signal processing.
 void toeplz(float r[], float x[], float y[], int n)
+//Solves the Toeplitz system $\sum_{j=1}^N R_{N+i-j}x_j = y_i$. $x$ is the output.
 {
 	int j,k,m,m1,m2;
 	float pp,pt1,pt2,qq,qt1,qt2,sd,sgd,sgn,shn,sxn;

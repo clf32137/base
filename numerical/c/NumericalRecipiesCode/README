@@ -1,0 +1,6 @@
+
+watch out for these:
+
+Run make in lib folder before you run it in any other folders since those will typically depend on the lib .o files. But in most cases, the .o files will already be there so this might not be necessary.
+
+None of the .o files from various solutions (lib, ch2, etc) should have the same names. This is because we write all .o files to a flat folder.

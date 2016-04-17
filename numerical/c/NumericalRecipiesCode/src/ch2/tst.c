@@ -5,50 +5,7 @@
 #include <math.h>
 #include <time.h>
 #include "../../include/nrutil.h"
-
-
-/********************************************************
-*Gneral purpose C functions.
-********************************************************/
-int read_matrix(float** mat, char* filename, int rows, int cols)
-{
-	FILE *file;
-	char *buffer;
-	int ret, row = 0, i, j;
-
-	// Set Field Separator here
-	char delims[] = " ";
-	char *result = NULL;
-	// Memory allocation
-	if ((file = fopen(filename, "r")) == NULL){
-		fprintf(stdout, "Error: Can't open file !\n");
-		return -1;
-	}
-	while(!feof(file))
-	{
-		//buffer = static_cast<char*>(malloc(sizeof(char) * 4096));
-		buffer = (char*) malloc (sizeof(char)*4096);
-		memset(buffer, 0, 4096);
-		ret = fscanf(file, "%4095[^\n]\n", buffer);
-		if (ret != EOF && row < rows) 
-		{
-			int field = 0;
-			result = strtok(buffer,delims);
-			while(result!=NULL)
-			{
-				 // Set no of fields according to your requirement
-				if(field>cols)break;
-				mat[row+1][field+1] = atof(result);
-				result = strtok(NULL,delims);
-				field++;
-			}
-			++row;
-		}
-		free(buffer);
-	}
-	fclose(file);
-	return -1;
- }
+#include "../../include/fileio.h"
 
 /********************************************************
 *general matrix operations.
@@ -147,19 +104,23 @@ void populatelu(float **mat, float **l, float **u, int ros) //Only makes sense f
     [ 0,  0,  1,  0],
     [ 0,  0,  0, 1]
 ]*/
-int main()
+int main(int argc, char *argv)
 {
 	//Used to determine which section gets its results printed.
 	int shouldiprint[] = 
 	{
-		0, // toy data
-		0, // gauss jordan
+		1, // toy data
+		1, // gauss jordan
 		0, // lu decomposition
 		0, // solve equations with lu
 		0, // improvement of solution
 		0, // singular value decomposition
-		1, // sparse matrix
-		1  // sove sparse matrix system of equations.
+		0, // sparse matrix
+		0, // sove sparse matrix system of equations.
+		1, // Vandermonde output
+		1, // Toeplitz output
+		1, // Cholesy output
+		1  // QR decomposition.
 	};
 	int printindx = 0;
 ////////////////////////////////////////////
@@ -167,15 +128,15 @@ int main()
 ////////////////////////////////////////////
 	int i, j;
 	int dim = 4;
-	float **a;
+	float **a; a = matrix(1,4,1,4);
 	double **da;
 	da = dmatrix(1, 4, 1, 4);
 	float matrixa[][5] = 
 	{
-		{3.0f, 0.0f, 2.0f, 0.0f, 0.0f},
-		{0.0f, 4.0f, 0.0f, 0.0f, 0.0f},
-		{0.0f, 7.0f, 5.0f, 9.0f, 0.0f},
-		{0.0f, 0.0f, 0.0f, 0.0f, 2.0f},
+		{3.0f, 5.5f, 2.0f, 0.0f, 0.0f},
+		{2.0f, 4.0f, 0.0f, 0.0f, 0.0f},
+		{1.0f, 7.0f, 5.0f, 9.0f, 0.0f},
+		{4.0f, 0.0f, 0.0f, 0.0f, 2.0f},
 		{0.0f, 0.0f, 0.0f, 6.0f, 5.0f}
 	};
 	
@@ -206,8 +167,8 @@ int main()
 //Read matrix from file instead of hard coding.
 /////////////////////////////////////////////
 	float **mat; mat = matrix(1, 4, 1, 4);
-	read_matrix(mat, "../../data/matrix_file", 4, 4);
-	
+	//fillmatrix(mat, matrixa, 4,4);
+	read_matrix_from_file(mat, "../../data/matrix_file", 4, 4);
 	if(shouldiprint[printindx++])
 	{
 		printf("\n###################\n Read in matrix from a file\n###################\n");
@@ -216,8 +177,7 @@ int main()
 
 /////////////////////////////////////////////
 //Gauss Jordan on toy matrices.
-/////////////////////////////////////////////
-	
+/////////////////////////////////////////////	
 
 	if(shouldiprint[printindx++])
 	{
@@ -400,8 +360,122 @@ int main()
 		
 		for(i = 0; i < n; i++)
 			 printf("%f%s", dx1[i+1], i < n - 1 ? "\t" : "\n");
+	}
+////////////////////////////////////////////
+//Solving Vandermonde matrix
+////////////////////////////////////////////
+	if(shouldiprint[printindx++])
+	{
+		printf("\n###################\nSolving a Vandermonde matrix\n###################  \n");
+		
+		double *x_v;
+		x_v = dvector(1,3);
+		x_v[1] = 1; x_v[2] = 3; x_v[3] = 5;
+
+		double *w;
+		w = dvector(1,3);
+		w[1] = 1; w[2] = 1; w[3] = 1;
+
+		double *q; 
+		q = dvector(1,3);
+		q[1] = 1; q[2] = 4; q[3] = 1;
+		
+
+		vander(x_v, w, q, 3);
+		for(i=1; i <= 3; i++)
+			printf("%f\t", w[i]);
+		printf("\n");
 
 	}
+
+	if(shouldiprint[printindx++])
+	{
+		printf("\n###################\nSolving a Toeplitz matrix\n###################  \n");
+		int n_t = 3;
+		float *r_t = vector(1, (2*n_t-1));
+		r_t[1] = 2; r_t[2] = 3; r_t[3] = 3.2; r_t[4] = 3.5; r_t[5] = 4;
+
+		float *x_t = vector(1,n_t);
+		x_t[1] = 1; x_t[2] = 1; x_t[3] = 1;
+
+		float *y_t = vector(1,n_t);
+		y_t[1] = 1; y_t[2] = 1; y_t[3] = 1;
+
+		toeplz(r_t, x_t, y_t, n_t);
+		for(i=1; i <= 3; i++)
+			printf("%f\t", x_t[i]);
+		printf("\n");
+	}
+
+	if(shouldiprint[printindx++])
+	{
+		printf("\n###################\nSolving Cholesky\n###################  \n");
+		int n_chol = 2;
+		float **a_c = matrix(1,n_chol,1,n_chol);
+		float *p = vector(1,n_chol);
+		float matrixchol[][5] = 
+		{
+			{3.0f, 3.46f, 2.0f, 3.0f, 3.0f},
+			{7.0f, 4.0f, 0.0f, 0.0f, 0.0f},
+			{1.0f, 7.0f, 5.0f, 9.0f, 0.0f},
+			{4.0f, 0.0f, 0.0f, 2.0f, 2.0f},
+			{0.0f, 0.0f, 0.0f, 6.0f, 5.0f}
+		};
+		fillmatrix(a_c, matrixchol, n_chol, n_chol);
+
+		printf("Input matrix given (should be covariance):\n");
+		printMatrix(a_c, n_chol, n_chol);
+		printf("After cholesky decomposition:\n");
+		choldc(a_c, n_chol, p);
+		printMatrix(a_c, n_chol, n_chol);
+
+		printf("\nWe now use this to solve linear equation:\n");
+		float *b_chol = vector(1,n_chol);
+		b_chol[1] = 2; b_chol[2] = 1;
+		float *x_chol = vector(1,n_chol);
+		cholslvec(a_c, n_chol, p, b_chol, x_chol);
+
+		printf("\nAnd here is the solution:\n");
+		for(i=1; i <= n_chol; i++)
+			printf("%f\t", x_chol[i]);
+		printf("\n");
+	}
+	if(shouldiprint[printindx++])
+	{
+		printf("\n###################\nQR decomposition\n###################  \n");
+        int n_qr = 3;
+        float **a_qr = matrix(1,n_qr,1,n_qr);
+        float matrixqr[][5] = 
+		{
+			{3.0f, 3.5f, 2.0f, 3.0f, 3.0f},
+			{7.0f, 4.0f, 0.0f, 0.0f, 0.0f},
+			{1.0f, 7.0f, 5.0f, 9.0f, 0.0f},
+			{4.0f, 0.0f, 0.0f, 2.0f, 2.0f},
+			{0.0f, 0.0f, 0.0f, 6.0f, 5.0f}
+		};
+		fillmatrix(a_qr, matrixqr, n_qr, n_qr);
+
+		float *c_qr = vector(1,n_qr);
+		float *d_qr = vector(1,n_qr);
+		int *sign;
+		qrdcmp(a_qr,n_qr,c_qr,d_qr,sign);
+		printf("\nQR decomposition of matrix\n");
+		printMatrix(a_qr,n_qr,n_qr);
+
+		float *b_qr = vector(1,n_qr);
+		b_qr[1] = 1; b_qr[2] = 5; b_qr[3] = 7;
+		printf("\nNow using it to solve a system\n");
+		qrsolv(a_qr, n_qr, c_qr, d_qr, b_qr);
+		printf("\nAnd here is the solution:\n");
+		for(i=1; i <= n_qr; i++)
+			printf("%f\t", b_qr[i]);
+		printf("\n");
+	}
+
+
+	//Freeze the console so I can look at the output.
+	char str1[20];
+	scanf("%s", str1);
 
 	//Cleanup..
 	free_matrix(a, 1, 4, 1, 4);
