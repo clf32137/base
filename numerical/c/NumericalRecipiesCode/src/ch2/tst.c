@@ -104,7 +104,7 @@ void populatelu(float **mat, float **l, float **u, int ros) //Only makes sense f
     [ 0,  0,  1,  0],
     [ 0,  0,  0, 1]
 ]*/
-int main(int argc, char *argv)
+int main(int argc, char *argv[])
 {
 	//Used to determine which section gets its results printed.
 	int shouldiprint[] = 
@@ -442,7 +442,8 @@ int main(int argc, char *argv)
 	}
 	if(shouldiprint[printindx++])
 	{
-		printf("\n###################\nQR decomposition\n###################  \n");
+		printf("\n###################\nQR decomposition\n###################\n");
+		
         int n_qr = 3;
         float **a_qr = matrix(1,n_qr,1,n_qr);
         float matrixqr[][5] = 
@@ -453,14 +454,17 @@ int main(int argc, char *argv)
 			{4.0f, 0.0f, 0.0f, 2.0f, 2.0f},
 			{0.0f, 0.0f, 0.0f, 6.0f, 5.0f}
 		};
+				
 		fillmatrix(a_qr, matrixqr, n_qr, n_qr);
 
 		float *c_qr = vector(1,n_qr);
 		float *d_qr = vector(1,n_qr);
 		int *sign;
-		qrdcmp(a_qr,n_qr,c_qr,d_qr,sign);
+		
+		qrdcmp(a_qr,n_qr,c_qr,d_qr,&sign);
 		printf("\nQR decomposition of matrix\n");
 		printMatrix(a_qr,n_qr,n_qr);
+		
 
 		float *b_qr = vector(1,n_qr);
 		b_qr[1] = 1; b_qr[2] = 5; b_qr[3] = 7;
