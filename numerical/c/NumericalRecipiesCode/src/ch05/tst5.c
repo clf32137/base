@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
 		for(i=0; i < nd; i++)
 			printf("%f%s", pd[i], i < nd - 1 ? "\t" : "\n");
 	}
+	
 }
 
 
