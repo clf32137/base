@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 		float pd[] = {0,0,0,0,0};
 		int nd = 3;
 		printf("x outside: %f\n",x);
-		ddpoly2(c,nc,x,pd,nd);
+		ddpoly2(x);
 }
 
 
