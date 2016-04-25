@@ -11,7 +11,6 @@ int main(int argc, char *argv[])
 {
 	//Used to determine which section gets its results printed.
 	
-		printf("\n###################\n Evaluate polynomial and calculate its derivatives\n###################\n");
 		float c[] = {1,1,1,0,0};
 		int nc = 2;
 		float x = 2.0;
