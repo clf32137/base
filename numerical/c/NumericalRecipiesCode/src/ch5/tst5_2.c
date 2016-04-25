@@ -7,27 +7,10 @@
 #include "../../include/nrutil.h"
 #include "../../include/fileio.h"
 
-int main1(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	//Used to determine which section gets its results printed.
-	int shouldiprint[] = 
-	{
-		1, // polynomial evaluation
-		1, // 
-		1, // 
-		1, // 
-		1, // 
-		1, // 
-		1, // 
-		1, // 
-		1, // 
-		1, // 
-		1, // 
-		1  // 
-	};
-	int printindx = 0;
-	if(shouldiprint[printindx++])
-	{
+	
 		printf("\n###################\n Evaluate polynomial and calculate its derivatives\n###################\n");
 		float c[] = {1,1,1,0,0};
 		int nc = 2;
@@ -35,11 +18,7 @@ int main1(int argc, char *argv[])
 		float pd[] = {0,0,0,0,0};
 		int nd = 3;
 		printf("x outside: %f\n",x);
-		ddpoly(c,nc,x,pd,nd);
-		int i;
-		for(i=0; i < nd; i++)
-			printf("%f%s", pd[i], i < nd - 1 ? "\t" : "\n");
-	}
+		ddpoly(c,nc,x,pd,nd);		
 }
 
 
