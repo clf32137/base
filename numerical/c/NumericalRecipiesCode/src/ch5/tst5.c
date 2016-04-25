@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 		float x = 2.0;
 		float pd[] = {0,0,0,0,0};
 		int nd = 3;
-		printf("x: %f\n",x);
+		printf("x outside: %f\n",x);
 		ddpoly(c,nc,x,pd,nd);
 		int i;
 		for(i=0; i < nd; i++)

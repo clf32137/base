@@ -18,11 +18,13 @@ void ddpoly(float c[], int nc, float x, float pd[], int nd)
 {
 	int nnd, j, i;
 	float cnst = 1.0;
-
-	pd[0] = c[nc];
-	printf("x: %f\n",x);
+	printf("x inside : %f\n",x);
 	printf("nc: %d\n",nc);
 	printf("nd: %d\n",nd);
+
+	pd[0] = c[nc];
+	
+	
 	for (j=1; j<=nd; j++)//Derivatives to be calculated.
 		pd[j]=0.0;
 
