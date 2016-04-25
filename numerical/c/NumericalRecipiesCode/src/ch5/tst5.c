@@ -6,24 +6,26 @@
 #include <time.h>
 #include "../../include/nrutil.h"
 #include "../../include/fileio.h"
+#include "ch5funcs.h"
 
-int main1(int argc, char *argv[])
+
+int main(int argc, char *argv[])
 {
 	//Used to determine which section gets its results printed.
 	int shouldiprint[] = 
 	{
 		1, // polynomial evaluation
-		1, // 
-		1, // 
-		1, // 
-		1, // 
-		1, // 
-		1, // 
-		1, // 
-		1, // 
-		1, // 
-		1, // 
-		1  // 
+		1, //
+		1, //
+		1, //
+		1, //
+		1, //
+		1, //
+		1, //
+		1, //
+		1, //
+		1, //
+		1  //
 	};
 	int printindx = 0;
 	if(shouldiprint[printindx++])
@@ -34,7 +36,6 @@ int main1(int argc, char *argv[])
 		float x = 2.0;
 		float pd[] = {0,0,0,0,0};
 		int nd = 3;
-		printf("x outside: %f\n",x);
 		ddpoly(c,nc,x,pd,nd);
 		int i;
 		for(i=0; i < nd; i++)

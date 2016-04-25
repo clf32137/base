@@ -1,12 +1,12 @@
 #include <stdio.h>
 
-//void ddpoly(
-//	float c[], //Coefficients of polynomial
-//	int nc, //Degree of polynomial. So, c will have nc+1 terms counting constant.
-//	float x, //Point at which evaluation required
-//	float pd[], //OUTPUT - Derivatives of polynomial
-//	int nd //Number of derivatives to be calculated.
-//	)
+void ddpoly(
+	float c[], //Coefficients of polynomial
+	int nc, //Degree of polynomial. So, c will have nc+1 terms counting constant.
+	float x, //Point at which evaluation required
+	float pd[], //OUTPUT - Derivatives of polynomial
+	int nd //Number of derivatives to be calculated.
+	)
 
 /*
 *Given the nc+1 coefficients of a polynomial of degree nc as an array
@@ -14,16 +14,11 @@
 *and given nd>1, this routine returns the polynomial evaluated x as pd[0]
 *and nd derivatives as pd[1..nd]
 */
-void ddpoly(float c[], int nc, float x, float pd[], int nd)
 {
 	int nnd, j, i;
-	float cnst = 1.0;
-	printf("x inside : %f\n",x);
-	printf("nc: %d\n",nc);
-	printf("nd: %d\n",nd);
+	float cnst = 1.0;	
 
-	pd[0] = c[nc];
-	
+	pd[0] = c[nc];	
 	
 	for (j=1; j<=nd; j++)//Derivatives to be calculated.
 		pd[j]=0.0;
