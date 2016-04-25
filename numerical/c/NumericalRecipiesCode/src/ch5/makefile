@@ -11,7 +11,7 @@ LIBS=-lm
 _DEPS = nrutil.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = nrutil.o fileio.o 3-ddpoly.o 3-poynomial.o tst5_2.o
+_OBJ = nrutil.o fileio.o 3-ddpoly.o ddpoly_2.o 3-poynomial.o tst5_2.o
 
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
