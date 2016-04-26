@@ -27,7 +27,7 @@ void ddpoly(
 	{
 		nnd = (nd < (nc-i) ? nd : nc-i); //MIN(nd,nc-i)
 		for (j=nnd; j>=1; j--)
-			pd[j] = pd[j]*x + pd[j-1]; //Similar to dynamic programming.
+			pd[j] = pd[j]*x + pd[j-1]; //Similar to dynamic programming style in Vandermonde.
 
 		pd[0] = pd[0]*x + c[i];
 	}
