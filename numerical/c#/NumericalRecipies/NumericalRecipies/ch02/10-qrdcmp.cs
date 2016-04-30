@@ -15,7 +15,7 @@ namespace NumericalRecipies.ch02
         
         public QRdcmp(MatDoub a)
         {
-            n = a.nrows;
+            n = a.nrows();
             MatDoub qt = new MatDoub(n, n);
             MatDoub r = new MatDoub(a);
             sing = (false);
@@ -42,7 +42,7 @@ namespace NumericalRecipies.ch02
                     for (sum = 0.0, i = k; i < n; i++)
                         sum += r[i][k] * r[i][k];
 
-                    sigma = SIGN(sqrt(sum), r[k][k]);
+                    sigma = NR.SIGN(Math.Sqrt(sum), r[k][k]);
                     r[k][k] += sigma;
                     c[k] = sigma * r[k][k];
                     d[k] = -scale * sigma;
