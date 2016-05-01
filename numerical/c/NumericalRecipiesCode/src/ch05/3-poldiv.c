@@ -22,13 +22,13 @@ void poldiv(
 
 	for (j = 0; j <= n; j++)
 	{
-		r[j] = u[j];//Remainder equals numerator
+		r[j] = u[j];//Remainder equals numerator for now.
 		q[j] = 0.0;
 	}
 	for (k = n - nv; k >= 0; k--)
 	{
 		q[k] = r[nv + k] / v[nv];
-		for (j = nv + k - 1; j >= k; j--)
+		for (j = nv + k - 1; j >= k; j--)//nv subtractions.
 		{
 			r[j] -= q[k] * v[j - k];			
 		}
@@ -59,8 +59,9 @@ void poldiv_debug(
 		r[j] = u[j];
 		q[j] = 0.0;
 	}
+	printf(ANSI_COLOR_CYAN"Starts from the end because in synthetic division, the order of coefficients of the numerator is reversed.\n"ANSI_COLOR_RESET);
 	for (k = n - nv; k >= 0; k--)
-	{		
+	{
 		printf("k = %d; q[%d]" , k, k);
 		printf(ANSI_COLOR_YELLOW" (%.2f)",q[k]);
 		printf(ANSI_COLOR_RESET" = r[%d] ", n-i);

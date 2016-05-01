@@ -10,14 +10,19 @@
 #include "ch5funcs.h"
 
 
+float testFn(float x)
+{
+	return x*x;
+}
+
 int main(int argc, char *argv[])
 {
 	//Used to determine which section gets its results printed.
 	int shouldiprint[] = 
 	{
 		1, // polynomial evaluation
-		1, //
-		1, //
+		1, // 
+		1, // differentiate function
 		1, //
 		1, //
 		1, //
@@ -57,8 +62,15 @@ int main(int argc, char *argv[])
 	}
 	if(shouldiprint[printindx++])
 	{
-		
-		
+		printf("\n###################\n Differentiation of a function\n###################\n");
+		float x = 6;
+		float h = 5;
+		float err = 0;
+
+		float ans = dfridr(testFn, x, h, &err);
+		printf("Derivative is: %f and error is: %f\n", ans, err);
+		float ans2 = simplenumerical(testFn, x, 2e-2);
+		printf("Derivative with standard method is: %f\n", ans2);
 	}
 }
 
