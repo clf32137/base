@@ -31,7 +31,7 @@ void ddpoly(
 		for (j=nnd; j>=1; j--)
 			pd[j] = pd[j]*x + pd[j-1]; //Similar to dynamic programming style in Vandermonde.
 									   //d/dx (x.g(x)) = x.g'(x) + g(x).1
-									   //See 4/27/16 notes
+									   //See 4/27/16 notes and also output of debugging version below.
 
 		pd[0] = pd[0]*x + c[i]; //See eval4thDeg in 3-polynomial.c to understand why.
 	}
@@ -57,7 +57,7 @@ void ddpoly_debug(
 	int debug = 1;
 	int nnd, j, i, k;
 	float cnst = 1.0;
-
+	
 	pd[0] = c[nc];//Degree of polynomial
 
 	for (j=1; j <= nd; j++)//Derivatives to be calculated.

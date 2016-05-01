@@ -45,10 +45,20 @@ int main(int argc, char *argv[])
 	if(shouldiprint[printindx++])
 	{
 		printf("\n###################\n Divide two polynomials\n###################\n");
-		float c1[] = {1,1,1,1,0};
-		int nc1 = 3;
+		float u[] = {-7,0,5,6};
+		int n = 3;
+		float v[] = {-1,-2,3};
+		int nv = 2;
+		float q[] = {0,0,0,0};
+		float r[] = {0,0,0,0};
+		poldiv_debug(u,n,v,nv,q,r);
+		printf("Quotient: "); pprint1d_float(q, n);
+		printf("Remaindr: ");pprint1d_float(r, n);
+	}
+	if(shouldiprint[printindx++])
+	{
+		
 		
 	}
 }
-
 

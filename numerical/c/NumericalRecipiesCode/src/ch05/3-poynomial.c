@@ -1,7 +1,7 @@
 #include <math.h>
 
 //Special case of fourth degree polynomials. Won't need to use it since we have nth degree code.
-float eval4thDeg(
+float eval4thdeg(
 	float *c, 
 	float x
 	)
@@ -11,7 +11,7 @@ float eval4thDeg(
 }
 
 //Generalization of 4th degree code above. Also calculates the first derivative.
-float evalnthDeg(
+float evalnthdeg(
 	float *c,//Coefficients of polynomial
 	float x,//Evaluate polynomial at
 	int n//Number of terms in the polynomial
@@ -26,4 +26,34 @@ float evalnthDeg(
 	}
 }
 
+float multiplybymonomial(
+	float *c,//Coefficients of polynomial
+	int n,//Degree of polynomial is (n-1)
+	float a //The monomial factor is (x-a)
+	)
+{
+	int j;
+	c[n] = c[n-1];
+	for(j=n-1; j>=1; j--)
+		c[j] = c[j-1] - c[j]*a; //x terms and a term.
+	c[0] *= (-a);
+}
+
+float dividebymonomial(
+	float *c,
+	int n,//Degree of polynomial
+	float a
+	)
+{
+	float rem = c[n];
+	c[n] = 0.0;
+	float swap;
+	int i;
+	for(i=n-1; i>=0; i--)
+	{
+		swap = c[i];
+		c[i] = rem;
+		rem = swap + rem*a;
+	}
+}
 
