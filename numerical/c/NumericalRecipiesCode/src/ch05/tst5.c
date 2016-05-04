@@ -12,14 +12,14 @@
 
 float testFn(float x)
 {
-	return x*x;
+	return x*x*x;
 	//return 1;
 }
 
 float testFn2(float x)
 {
-	return x*x*x*x;
-	//return 1;
+	//return x*x*x*x;
+	return x*x*x;
 }
 
 int main(int argc, char *argv[])
@@ -27,9 +27,9 @@ int main(int argc, char *argv[])
 	//Used to determine which section gets its results printed.
 	int shouldiprint[] = 
 	{
-		1, // polynomial evaluation
-		1, // divide polynomials
-		1, // differentiate function
+		0, // polynomial evaluation
+		0, // divide polynomials
+		0, // differentiate function
 		1, // chebyshev
 		1, //
 		1, //
@@ -82,11 +82,11 @@ int main(int argc, char *argv[])
 	if(shouldiprint[printindx++])
 	{
 		printf("\n###################\n Chebyshev polynomials\n###################\n");
-		float a = 0.0, b = 1.0; 
+		float a = 0.0, b = 1.0;
 		int n1 = 5;//Degree of polynomial for approximation
 		float *c1; c1 = vector(0, n1);
-		pprint1d_float(c1,n1);
-		chebft(a, b, c1, n1, testFn); //The function to be approximated
+		//pprint1d_float(c1,n1); //Will give garbage values since array not initialized.
+		chebft(a, b, c1, n1, testFn2); //The function to be approximated
 		pprint1d_float(c1, n1);
 	}
 }
