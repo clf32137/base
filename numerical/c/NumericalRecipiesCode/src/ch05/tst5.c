@@ -12,7 +12,7 @@
 
 float testFn(float x)
 {
-	return x*x;
+	return x*x*x*x;
 }
 
 int main(int argc, char *argv[])
@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
 		1, // polynomial evaluation
 		1, // 
 		1, // differentiate function
-		1, //
+		1, // chebyshev
 		1, //
 		1, //
 		1, //
@@ -64,13 +64,23 @@ int main(int argc, char *argv[])
 	{
 		printf("\n###################\n Differentiation of a function\n###################\n");
 		float x = 6;
-		float h = 5;
+		float h = 2;
 		float err = 0;
 
 		float ans = dfridr(testFn, x, h, &err);
 		printf("Derivative is: %f and error is: %f\n", ans, err);
 		float ans2 = simplenumerical(testFn, x, 2e-2);
 		printf("Derivative with standard method is: %f\n", ans2);
+	}
+	if(shouldiprint[printindx++])
+	{
+		printf("\n###################\n Chebyshev polynomials\n###################\n");
+		float a = 0, b = 1;
+		int n = 2;//Degree of polynomial for approximation
+		float *c1; c1 = vector(0,n);
+		pprint1d_float(c1,n);//Why do I get 12s?? Ask stackoverflow.
+		chebft(a, b, c1, n, testFn); //The function to be approximated
+		pprint1d_float(c1,n);
 	}
 }
 
