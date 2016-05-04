@@ -1,4 +1,4 @@
-#This makefile compiles only source files in chapter-2.
+#This makefile compiles only source files in chapter-5.
 IDIR =../../include
 CC=gcc
 CFLAGS=-I$(IDIR)

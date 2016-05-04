@@ -12,7 +12,14 @@
 
 float testFn(float x)
 {
+	return x*x;
+	//return 1;
+}
+
+float testFn2(float x)
+{
 	return x*x*x*x;
+	//return 1;
 }
 
 int main(int argc, char *argv[])
@@ -21,7 +28,7 @@ int main(int argc, char *argv[])
 	int shouldiprint[] = 
 	{
 		1, // polynomial evaluation
-		1, // 
+		1, // divide polynomials
 		1, // differentiate function
 		1, // chebyshev
 		1, //
@@ -75,12 +82,12 @@ int main(int argc, char *argv[])
 	if(shouldiprint[printindx++])
 	{
 		printf("\n###################\n Chebyshev polynomials\n###################\n");
-		float a = 0, b = 1;
-		int n = 2;//Degree of polynomial for approximation
-		float *c1; c1 = vector(0,n);
-		pprint1d_float(c1,n);//Why do I get 12s?? Ask stackoverflow.
-		chebft(a, b, c1, n, testFn); //The function to be approximated
-		pprint1d_float(c1,n);
+		float a = 0.0, b = 1.0; 
+		int n1 = 5;//Degree of polynomial for approximation
+		float *c1; c1 = vector(0, n1);
+		pprint1d_float(c1,n1);
+		chebft(a, b, c1, n1, testFn); //The function to be approximated
+		pprint1d_float(c1, n1);
 	}
 }
 
