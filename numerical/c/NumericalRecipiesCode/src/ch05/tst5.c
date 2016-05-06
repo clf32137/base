@@ -82,12 +82,14 @@ int main(int argc, char *argv[])
 	if(shouldiprint[printindx++])
 	{
 		printf("\n###################\n Chebyshev polynomials\n###################\n");
-		float a = 0.0, b = 1.0;
+		float a = 2.0, b = 7.0, x1 = 6.0;
 		int n1 = 5;//Degree of polynomial for approximation
 		float *c1; c1 = vector(0, n1);
 		//pprint1d_float(c1,n1); //Will give garbage values since array not initialized.
 		chebft(a, b, c1, n1, testFn2); //The function to be approximated
 		pprint1d_float(c1, n1);
+		float res1 = chebev(a, b, c1, 3, x1);
+		printf("%.2f\n", res1);
 	}
 }
 

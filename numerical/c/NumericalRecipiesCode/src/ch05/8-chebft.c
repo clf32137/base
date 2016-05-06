@@ -20,25 +20,25 @@ void chebft(
 */
 {
 	int k,j;
-	float fac,bpa,bma,*f;
+	float fac, bpa, bma, *f;
 
-	f = vector(0,n-1);
-	bma = 0.5*(b-a);
-	bpa = 0.5*(b+a);
-	for (k=0; k<n; k++)
+	f = vector(0, n-1);
+	bma = 0.5 * (b-a);
+	bpa = 0.5 * (b+a);
+	for (k=0; k < n; k++)
 	{ //We evaluate the function at n points requred by 5.8.7
-		float y = cos(PI * (k + 0.5)/n);
-		f[k] = (*func)(y * bma + bpa);
+		float y = cos(PI * (k + 0.5) / n);
+		f[k] = (*func)(y * bma + bpa); //y lies between 0 and 1 while x lies between a and b.
 	}
-	fac = 2.0/n;
-	for (j=0; j<n; j++)
+	fac = 2.0 / n;
+	for (j=0; j < n; j++)
 	{
-		double sum=0.0;//We will accumulate the sum in double precision.
-		for (k=0; k<n; k++)
+		double sum = 0.0;//We will accumulate the sum in double precision.
+		for (k=0; k < n; k++)
 			sum += f[k] * cos(PI * j * (k + 0.5)/n);
 		c[j] = fac * sum;
 	}
-	free_vector(f,0,n-1);
+	free_vector(f, 0, n-1);
 }
 
 
