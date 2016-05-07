@@ -87,9 +87,13 @@ int main(int argc, char *argv[])
 		float *c1; c1 = vector(0, n1);
 		//pprint1d_float(c1,n1); //Will give garbage values since array not initialized.
 		chebft(a, b, c1, n1, testFn2); //The function to be approximated
+		printf("Chebyshev coefficients: \n");
 		pprint1d_float(c1, n1);
-		float res1 = chebev(a, b, c1, 3, x1);
-		printf("%.2f\n", res1);
+		float chebyshev_val = chebev_debug(a, b, c1, 3, x1);
+		float orig_val = testFn2(x1);
+		printf("Original function: %.2f Chebyshev approximation: %.2f\n", orig_val, chebyshev_val);
+		float prct_diff = (chebyshev_val - orig_val)/orig_val;
+		printf("Fractional diff = %.2f\n", prct_diff);
 	}
 }
 
