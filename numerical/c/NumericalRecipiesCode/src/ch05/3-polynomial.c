@@ -2,7 +2,7 @@
 
 //Special case of fourth degree polynomials. Won't need to use it since we have nth degree code.
 float eval4thdeg(
-	float *c, 
+	float *c,
 	float x
 	)
 {
