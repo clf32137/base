@@ -27,9 +27,9 @@ int main(int argc, char *argv[])
 	//Used to determine which section gets its results printed.
 	int shouldiprint[] = 
 	{
-		0, // polynomial evaluation
-		0, // divide polynomials
-		0, // differentiate function
+		1, // polynomial evaluation
+		1, // divide polynomials
+		1, // differentiate function
 		1, // chebyshev
 		1, //
 		1, //
