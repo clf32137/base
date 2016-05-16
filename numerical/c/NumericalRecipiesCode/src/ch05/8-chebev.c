@@ -55,8 +55,11 @@ float chebev_debug(
 											//y2 is literally 2 times y.
 	int j;
 	
-	if ((x-a)*(x-b) > 0.0) //x is on the same side of a and b.
+	if ((x-a)*(x-b) > 0.0)
+	{ //x is on the same side of a and b.
+		printf(ANSI_COLOR_RESET);
 		nrerror("x not in range in routine CHEBEV");
+	}
 	
 	y2 = 2.0 * ( 
 			y = (2.0*x - a - b) / (b-a)  //First, convert x into y.
