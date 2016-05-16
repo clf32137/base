@@ -58,4 +58,13 @@ def buchberger(F, reduced=True):
 f1, f2 = [2*x**2*y + x*y**4, x**2 + y + 1]
 LT(f1, x, y, order='lex')
 
+LT(f1, x, y, order='grlex')
+
+
+groebner([f1, f2], x, y, order='lex')
+
+def monomial_lex_key(monom):
+    """Key function for sorting monomials in lexicographic order. """
+    return monom
+
 
