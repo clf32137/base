@@ -11,7 +11,7 @@ LIBS=-lm
 _DEPS = nrutil.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
-_OBJ = nrutil.o fileio.o tst_libfns.o
+_OBJ = nrutil.o fileio.o general_fns.o tst_libfns.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: %.c $(DEPS)
