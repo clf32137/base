@@ -1,5 +1,5 @@
 
-watch out for these:
+Watch out for these:
 
 Run make in lib folder before you run it in any other folders since those will typically depend on the lib .o files. But in most cases, the .o files will already be there so this might not be necessary.
 
@@ -7,4 +7,10 @@ None of the .o files from various solutions (lib, ch2, etc) should have the same
 
 When moving between Windows and linux, take care to either not generate or delete the .o files in the obj directory. The executables produced by windows are not compatible with linux and vice versa.
 
-Starting ch05, I now have debug versions of each function that print out what the function is doing in every iteration. These, in conjunction with additional resources linked in the print statements should be used to get a deep understanding of the code.
+Starting ch05, I now have debug versions of most functions that print out what the function is doing in every iteration. These, in conjunction with additional resources linked in the print statements should be used to get a deep understanding of the code.
+
+For VS - 
+1) You'll need to turn off precompiled headers. For this, go to Project -> Properties -> C\C++ -> Precompiled Headers and select "Not using"
+2) You'll need to turn off warnings for fopen and fscanf. For this, Project -> Properties -> C\C++ -> Preprocessor and in Preprocessor Definitions append - 
+";_CRT_SECURE_NO_WARNINGS"
+3) Remember, in the VS world, only one file can have a main() function. We have been abusing this with one main() per chapter. Will need to find an alternative.

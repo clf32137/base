@@ -1,5 +1,5 @@
 #define NRANSI
-#include "../include/nrutil.h"
+#include "../../include/nrutil.h"
 
 void vander(double x[], double w[], double q[], int n)
 {
@@ -9,7 +9,7 @@ void vander(double x[], double w[], double q[], int n)
 
 	c=dvector(1,n);
 
-	if (n == 1) 
+	if (n == 1)
 		w[1]=q[1];
 
 	else

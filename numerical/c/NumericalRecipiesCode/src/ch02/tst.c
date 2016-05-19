@@ -199,7 +199,7 @@ int main(int argc, char *argv[])
 	if(shouldiprint[printindx++])
 	{
 		
-		ludcmp(mat, 4, ind, d);
+		ludcmp(mat, 4, ind, &d);
 		printf("\n###################\n LU decomposition\n###################\n");
 		printMatrix(mat, 4, 4);
 		printf("%1f\n",*d);
@@ -492,4 +492,4 @@ int main(int argc, char *argv[])
 
 //[1] http://stackoverflow.com/questions/3836519/reading-a-delimited-file-with-fscanf
 //[2] https://github.com/githubapitest/githubapitest/tree/master/numerical-recipes-j/core/src/main/java/com/google/code/numericalrecipes
-
+//[3] http://stackoverflow.com/questions/21873048/getting-an-error-fopen-this-function-or-variable-may-be-unsafe-when-complin
