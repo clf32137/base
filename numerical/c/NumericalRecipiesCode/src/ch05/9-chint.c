@@ -1,21 +1,30 @@
 void chint(
 	float a,
 	float b,
-	float c[],
+	float c[],//output chebyshev polynomials from routine
 	float cint[],
 	int n
 	)
+	/************************
+	*Given a, b, c[0..n-1], as output from the routine chebft (section 5.8)
+	*and given n, the desired degree of approximation (length of c to be used)
+	*this routine returns the array cint[0..n-1]. the Chebyshev coefficients  of
+	*the integral of the function whose coefficients are c. The constant of integration 
+	*is set so that the integral vanishes at a.
+	***************************/
 {
 	int j;
-	float sum=0.0,fac=1.0,con;
+	float sum=0.0, fac=1.0, con;
 
-	con=0.25*(b-a);
-	for (j=1;j<=n-2;j++) {
-		cint[j]=con*(c[j-1]-c[j+1])/j;
-		sum += fac*cint[j];
-		fac = -fac;
+	con = 0.25 * (b-a);//Factor that normalizes the interval (b-a)
+	for (j=1; j<=n-2; j++)
+	{
+		cint[j]=con * (c[j-1]-c[j+1])/j;//Equation 5.9.1
+		sum += fac * cint[j];//Accumulates the constant of integration.
+		fac = -fac;//Will equal +/-1
 	}
-	cint[n-1]=con*c[n-2]/(n-1);
-	sum += fac*cint[n-1];
-	cint[0]=2.0*sum;
+	//Dont understand this one.
+	cint[n-1]=con * c[n-2]/(n-1);//Special case of 5.9.1 for n-1.
+	sum += fac * cint[n-1];
+	cint[0]=2.0 * sum;//See constant of integration.
 }
