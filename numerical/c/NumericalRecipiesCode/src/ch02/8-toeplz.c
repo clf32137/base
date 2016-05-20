@@ -1,5 +1,5 @@
 #define NRANSI
-#include "nrutil.h"
+#include "../../include/fileio.h"
 #define FREERETURN {free_vector(h,1,n);free_vector(g,1,n);return;}
 
 //Toeplitz matrices tend to occur in deconvolution and signal processing.

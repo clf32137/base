@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 		fileToRead = argv[1];
 
 	printf("Reading matrix file %s\n", fileToRead);
-	float **mat; 
+	float **mat;
 	mat = matrix(1, 4, 1, 4);
 	read_matrix_from_file(mat, fileToRead, 4, 4);
 	if(argc == 1)

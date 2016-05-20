@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\src">
+      <UniqueIdentifier>{ddfa39db-8363-4a2e-8e7d-a5df193d856d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\ch02">
+      <UniqueIdentifier>{1e093ebf-f882-440a-86e3-a22050d348e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib">
+      <UniqueIdentifier>{e9986300-ab2a-453a-8449-e96997cfe9fd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\1-gaussj.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\3-lubksb.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\3-ludcmp.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\4-bandec.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\4-banmul.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\4-tridag.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\5-mprove.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\6-svbksb.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\6-svdcmp.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\7-asolve.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\7-atimes.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\7-cyclic.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\7-dsprsax.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\7-dsprsin.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\7-dsprstx.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\7-linbcg.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\7-snrm.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\7-sprsax.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\7-sprsin.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\7-sprspm.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\7-sprstx.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\8-toeplz.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\8-vander.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\9-choldc.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\9-cholsl.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\10-qrdcmp.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\10-qrsolv.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\10-qrupdt.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch02\tst.c">
+      <Filter>Source Files\src\ch02</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\fileio.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\general_fns.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\lib\nrutil.c">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

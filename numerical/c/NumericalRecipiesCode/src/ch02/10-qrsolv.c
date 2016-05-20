@@ -1,6 +1,6 @@
 #include <math.h>
 #define NRANSI
-#include "../include/nrutil.h"
+#include "../../include/nrutil.h"
 
 void qrsolv(float **a, int n, float c[], float d[], float b[]) 
 //Solves the set of n linear equations A·x = b. a[1..n][1..n], c[1..n], and d[1..n] are input 

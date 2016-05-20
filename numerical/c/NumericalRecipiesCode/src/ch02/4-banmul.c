@@ -1,5 +1,5 @@
 #define NRANSI
-#include "nrutil.h"
+#include "../../include/nrutil.h"
 
 void banmul(float **a, unsigned long n, int m1, int m2, float x[], float b[])
 /****************************************
