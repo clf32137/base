@@ -19,12 +19,12 @@ void chint(
 	con = 0.25 * (b-a);//Factor that normalizes the interval (b-a)
 	for (j=1; j<=n-2; j++)
 	{
-		cint[j]=con * (c[j-1]-c[j+1])/j;//Equation 5.9.1
+		cint[j] = con * (c[j-1]-c[j+1])/j;//Equation 5.9.1
 		sum += fac * cint[j];//Accumulates the constant of integration.
 		fac = -fac;//Will equal +/-1
 	}
 	//Dont understand this one.
-	cint[n-1]=con * c[n-2]/(n-1);//Special case of 5.9.1 for n-1.
+	cint[n-1] = con * c[n-2]/(n-1);//Special case of 5.9.1 for n-1. This is from ignoring c[n] term since its zero.
 	sum += fac * cint[n-1];
-	cint[0]=2.0 * sum;//See constant of integration.
+	cint[0] = 2.0 * sum;//Set constant of integration. Chosen so that the integral vanishes at a.	
 }

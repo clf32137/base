@@ -13,26 +13,30 @@
 float testFn(float x)
 {
 	return x*x*x;
-	//return 1;
 }
 
 float testFn2(float x)
 {
-	//return x*x*x*x + x*x*(x-2*x*x) + 2*x*x + 34*x;
+	return exp(x);
+}
+
+//Needs to be manually set to the indefinite integral of testFn2
+float testFn2Integrl(float x)
+{
 	return exp(x);
 }
 
 int main(int argc, char *argv[])
 {
-	//Used to determine which section gets its results printed.
+	//Used to determine which section gets executed.
 	int shouldiprint[] = 
 	{
 		1, // polynomial evaluation
 		1, // divide polynomials
 		1, // differentiate function
 		1, // chebyshev
-		1, //
-		1, //
+		1, // chebyshev derivatives - will only make sense if chebyshev code has been executed
+		1, // chebyshev integrals - will only make sense if chebyshev code (previous to previous) has been executed
 		1, //
 		1, //
 		1, //
@@ -40,8 +44,9 @@ int main(int argc, char *argv[])
 		1, //
 		1  //
 	};
-	int printindx = 0, n;
-	float h, err, x, ans;
+	int printindx = 0, n=0;
+	float a, b, h, err, x, ans, chebyshevVal = 0;
+	float *chebyshev = vector(0,n);
 
 	if(shouldiprint[printindx++])
 	{
@@ -92,41 +97,51 @@ int main(int argc, char *argv[])
 	{
 		printf("\n###################\n Chebyshev polynomials\n###################\n");
 	//<Settings to play with>
-		float a = 2.0, b = 7.0; //Upper and lower bounds over which the function will be evaluated.
+		a = 2.0, b = 7.0; //Upper and lower bounds over which the function will be evaluated.
 			x = 3.0;//The value at which the function will be evaluated.
 		n = 8;//One more than degree of polynomial for approximation.
 	//</Settings to play with>
 
-		//Let the evaluations begin!!
 	//<Evaluate Chebyshev coefficients>
-		float *c1; c1 = vector(0, n);//Chebyshev coefficients of function.
-		float *c1der; c1der = vector(0, n);//Chebyshev coefficients of derivatives.
-		//pprint1d_float(c1,n1); //Will give garbage values since array not initialized.
-		chebft(a, b, c1, n, testFn2); //The function to be approximated
+		chebyshev = vector(0, n);//Chebyshev coefficients of function.
+		chebft(a, b, chebyshev, n, testFn2); //The function to be approximated
 		printf("Chebyshev coefficients: \n");
-		pprint1d_float(c1, n);
+		pprint1d_float(chebyshev, n);
 	//</Evaluate Chebyshev coefficients>
 		
-	//<Evaluate function using Chebyshev>
-		float chebyshev_val = chebev_debug(a, b, c1, x, n);
 		float orig_val = testFn2(x);
-		printf("Original function: %.2f Chebyshev approximation: %.2f\n", orig_val, chebyshev_val);
+	//<Evaluate function using Chebyshev>
+		chebyshevVal = chebev_debug(a, b, chebyshev, x, n);		
+		printf("Original function: %.2f Chebyshev approximation: %.2f\n", orig_val, chebyshevVal);
 		//How close did we get?
-		float prct_diff = (chebyshev_val - orig_val) / orig_val;
+		float prct_diff = (chebyshevVal - orig_val) / orig_val;
 		printf("Fractional diff = %.2f\n", prct_diff);
 	//</Evaluate function using Chebyshev>
-
-	//<Evaluate derivatives using Chebyshev>
-		printf("\n#Now for derivatives#\n");
-		//First find the derivative using above method.
-		ans = dfridr(testFn2, x, h, &err);
-		printf("True derivative: %.2f\n",ans);
-		//Now Chebyshev coefficients of the derivative.
-		chder(a, b, c1, c1der, n);
-		chebyshev_val = chebev(a, b, c1der, x, n);
-		printf("Chebyshev derivative:%.2f\n",chebyshev_val);
-	//</Evaluate derivatives using Chebyshev>
 	}
+	if (shouldiprint[printindx++])//Will only make sense if previous, chebyshev coefficients code has been executed.
+	{
+		printf("\n###################\n Derivatives using Chebyshev polynomials\n###################\n");
+		float *c1der; c1der = vector(0, n);//Chebyshev coefficients of derivatives.
+		//First find the derivative using the method described earlier.
+		ans = dfridr(testFn2, x, h, &err);
+		printf("True derivative: %.2f\n", ans);
+		//Now Chebyshev coefficients of the derivative.
+		chder(a, b, chebyshev, c1der, n);
+		chebyshevVal = chebev(a, b, c1der, x, n);
+		printf("Chebyshev derivative:%.2f\n", chebyshevVal);	
+	}
+	if (shouldiprint[printindx++])//Will only make sense if previous to previous, chebyshev coefficients code has been executed.
+	{
+		printf("\n###################\n Integration using Chebyshev polynomials\n###################\n");
+		ans = testFn2Integrl(x) - testFn2Integrl(a); //Chebyshev is set such that integral is evaluated to 0 at a.
+		printf("True integral value: %.2f\n", ans);
+		//Now integrate the Chebyshev polynomial.
+		float *c1intgrl; c1intgrl = vector(0, n);
+		chint(a, b, chebyshev, c1intgrl, n);
+		chebyshevVal = chebev(a, b, c1intgrl, x, n);
+		printf("Chebyshev integral:%.2f\n", chebyshevVal);
+	}
+
 
 	//Freeze the console so I can look at the output.
 	char str1[20];
