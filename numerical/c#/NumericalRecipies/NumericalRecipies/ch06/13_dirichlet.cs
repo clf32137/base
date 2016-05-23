@@ -32,7 +32,7 @@ namespace NumericalRecipies.ch06
             return H;
         }
         /// <summary>
-        /// 
+        /// Based on the formula for Renyi information entropy given here - https://en.wikipedia.org/wiki/Dirichlet_distribution.
         /// </summary>
         /// <param name="alpha">The parameters of the Dirichlet distribution. These correspond to a histogram with counts.</param>
         /// <returns>The Entropy of a Dirichlet distribution.</returns>

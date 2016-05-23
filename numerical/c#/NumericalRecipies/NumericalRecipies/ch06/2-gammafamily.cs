@@ -58,7 +58,8 @@ namespace NumericalRecipies.ch06
             return dgam;
         }
         /// <summary>
-        /// Computes the value of the log of the gamma function. We don't calculate Gamma directly as it can easily make the floating point precision overflow for modest inputs.
+        /// Computes the value of the log of the gamma function. 
+        /// We don't calculate Gamma directly as it can easily make the floating point precision overflow for modest inputs.
         /// </summary>
         /// <param name="xx">Value at which computation needs to happen</param>
         /// <returns></returns>
