@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
 	{
 		printf("\n###################\n Differentiation of a function\n###################\n");
 	//<Settings to play with>	
-		h = 2, err = 0, x = 6;
+		h = 2, err = 0, x = 6.0;
 	//</Settings to play with>	
 		
 		ans = dfridr(testFn, x, h, &err);
