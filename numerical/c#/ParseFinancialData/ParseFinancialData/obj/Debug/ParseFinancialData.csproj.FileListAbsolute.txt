@@ -1,0 +1,12 @@
+c:\users\rohit\documents\visual studio 2015\Projects\ParseFinancialData\ParseFinancialData\bin\Debug\ParseFinancialData.exe.config
+c:\users\rohit\documents\visual studio 2015\Projects\ParseFinancialData\ParseFinancialData\bin\Debug\ParseFinancialData.exe
+c:\users\rohit\documents\visual studio 2015\Projects\ParseFinancialData\ParseFinancialData\bin\Debug\ParseFinancialData.pdb
+c:\users\rohit\documents\visual studio 2015\Projects\ParseFinancialData\ParseFinancialData\obj\Debug\ParseFinancialData.csprojResolveAssemblyReference.cache
+c:\users\rohit\documents\visual studio 2015\Projects\ParseFinancialData\ParseFinancialData\obj\Debug\ParseFinancialData.exe
+c:\users\rohit\documents\visual studio 2015\Projects\ParseFinancialData\ParseFinancialData\obj\Debug\ParseFinancialData.pdb
+C:\Users\rohit\Documents\GitHub\base\numerical\c#\ParseFinancialData\ParseFinancialData\bin\Debug\ParseFinancialData.exe.config
+C:\Users\rohit\Documents\GitHub\base\numerical\c#\ParseFinancialData\ParseFinancialData\obj\Debug\ParseFinancialData.exe
+C:\Users\rohit\Documents\GitHub\base\numerical\c#\ParseFinancialData\ParseFinancialData\obj\Debug\ParseFinancialData.pdb
+C:\Users\rohit\Documents\GitHub\base\numerical\c#\ParseFinancialData\ParseFinancialData\bin\Debug\ParseFinancialData.exe
+C:\Users\rohit\Documents\GitHub\base\numerical\c#\ParseFinancialData\ParseFinancialData\bin\Debug\ParseFinancialData.pdb
+C:\Users\rohit\Documents\GitHub\base\numerical\c#\ParseFinancialData\ParseFinancialData\obj\Debug\ParseFinancialData.csprojResolveAssemblyReference.cache

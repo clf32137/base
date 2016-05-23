@@ -1,6 +1,6 @@
 #include <math.h>
 #define NRANSI
-#include "nrutil.h"
+#include "../../include/nrutil.h"
 #define CON 1.4
 #define CON2 (CON*CON)
 #define BIG 1.0e30

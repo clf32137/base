@@ -1,6 +1,6 @@
 #include <math.h>
 #define NRANSI
-#include "../include/nrutil.h"
+#include "../../include/nrutil.h"
 
 
 void qrdcmp(float **a, int n, float *c, float *d, int *sing)

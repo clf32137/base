@@ -1,6 +1,6 @@
 #include <math.h>
 #define NRANSI
-#include "../include/nrutil.h"
+#include "../../include/nrutil.h"
 
 void qrupdt(float **r, float **qt, int n, float u[], float v[])
 {

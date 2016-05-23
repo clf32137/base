@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #define NRANSI
-#include "nrutil.h"
+#include "../../include/nrutil.h"
 #define EPS 1.0e-14
 
 /***************************************
