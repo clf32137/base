@@ -16,3 +16,11 @@ C:\Users\rohit\Dropbox\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debu
 C:\Users\rohit\Dropbox\numerical\c#\NumericalRecipies\NumericalRecipies\obj\Debug\NumericalRecipies.csprojResolveAssemblyReference.cache
 C:\Users\rohit\git\base\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\NumericalRecipies.exe.config
 C:\Users\rohit\git\base\numerical\c#\NumericalRecipies\NumericalRecipies\obj\Debug\NumericalRecipies.csprojResolveAssemblyReference.cache
+E:\git\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\NumericalRecipies.exe.config
+E:\git\numerical\c#\NumericalRecipies\NumericalRecipies\obj\Debug\NumericalRecipies.exe
+E:\git\numerical\c#\NumericalRecipies\NumericalRecipies\obj\Debug\NumericalRecipies.pdb
+E:\git\numerical\c#\NumericalRecipies\NumericalRecipies\obj\Debug\NumericalRecipies.csprojResolveAssemblyReference.cache
+E:\git\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\NumericalRecipies.exe
+E:\git\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\NumericalRecipies.pdb
+E:\git\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\MathNet.Numerics.dll
+E:\git\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\MathNet.Numerics.xml

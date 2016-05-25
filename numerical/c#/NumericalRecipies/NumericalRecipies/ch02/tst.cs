@@ -12,7 +12,7 @@ namespace NumericalRecipies.ch02
     class tst
     {
         
-        public static void Main(String[] args)
+        public static void _Main(String[] args)
         {
             var array2D = new Double[,]
             {

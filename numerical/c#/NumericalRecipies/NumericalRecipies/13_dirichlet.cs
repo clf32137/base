@@ -52,32 +52,13 @@ namespace NumericalRecipies.ch06
             H -= g.Gammaln(lambda * (alpha_0 - K) + K);//The contribution from the normalizing factor.
             return H / (1-lambda);
         }
-
-        public double RenyiInformationCorrected(double[] alpha, double lambda)
-        {
-            _2_gammafamily g = new _2_gammafamily();
-            double alpha_0 = 0, H = 0;//The sum of coefficients (normalizing factor) and final entropy term respectively.
-            int K = alpha.Length;
-            for (int i = 0; i < K; i++)
-            {
-                alpha[i] += regularizer;//Before doing anything else, we regularize the parameters which is equivalent to a uniform prior.
-                alpha_0 += alpha[i];
-                H -= lambda * g.Gammaln(alpha[i]);//Positive part of normalization constant (which is the log of a multivariate beta distribution).
-                H += g.Gammaln(lambda * (alpha[i] - 1) + 1); //The contribution from each of the alphas.
-            }
-            H += lambda * g.Gammaln(alpha_0);//Negative part of normalization constant.
-            H -= g.Gammaln(lambda * (alpha_0 - K) + K);//The contribution from the normalizing factor.
-            return H / (1 - lambda);
-        }
         public static void Main()
         {
             _13_dirichlet d = new _13_dirichlet();
             foreach (double x in new double[] {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3.0, 5.0, 10.0, 50.0, 100.0})
             {
-                //System.Console.WriteLine((x + regularizer) + "\t" + d.RenyiInformationCorrected(new double[] { x, x, x }, 0.1));
-                //System.Console.Write(d.RenyiInformationCorrected(new double[] { x, x, x, x }, 0.5) + "\t");
-                //System.Console.WriteLine(d.RenyiInformationCorrected(new double[] { x, x }, 0.999999));
-                System.Console.WriteLine(d.InformationEntropy(new double[] { x }));
+                System.Console.WriteLine(d.RenyiInformation(new double[] { x, 0, 0 }, 0.999999999));
+                //System.Console.WriteLine(d.InformationEntropy(new double[] { x, 0, 0 }));
             }
             System.Console.Read();
         }
