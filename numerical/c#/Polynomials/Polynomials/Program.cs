@@ -13,14 +13,19 @@ namespace Polynomials
             Program p = new Program();
 
             p.TestOneVariablePolynomialDivision();
+
+            System.Console.WriteLine("##Multivariate polynomial division##");
             p.TestMultiVariatePolynomialDivision();
-            
+
+            System.Console.WriteLine("##S-polynomials##");
+            p.TestSPolynomial();
+
+
             System.Console.Read();
         }
 
         public void TestOneVariablePolynomialDivision()
         {
-            //Test division of polynomials.
             OneVariablePolynomial dividend = new OneVariablePolynomial(new double[] { 1, 1, 2, 1 });
             OneVariablePolynomial divisor = new OneVariablePolynomial(new double[] { 1, 2 });
             Dictionary<string, OneVariablePolynomial> result = dividend.Divide(divisor);
@@ -46,6 +51,28 @@ namespace Polynomials
             foreach (Monomial m in quotients[0].monomialData.Keys)
             {
                 System.Console.WriteLine(string.Join(",", m.powers));
+            }
+        }
+
+        public void TestSPolynomial()
+        {
+            Polynomial f = new Polynomial(new Monomial(new int[] { 3, 2}), 1);
+            f.AddMonomial(new Monomial(new int[] { 2, 3 }), -1);
+            f.AddMonomial(new Monomial(new int[] { 1, 0 }), 1);
+
+            Polynomial g = new Polynomial(new Monomial(new int[] { 4 , 1}), 3);
+            g.AddMonomial(new Monomial(new int[] { 0, 2 }), 1);
+
+            Polynomial s = f.GetSPolynomial(g);
+
+            foreach (Monomial m in s.monomialData.Keys)
+            {
+                foreach (int i in m.powers)
+                {
+                    System.Console.Write(i + ",");
+                }
+
+                System.Console.WriteLine();
             }
         }
     }

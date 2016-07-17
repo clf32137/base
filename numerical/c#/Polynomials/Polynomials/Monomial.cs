@@ -84,7 +84,7 @@ namespace Polynomials
             int hash = 17;
             for (int i = 0; i < this.powers.Length; i++)
             {
-                hash = hash * 31 + i.GetHashCode();
+                hash = hash * 31 + this.powers[i].GetHashCode();
             }
 
             return hash;
@@ -145,6 +145,23 @@ namespace Polynomials
                 {
                     throw new Exception("Monomial provided as dividend did not divide this monomial");
                 }
+            }
+
+            return new Monomial(result);
+        }
+
+        /// <summary>
+        /// Calculates the Least Common Multiple between two monomials.
+        /// </summary>
+        /// <param name="other">this monomial and other's LCM will be calculated.</param>
+        /// <returns>The LCM monomial.</returns>
+        public Monomial LCM(Monomial other)
+        {
+            int[] result = new int[this.powers.Length];
+
+            for (int i = 0; i < this.powers.Length; i++)
+            {
+                result[i] = Math.Max(this.powers[i], other.powers[i]); // Assuming here that the polynomials have the same number of variables.
             }
 
             return new Monomial(result);
