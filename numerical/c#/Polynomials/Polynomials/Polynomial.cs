@@ -69,6 +69,44 @@ namespace Polynomials
         }
 
         /// <summary>
+        /// Checks if this polynomial is equal to the other one.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            Polynomial other = (Polynomial)obj;
+
+            if (this.monomialData.Keys.Count != other.monomialData.Keys.Count)
+            {
+                return false;
+            }
+
+            foreach (Monomial m in other.monomialData.Keys)
+            {
+                if (!this.monomialData.ContainsKey(m))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+
+        public override int GetHashCode()
+        {
+            int hash = 17;
+            foreach (Monomial m in this.monomialData.Keys)
+            {
+                hash = hash * 31 + m.GetHashCode();
+                hash = hash * 31 + this.monomialData[m].GetHashCode();
+            }
+
+            return hash;
+        }
+
+        /// <summary>
         /// Creates a copy of the object.
         /// </summary>
         /// <param name="other">The other instance to copy to.</param>
@@ -110,11 +148,33 @@ namespace Polynomials
             }
         }
 
+        /// <summary>
+        /// Gets the leading coefficient of this polynomial.
+        /// </summary>
+        /// <returns></returns>
+        public double GetLeadingCoefficient()
+        {
+            Monomial leadingMonomial = this.GetLeadingTerm();
+            return this.monomialData[leadingMonomial];
+        }
+
+        /// <summary>
+        /// Adds a monomial to this polynomial. If it already contains the term, update the coefficient else add a new term.
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="coefficient"></param>
         public void AddMonomial(Monomial m, double coefficient = 1)
         {
             if (monomialData.ContainsKey(m))
             {
-                monomialData[m] += coefficient;
+                if (monomialData[m] + coefficient < zeroThreshold)
+                {
+                    monomialData.Remove(m);
+                }
+                else
+                {
+                    monomialData[m] += coefficient;
+                }
             }
             else
             {
@@ -150,6 +210,19 @@ namespace Polynomials
             }
 
             this.monomialData = result;
+        }
+
+        /// <summary>
+        /// Multiplies a scalar coefficient to each term of the polynomial.
+        /// http://stackoverflow.com/questions/1167071/whats-the-best-way-to-set-all-values-in-a-c-sharp-dictionarystring-bool
+        /// </summary>
+        /// <param name="term">The scalar term to be multiplied by all terms of the polynomial.</param>
+        public void MultiplyScalar(double term)
+        {
+            foreach (Monomial m in this.monomialData.Keys.ToList())
+            {
+                this.monomialData[m] *= term;
+            }
         }
 
         /// <summary>
@@ -222,7 +295,73 @@ namespace Polynomials
                 }
             }
 
+            quotients.Add(remainder);
             return quotients;
+        }
+
+        /// <summary>
+        /// Gets remainder on division by a polynomial basis.
+        /// </summary>
+        /// <param name="basis"></param>
+        /// <returns></returns>
+        public Polynomial GetRemainder(PolynomialBasis basis)
+        {
+            Polynomial[] divisorList = basis.polynomialData.ToArray();
+            List<Polynomial> quotients = this.DivideBy(divisorList);
+            return quotients[quotients.Count - 1]; // The last element in the list is the remainder
+        }
+        
+        /// <summary>
+        /// Computes the Groebner basis for a polynomial ideal using Buchbergers algorithm as per section 2.7 of CLO.
+        /// </summary>
+        /// <param name="basis">The bases that define the ideal.</param>
+        /// <returns></returns>
+        public PolynomialBasis GroebnerBasis(params Polynomial[] basis)
+        {
+            PolynomialBasis groebner = new PolynomialBasis(basis);
+            PolynomialBasis groebnerTemp = new PolynomialBasis(basis);
+            do
+            {
+                groebnerTemp = new PolynomialBasis(groebner); // G' := G
+
+                List<Polynomial> groebnerTempList = groebnerTemp.polynomialData.ToList();
+                for (int i = 0; i < groebnerTemp.polynomialData.Count; i++)
+                {
+                    for (int j = (i+1); j < groebnerTemp.polynomialData.Count; j++)
+                    {
+                        Polynomial s = groebnerTempList[i].GetSPolynomial(groebnerTempList[j]).GetRemainder(groebnerTemp);
+                        if (!s.IsZero)
+                        {
+                            groebner.polynomialData.Add(s);
+                        }
+                    }
+                }
+            }
+            while (!groebner.Equals(groebnerTemp));
+
+            return groebner;
+        }
+
+        /// <summary>
+        /// Gets the S-polynomial as defined in section 2.6 of CLO
+        /// </summary>
+        /// <param name="other">The other polynomial with respect to which the S-polynomial is to be calculated.s</param>
+        /// <returns>The S-polynomial of the combination - this and other.</returns>
+        public Polynomial GetSPolynomial(Polynomial other)
+        {
+            Monomial lcm = this.GetLeadingTerm().LCM(other.GetLeadingTerm());
+
+            Polynomial thisTerm = new Polynomial(this);
+            thisTerm.MultiplyMonomial(lcm.DivideBy(this.GetLeadingTerm()));
+            thisTerm.MultiplyScalar(1/this.GetLeadingCoefficient());
+
+            Polynomial otherTerm = new Polynomial(other);
+            otherTerm.MultiplyMonomial(lcm.DivideBy(other.GetLeadingTerm()));
+            otherTerm.MultiplyScalar(1/other.GetLeadingCoefficient());
+
+            thisTerm.Add(otherTerm, -1);
+
+            return thisTerm;
         }
 
         /// <summary>
@@ -230,7 +369,7 @@ namespace Polynomials
         /// </summary>
         /// <param name="other">The polynomial to add to this one.</param>
         /// <returns>The result of the addition.</returns>
-        public void Add(Polynomial other)
+        public void Add(Polynomial other, double coefficient = 1)
         {
             if (this.IsZero && !other.IsZero)
             {
@@ -241,7 +380,7 @@ namespace Polynomials
             {
                 if (this.monomialData.ContainsKey(m))
                 {
-                    if (Math.Abs(this.monomialData[m] + other.monomialData[m]) < this.zeroThreshold) // Accounting for rounding error this way.
+                    if (Math.Abs(this.monomialData[m] + coefficient * other.monomialData[m]) < this.zeroThreshold) // Accounting for rounding error this way.
                     {
                         this.monomialData.Remove(m); // If the coefficients cancel, we can remove the term.
                         if (this.monomialData.Count == 0)
@@ -251,7 +390,7 @@ namespace Polynomials
                     }
                     else
                     {
-                        this.monomialData[m] += other.monomialData[m]; // Update the coefficient.
+                        this.monomialData[m] += coefficient * other.monomialData[m]; // Update the coefficient.
                     }
                 }
                 else if(Math.Abs(other.monomialData[m]) > this.zeroThreshold ) // You have to be this tall to enter this ride.

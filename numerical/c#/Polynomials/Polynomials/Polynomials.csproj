@@ -47,6 +47,7 @@
     <Compile Include="OneVariablePolynomial.cs" />
     <Compile Include="Monomial.cs" />
     <Compile Include="Polynomial.cs" />
+    <Compile Include="PolynomialBasis.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
