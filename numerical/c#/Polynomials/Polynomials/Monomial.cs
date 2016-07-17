@@ -111,10 +111,10 @@ namespace Polynomials
         }
 
         /// <summary>
-        /// 
+        /// Is this polynomial divisible by the monomial in the argument. In other words can we write this = h.divisor?
         /// </summary>
-        /// <param name="divisor"></param>
-        /// <returns></returns>
+        /// <param name="divisor">The dividing monomial</param>
+        /// <returns>true if divisibility is possible</returns>
         public bool IsDividedBy(Monomial divisor)
         {
             // TODO: Handle the case when the number of terms in the two polynomials is different.
