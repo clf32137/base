@@ -1,0 +1,7 @@
+E:\git\numerical\c#\Polynomials\PolynomialUnitTests\bin\Debug\PolynomialUnitTests.dll
+E:\git\numerical\c#\Polynomials\PolynomialUnitTests\bin\Debug\PolynomialUnitTests.pdb
+E:\git\numerical\c#\Polynomials\PolynomialUnitTests\bin\Debug\Polynomials.exe
+E:\git\numerical\c#\Polynomials\PolynomialUnitTests\bin\Debug\Polynomials.pdb
+E:\git\numerical\c#\Polynomials\PolynomialUnitTests\obj\Debug\PolynomialUnitTests.csprojResolveAssemblyReference.cache
+E:\git\numerical\c#\Polynomials\PolynomialUnitTests\obj\Debug\PolynomialUnitTests.dll
+E:\git\numerical\c#\Polynomials\PolynomialUnitTests\obj\Debug\PolynomialUnitTests.pdb

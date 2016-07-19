@@ -11,6 +11,8 @@ namespace Polynomials
     {
         public int[] powers; // Consider uint instead of int.
 
+        public static string orderingScheme = "lex";
+
         /// <summary>
         /// Initializes an instance of a monomial of a given degree.
         /// </summary>
@@ -43,7 +45,21 @@ namespace Polynomials
 
             // This is the lex ordering scheme.
             int numVariables = Math.Min(m1.powers.Length, m2.powers.Length);
-            for (int i = 0; i < numVariables; i++)
+
+            if (orderingScheme == "grlex")
+            {
+                if (m1.powers.Sum() > m2.powers.Sum())
+                {
+                    return 1;
+                }
+                else if (m1.powers.Sum() < m2.powers.Sum())
+                {
+                    return -1;
+                }
+            }
+
+            // If grlex is set and total degree produces a tie, we can move on to lex ordering.
+            for (int i = 0; i < numVariables; i++) 
             {
                 if (m1.powers[i] > m2.powers[i])
                 {
@@ -56,6 +72,7 @@ namespace Polynomials
             }
 
             return 0;
+            
         }
 
         int IComparable.CompareTo(object obj)

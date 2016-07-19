@@ -19,14 +19,18 @@ namespace NumericalRecipies.ch06
         private double AlphaSum = 2.0;
 
         public double MathNetEntropy(double[] _alpha)
-         {
-             double AlphaSum = _alpha.Sum();
-             _2_gammafamily g = new _2_gammafamily();
-             var num = _alpha.Sum(t => (t - 1) * g.Digamma(t) - g.Gammaln(t));
-             return -g.Gammaln(AlphaSum) + ((AlphaSum - _alpha.Length)*g.Digamma(AlphaSum)) - num;
-         }
+        {
+            double AlphaSum = _alpha.Sum();
+            _2_gammafamily g = new _2_gammafamily();
+            var num = _alpha.Sum(t => (t - 1) * g.Digamma(t) - g.Gammaln(t));
+            return -g.Gammaln(AlphaSum) + ((AlphaSum - _alpha.Length)*g.Digamma(AlphaSum)) - num;
+        }
 
-
+        public _13_dirichlet(double[] alpha)
+        {
+            this._alpha = new double[alpha.Length];
+            alpha.CopyTo(_alpha, 0);
+        }
 
         /// <summary>
         /// Based on the formula for total information entropy given here - https://en.wikipedia.org/wiki/Dirichlet_distribution.
@@ -114,6 +118,16 @@ namespace NumericalRecipies.ch06
             return h;
         }
 
+        /// <summary>
+        /// Finds the KL divergence between two Dirichlet distributions.
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public double KLDivergence(_13_dirichlet other)
+        {
+            
+        }
+
         public static void Main()
         {
             _13_dirichlet d = new _13_dirichlet();
@@ -132,9 +146,9 @@ namespace NumericalRecipies.ch06
             
 
             //System.Console.WriteLine(d.RelativeStateSpace(new double[] { 1000,0,0,0 }));
-            System.Console.WriteLine(d.InformationEntropy(new double[]{1,1,1}));
+            System.Console.WriteLine(d.InformationEntropy(new double[]{30, 5, 2, 1, 3, 1}));
 
-            System.Console.WriteLine(d.MathNetEntropy(new double[]{1.5,1.5,1.5}));
+            //System.Console.WriteLine(d.MathNetEntropy(new double[]{1.5,1.5,1.5}));
             System.Console.Read();
         }
     }
