@@ -384,7 +384,7 @@ namespace Polynomials
                         this.monomialData.Remove(m); // If the coefficients cancel, we can remove the term.
                         if (this.monomialData.Count == 0)
                         {
-                            this.IsZero = true; //If via additions, all the coefficients become zero and we lose all terms, the polynomial has become zero.
+                            this.IsZero = true; // If via additions, all the coefficients become zero and we lose all terms, the polynomial has become zero.
                         }
                     }
                     else

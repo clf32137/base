@@ -8,6 +8,11 @@ namespace NumericalRecipies.ch06
 {
     class tst6
     {
+        public static void Main(String[] args)
+        {
+            System.Console.WriteLine("howdy");
 
+            System.Console.Read();
+        }
     }
 }

@@ -1,117 +1,108 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
-using MathNet.Numerics.Distributions;
-using MathNet.Numerics.Properties;
-using MathNet.Numerics.Random;
-
-
+﻿
 namespace NumericalRecipies.ch06
 {
-    //Note that section 13 does not exist. This is my extension to the chapter.
-    class _13_dirichlet
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// Various properties of the Dirichlet distribution.
+    /// </summary>
+    public class Dirichlet
     {
-        private static double regularizer = 0.5;
-        private double[] _alpha = { 1, 1};
-        private double AlphaSum = 2.0;
+        /// <summary>
+        /// The regularizer is like a prior for the Dirichlet. Its needed since otherwise, for zero, the Entropy becomes -infinity.
+        /// </summary>
+        private static double regularizer = 0.5; ////The regularizer will guard against alpha parameters that contain zeros since the Entropy goes to -Inf for them.
 
-        public double MathNetEntropy(double[] _alpha)
+        /// <summary>
+        /// Initializes a new instance of the Dirichlet class
+        /// </summary>
+        /// <param name="alpha">The vector of counts falling into each category as input.</param>
+        public Dirichlet(double[] alpha)
         {
-            double AlphaSum = _alpha.Sum();
-            _2_gammafamily g = new _2_gammafamily();
-            var num = _alpha.Sum(t => (t - 1) * g.Digamma(t) - g.Gammaln(t));
-            return -g.Gammaln(AlphaSum) + ((AlphaSum - _alpha.Length)*g.Digamma(AlphaSum)) - num;
+            this.Alpha = new double[alpha.Length];
+            alpha.CopyTo(this.Alpha, 0);
+            this.SumAlpha = alpha.Sum();
         }
 
-        public _13_dirichlet(double[] alpha)
-        {
-            this._alpha = new double[alpha.Length];
-            alpha.CopyTo(_alpha, 0);
-        }
+        /// <summary>
+        /// Gets or sets the vector of counts falling into each category.
+        /// </summary>
+        public double[] Alpha { get; set; }
+
+        /// <summary>
+        /// Gets or sets the total sample size on which the Dirichlet is based.
+        /// </summary>
+        public double SumAlpha { get; set; }
 
         /// <summary>
         /// Based on the formula for total information entropy given here - https://en.wikipedia.org/wiki/Dirichlet_distribution.
         /// </summary>
-        /// <param name="alpha">The parameters of the Dirichlet distribution. These correspond to a histogram with counts.</param>
         /// <returns>The Entropy of a Dirichlet distribution.</returns>
-        public double InformationEntropy(double[] alpha)
+        public double InformationEntropy()
         {
             _2_gammafamily g = new _2_gammafamily();
-            double alpha_0 = 0, H = 0;//The sum of coefficients (normalizing factor) and final entropy term respectively.
-            int K = alpha.Length;
-            for (int i = 0; i < K; i++)
+            double alpha_0 = 0, h = 0; ////The sum of coefficients (normalizing factor) and final entropy term respectively.
+            int k = this.Alpha.Length;
+            for (int i = 0; i < k; i++)
             {
-                alpha[i] += regularizer;//Before doing anything else, we regularize the parameters which is equivalent to a uniform prior.
-                alpha_0 += alpha[i];
-                H += g.Gammaln(alpha[i]);//Positive part of normalization constant (which is the log of a multivariate beta distribution).
-                H -= (alpha[i] - 1) * g.Digamma(alpha[i]); //The contribution from each of the alphas.
+                this.Alpha[i] += regularizer; ////Before doing anything else, we regularize the parameters which is equivalent to a uniform prior.
+                alpha_0 += this.Alpha[i];
+                h += g.Gammaln(this.Alpha[i]); ////Positive part of normalization constant (which is the log of a multivariate beta distribution).
+                h -= (this.Alpha[i] - 1) * g.Digamma(this.Alpha[i]); ////The contribution from each of the alphas.
             }
-            H -= g.Gammaln(alpha_0);//Negative part of normalization constant.
-            H += (alpha_0 - K) * g.Digamma(alpha_0);//The contribution from the normalizing factor.
-            return H;
+
+            h -= g.Gammaln(alpha_0); ////Negative part of normalization constant.
+            h += (alpha_0 - k) * g.Digamma(alpha_0); ////The contribution from the normalizing factor.
+            return h;
         }
+
         /// <summary>
         /// Based on the formula for Renyi information entropy given here - https://en.wikipedia.org/wiki/Dirichlet_distribution.
         /// </summary>
-        /// <param name="alpha">The parameters of the Dirichlet distribution. These correspond to a histogram with counts.</param>
-        /// <returns>The Entropy of a Dirichlet distribution.</returns>
-        public double RenyiInformation(double[] alpha, double lambda)
+        /// <param name="lambda">The spectral parameter for the Renyi Entropy formula.</param>
+        /// <returns>The Renyi spectral entropy of a Dirichlet distribution.</returns>
+        public double RenyiInformation(double lambda)
         {
             _2_gammafamily g = new _2_gammafamily();
-            double alpha_0 = 0, H = 0;//The sum of coefficients (normalizing factor) and final entropy term respectively.
-            int K = alpha.Length;
-            for (int i = 0; i < K; i++)
+            double alpha_0 = 0, h = 0; ////The sum of coefficients (normalizing factor) and final entropy term respectively.
+            int k = this.Alpha.Length;
+            for (int i = 0; i < k; i++)
             {
-                alpha[i] += regularizer;//Before doing anything else, we regularize the parameters which is equivalent to a uniform prior.
-                alpha_0 += alpha[i];
-                H -= g.Gammaln(alpha[i]);//Positive part of normalization constant (which is the log of a multivariate beta distribution).
-                H += g.Gammaln(lambda*(alpha[i] - 1) + 1); //The contribution from each of the alphas.
+                this.Alpha[i] += regularizer; ////Before doing anything else, we regularize the parameters which is equivalent to a uniform prior.
+                alpha_0 += this.Alpha[i];
+                h -= g.Gammaln(this.Alpha[i]); ////Positive part of normalization constant (which is the log of a multivariate beta distribution).
             }
-            H += g.Gammaln(alpha_0);//Negative part of normalization constant.
-            H -= g.Gammaln(lambda * (alpha_0 - K) + K);//The contribution from the normalizing factor.
-            return H / (1-lambda);
-        }
 
-        public double RenyiInformationCorrected(double[] alpha, double lambda)
-        {
-            _2_gammafamily g = new _2_gammafamily();
-            double alpha_0 = 0, H = 0;//The sum of coefficients (normalizing factor) and final entropy term respectively.
-            int K = alpha.Length;
-            for (int i = 0; i < K; i++)
+            h *= lambda; ////This way, we do just one multiplication instead of K.
+            for (int i = 0; i < k; i++)
             {
-                alpha[i] += regularizer;//Before doing anything else, we regularize the parameters which is equivalent to a uniform prior.
-                alpha_0 += alpha[i];
-                H -= g.Gammaln(alpha[i]);//Positive part of normalization constant (which is the log of a multivariate beta distribution).
+                h += g.Gammaln((lambda * (this.Alpha[i] - 1)) + 1); ////The contribution from each of the alphas.
             }
-            H *= lambda;//This way, we do just one multiplication instead of K.
-            for (int i = 0; i < K; i++)
-            {
-                H += g.Gammaln(lambda * (alpha[i] - 1) + 1); //The contribution from each of the alphas.
-            }
-            H += lambda * g.Gammaln(alpha_0);//Negative part of normalization constant.
-            H -= g.Gammaln(lambda * (alpha_0 - K) + K);//The contribution from the normalizing factor.
-            return H / (1 - lambda);
+
+            h += lambda * g.Gammaln(alpha_0); ////Negative part of normalization constant.
+            h -= g.Gammaln((lambda * (alpha_0 - k)) + k); ////The contribution from the normalizing factor.
+            return h / (1 - lambda);
         }
 
         /// <summary>
         /// Uses relative state space as a measure of skewness. The formula is - 
         /// $log(MultivariateBeta(alpha)/MultivariateBeta(flat_alpha))$
         /// </summary>
-        /// <param name="alpha">The parameters of the Dirichlet distribution. These correspond to a histogram with counts.</param>
         /// <returns>The log of the ratio of the state space of the given distribution divided by the state space of a flat distribution.</returns>
-        public double RelativeStateSpace(double[] alpha)
+        public double RelativeStateSpace()
         {
             _2_gammafamily g = new _2_gammafamily();
             double alpha_0 = 0, h = 0;
-            int k = alpha.Length;
+            int k = this.Alpha.Length;
             for (int i = 0; i < k; i++)
             {
-                alpha[i] += regularizer;
-                alpha_0 += alpha[i];
-                h -= g.Gammaln(alpha[i]); // Add the multinomial coefficient contribution.
+                this.Alpha[i] += regularizer;
+                alpha_0 += this.Alpha[i];
+                h -= g.Gammaln(this.Alpha[i]); // Add the multinomial coefficient contribution.
             }
 
             h += k * g.Gammaln(alpha_0 / k); // Add the contribution from the flat multinomial coefficient.
@@ -119,37 +110,36 @@ namespace NumericalRecipies.ch06
         }
 
         /// <summary>
-        /// Finds the KL divergence between two Dirichlet distributions.
+        /// Calculates the KL-divergence between this Dirichlet random variable and another  
         /// </summary>
-        /// <param name="other"></param>
-        /// <returns></returns>
-        public double KLDivergence(_13_dirichlet other)
+        /// <param name="other">The other Dirichlet distribution.</param>
+        /// <param name="beta">The two dimensional array of cross-counts.</param>
+        /// <returns>The KL divergence</returns>
+        public double KLDivergence(Dirichlet other, double[][] beta)
         {
-            
-        }
+            _2_gammafamily g = new _2_gammafamily();
+            double kl = this.InformationEntropy();
 
-        public static void Main()
-        {
-            _13_dirichlet d = new _13_dirichlet();
-            
-            foreach (double x in new double[] { 1, 2, 3 })
+            for (int i = 0; i < other.Alpha.Length; i++)
             {
-                //System.Console.WriteLine((x + regularizer) + "\t" + d.RenyiInformationCorrected(new double[] { x, x, x }, 0.1));
-                //System.Console.Write(d.RenyiInformationCorrected(new double[] { x, x, x, x }, 0.5) + "\t");
-                //System.Console.WriteLine(d.RenyiInformationCorrected(new double[] { x, x, x }, 0.999999));
-                //System.Console.WriteLine(d.InformationEntropy(new double[] { x }));
+                kl += g.Gammaln(other.Alpha[i]);
             }
 
-            //System.Console.WriteLine(d.RelativeStateSpace(new double[] { 60, 55, 18, 8, 18, 30, 23, 62, 13, 44, 23, 48, 24, 40, 38, 45, 11, 2 }));
+            kl -= g.Gammaln(other.SumAlpha);
 
-            double[] alpha = new double[] { 60, 55, 18, 8, 18, 30, 23, 62, 13, 44, 23, 48, 24, 40, 38, 45, 11, 2 };
-            
+            double crossTerm;
+            for (int i = 0; i < this.Alpha.Length; i++)
+            {
+                crossTerm = 0;
+                for (int j = 0; j < other.Alpha.Length; j++)
+                {
+                    crossTerm -= (beta[i][j] - 1) * (g.Digamma(beta[i][j]) - g.Digamma(other.Alpha[j]));
+                }
 
-            //System.Console.WriteLine(d.RelativeStateSpace(new double[] { 1000,0,0,0 }));
-            System.Console.WriteLine(d.InformationEntropy(new double[]{30, 5, 2, 1, 3, 1}));
+                kl -= crossTerm * this.Alpha[i] / this.SumAlpha;
+            }
 
-            //System.Console.WriteLine(d.MathNetEntropy(new double[]{1.5,1.5,1.5}));
-            System.Console.Read();
+            return kl;
         }
     }
 }
