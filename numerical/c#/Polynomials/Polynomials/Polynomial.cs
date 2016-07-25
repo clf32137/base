@@ -16,7 +16,6 @@ namespace Polynomials
     class Polynomial
     {
         public SortedDictionary<Monomial, double> monomialData;
-        public string orderingScheme;
         public bool IsZero = true;
         private double zeroThreshold = 1e-4;
         
@@ -314,9 +313,9 @@ namespace Polynomials
         /// <summary>
         /// Computes the Groebner basis for a polynomial ideal using Buchbergers algorithm as per section 2.7 of CLO.
         /// </summary>
-        /// <param name="basis">The bases that define the ideal.</param>
-        /// <returns></returns>
-        public PolynomialBasis GroebnerBasis(params Polynomial[] basis)
+        /// <param name="basis">The basis that defines the ideal.</param>
+        /// <returns>The Groebner basis.</returns>
+        public static PolynomialBasis GroebnerBasis(params Polynomial[] basis)
         {
             PolynomialBasis groebner = new PolynomialBasis(basis);
             PolynomialBasis groebnerTemp = new PolynomialBasis(basis);
@@ -385,7 +384,7 @@ namespace Polynomials
                         this.monomialData.Remove(m); // If the coefficients cancel, we can remove the term.
                         if (this.monomialData.Count == 0)
                         {
-                            this.IsZero = true; //If via additions, all the coefficients become zero and we lose all terms, the polynomial has become zero.
+                            this.IsZero = true; // If via additions, all the coefficients become zero and we lose all terms, the polynomial has become zero.
                         }
                     }
                     else

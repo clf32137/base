@@ -1,0 +1,6 @@
+E:\git\numerical\c#\Polynomials\Polynomials\bin\Debug\Polynomials.exe.config
+E:\git\numerical\c#\Polynomials\Polynomials\bin\Debug\Polynomials.exe
+E:\git\numerical\c#\Polynomials\Polynomials\bin\Debug\Polynomials.pdb
+E:\git\numerical\c#\Polynomials\Polynomials\obj\Debug\Polynomials.csprojResolveAssemblyReference.cache
+E:\git\numerical\c#\Polynomials\Polynomials\obj\Debug\Polynomials.exe
+E:\git\numerical\c#\Polynomials\Polynomials\obj\Debug\Polynomials.pdb

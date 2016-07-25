@@ -20,6 +20,8 @@ namespace Polynomials
             System.Console.WriteLine("##S-polynomials##");
             p.TestSPolynomial();
 
+            System.Console.WriteLine("##Groebner basis##");
+            p.TestGroebnerBasis();
 
             System.Console.Read();
         }
@@ -29,7 +31,6 @@ namespace Polynomials
             OneVariablePolynomial dividend = new OneVariablePolynomial(new double[] { 1, 1, 2, 1 });
             OneVariablePolynomial divisor = new OneVariablePolynomial(new double[] { 1, 2 });
             Dictionary<string, OneVariablePolynomial> result = dividend.Divide(divisor);
-            System.Console.WriteLine("Result of division:");
             System.Console.WriteLine(string.Join(",", result["quotient"].coefficients));
         }
 
@@ -67,12 +68,34 @@ namespace Polynomials
 
             foreach (Monomial m in s.monomialData.Keys)
             {
-                foreach (int i in m.powers)
-                {
-                    System.Console.Write(i + ",");
-                }
+                System.Console.WriteLine(string.Join(",", m.powers));
+            }
+        }
 
-                System.Console.WriteLine();
+        /// <summary>
+        /// Test method for Groebner basis.
+        /// </summary>
+        public void TestGroebnerBasis()
+        {
+            Monomial.orderingScheme = "grlex";
+
+            Polynomial f = new Polynomial(new Monomial(new int[] { 3, 0 }), 1);
+            f.AddMonomial(new Monomial(new int[] { 1, 1 }), -2); //x^3 -2.x.y
+
+            Polynomial g = new Polynomial(new Monomial(new int[] { 2, 1 }), 1);
+            g.AddMonomial(new Monomial(new int[] { 0, 2 }), -2);
+            g.AddMonomial(new Monomial(new int[] { 1, 0 }), 1);
+
+            PolynomialBasis gb = Polynomial.GroebnerBasis(f, g);
+
+            int i = 0;
+            foreach (Polynomial p in gb.polynomialData)
+            {
+                System.Console.WriteLine("Polynomial - " + i++.ToString());
+                foreach (Monomial m in p.monomialData.Keys)
+                {
+                    System.Console.WriteLine(string.Join(",", m.powers));
+                }
             }
         }
     }

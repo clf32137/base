@@ -32,8 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MathNet.Numerics">
-      <HintPath>..\packages\MathNet.Numerics.3.10.0\lib\net40\MathNet.Numerics.dll</HintPath>
+    <Reference Include="MathNet.Numerics, Version=3.11.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MathNet.Numerics.3.11.1\lib\net40\MathNet.Numerics.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -57,6 +58,7 @@
     <Compile Include="ch06\13_dirichlet.cs" />
     <Compile Include="ch06\2-gammafamily.cs" />
     <Compile Include="ch06\constants.cs" />
+    <Compile Include="ch06\tst6.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="util\MatUtils.cs" />
     <Compile Include="util\nr3.cs" />
