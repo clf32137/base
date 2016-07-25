@@ -22,7 +22,7 @@ NumericalRecipesVS.vcxproj.filters
     "Source Files" filter).
 
 NumericalRecipesVS.cpp
-    This is the main application source file.
+    This is the main application source file. Which I deleted!! Muhahahahahahahahahaaaaaaaa
 
 /////////////////////////////////////////////////////////////////////////////
 Other standard files:

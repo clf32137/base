@@ -20,14 +20,59 @@ namespace ParseFinancialData
         public string longStory { get; set; }
         public string party { get; set; }
 
+        //Fields
+        private string sourceFileName;
         private ArrayList keys = new ArrayList();
         private ArrayList mappedCategories = new ArrayList();
         private ArrayList mappedParties = new ArrayList();
+        private double zeroThresh = 1e-4;
 
         private string mappingFileName = "..\\..\\data\\mapping\\mapping.csv";
 
         /// <summary>
-        /// 
+        /// Based on the logic from http://stackoverflow.com/questions/1646807/quick-and-simple-hash-code-combinations
+        /// </summary>
+        /// <returns>Hashcode for the DataRecord class</returns>
+        public override int GetHashCode()
+        {
+            int hash = 17;
+            hash = hash * 31 + this.amount.GetHashCode();
+            hash = hash * 31 + this.date.GetHashCode();
+            hash = hash * 31 + this.description1.GetHashCode();
+            return hash;
+        }
+
+
+        public override bool Equals(object obj)
+        {
+            DataRecord other = (DataRecord)obj;
+            if (Math.Abs(this.amount - other.amount) > zeroThresh)
+            {
+                return false;
+            }
+            else if (this.description1.Trim() != other.description1.Trim())
+            {
+                return false;
+            }
+            else if (Math.Abs((this.date - other.date).TotalDays) >= 1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        public DataRecord(double amount, DateTime date, string description)
+        {
+            this.amount = amount;
+            this.date = date;
+            this.description1 = description;
+        }
+
+        /// <summary>
+        /// Instantiates the class DataRecord.
         /// </summary>
         /// <param>
         ///     name="standardRecord"
@@ -87,6 +132,7 @@ namespace ParseFinancialData
                 }
             }
         }
+
         /// <summary>
         /// Based on the description, tries to guess the category and party from the mapping arrays populated by LoadAutoMappingDicts.
         /// </summary>
@@ -95,7 +141,9 @@ namespace ParseFinancialData
         {
             for (int i = 0; i < keys.Count; i++)
                 if (this.description1.ToLower().Contains(Convert.ToString(keys[i])) || this.description2.ToLower().Contains(Convert.ToString(keys[i])))
-                    return new string[] {Convert.ToString(mappedCategories[i]), Convert.ToString(mappedParties[i]) };
+                {
+                    return new string[] { Convert.ToString(mappedCategories[i]), Convert.ToString(mappedParties[i]) };
+                }
             return new string[] {"_", "_" };
         }
     }

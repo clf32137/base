@@ -26,7 +26,13 @@ float testFn2Integrl(float x)
 	return exp(x);
 }
 
-int main(int argc, char *argv[])
+float padeTstFunc(float x)
+{
+	float y = 7 + pow(1 + x, 1.333);
+	return pow(y, .333);
+}
+
+int _main(int argc, char *argv[])
 {
 	//Used to determine which section gets executed.
 	int shouldiprint[] = 
@@ -37,14 +43,14 @@ int main(int argc, char *argv[])
 		1, // chebyshev
 		1, // chebyshev derivatives - will only make sense if chebyshev code has been executed
 		1, // chebyshev integrals - will only make sense if chebyshev code (previous to previous) has been executed
-		1, //
+		1, // pade approximation
 		1, //
 		1, //
 		1, //
 		1, //
 		1  //
 	};
-	int printindx = 0, n=0;
+	int printindx = 0, n=0, i=0, j=0;
 	float a, b, h, err, x, ans, chebyshevVal = 0;
 	float *chebyshev = vector(0,n);
 
@@ -84,9 +90,9 @@ int main(int argc, char *argv[])
 	if(shouldiprint[printindx++])
 	{
 		printf("\n###################\n Differentiation of a function\n###################\n");
-	//<Settings to play with>	
+	//<Settings to play with>
 		h = 2, err = 0, x = 6.0;
-	//</Settings to play with>	
+	//</Settings to play with>
 		
 		ans = dfridr(testFn, x, h, &err);
 		printf("Derivative is: %f and error is: %f\n", ans, err);
@@ -128,7 +134,7 @@ int main(int argc, char *argv[])
 		//Now Chebyshev coefficients of the derivative.
 		chder(a, b, chebyshev, c1der, n);
 		chebyshevVal = chebev(a, b, c1der, x, n);
-		printf("Chebyshev derivative:%.2f\n", chebyshevVal);	
+		printf("Chebyshev derivative:%.2f\n", chebyshevVal);
 	}
 	if (shouldiprint[printindx++])//Will only make sense if previous to previous, chebyshev coefficients code has been executed.
 	{
@@ -141,7 +147,40 @@ int main(int argc, char *argv[])
 		chebyshevVal = chebev(a, b, c1intgrl, x, n);
 		printf("Chebyshev integral:%.2f\n", chebyshevVal);
 	}
-
+	if (shouldiprint[printindx++])
+	{
+		printf("\n###################\n Pade approximation of a function\n###################\n");
+	//<Test inputs>	
+		float tstVals[] = {0,2,4,6,8,10};
+		float demoFunc[] = {0,0,0,0,0,0};
+		float taylorFunc[] = { 0,0,0,0,0,0 };
+		float padeFunc[] = { 0,0,0,0,0,0 };
+		float coeffs[] = {(float)2, (float)1/9, (float)1/81, (float)-49/8748, (float)175/78732, (float)0}; //5 coefficients.
+	//</Test inputs>	
+		for (i = 0; i < 6; i++)
+		{
+			demoFunc[i] = padeTstFunc(tstVals[i]);
+			for (j = 0; j < 6; j++)
+				taylorFunc[i] += coeffs[j] * pow(tstVals[i],(double)j);
+		}
+		printf("Values of original function:\n");
+		pprint1d_float(demoFunc, 6);
+		printf("Values of Taylor approximation:\n");
+		pprint1d_float(taylorFunc, 6);
+		float *resid;
+		pade_debug(coeffs, 3, &resid);
+		for (i = 0; i < 6; i++)
+		{
+			for (j = 0; j <= 3; j++)
+				padeFunc[i] += coeffs[j] * pow(tstVals[i], (float)j);
+			float denom = 1;
+			for (j = 0; j < 3; j++)
+				denom += coeffs[j+4] * pow(tstVals[i], (float)(j+1));
+			padeFunc[i] /= denom;
+		}
+		printf("Values of Pade approximation:\n");
+		pprint1d_float(padeFunc, 6);
+	}
 
 	//Freeze the console so I can look at the output.
 	char str1[20];

@@ -145,6 +145,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\ch05\ch5funcs.h" />
+    <ClInclude Include="..\..\src\ch07\ch7funcs.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -192,7 +194,20 @@
     <ClCompile Include="..\..\src\ch02\8-vander.c" />
     <ClCompile Include="..\..\src\ch02\9-choldc.c" />
     <ClCompile Include="..\..\src\ch02\9-cholsl.c" />
-    <ClCompile Include="..\..\src\ch02\tst.c" />
+    <ClCompile Include="..\..\src\ch05\1-eulsum.c" />
+    <ClCompile Include="..\..\src\ch05\10-chebpc.c" />
+    <ClCompile Include="..\..\src\ch05\12-pade.c" />
+    <ClCompile Include="..\..\src\ch05\3-ddpoly.c" />
+    <ClCompile Include="..\..\src\ch05\3-poldiv.c" />
+    <ClCompile Include="..\..\src\ch05\3-polynomial.c" />
+    <ClCompile Include="..\..\src\ch05\7-dfridr.c" />
+    <ClCompile Include="..\..\src\ch05\8-chebev.c" />
+    <ClCompile Include="..\..\src\ch05\8-chebft.c" />
+    <ClCompile Include="..\..\src\ch05\9-chder.c" />
+    <ClCompile Include="..\..\src\ch05\9-chint.c" />
+    <ClCompile Include="..\..\src\ch05\tst5.c" />
+    <ClCompile Include="..\..\src\ch07\4-irbit2.c" />
+    <ClCompile Include="..\..\src\ch07\tst7.c" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

@@ -22,6 +22,12 @@
     <Filter Include="Source Files\lib">
       <UniqueIdentifier>{e9986300-ab2a-453a-8449-e96997cfe9fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\src\ch05">
+      <UniqueIdentifier>{f68ce795-bc37-418f-b0b2-0f8e94d6bed8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\src\ch07">
+      <UniqueIdentifier>{a0348ddb-805b-4110-aece-4bac29c6064b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -31,6 +37,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ch05\ch5funcs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\ch07\ch7funcs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -122,9 +134,6 @@
     <ClCompile Include="..\..\src\ch02\10-qrupdt.c">
       <Filter>Source Files\src\ch02</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\ch02\tst.c">
-      <Filter>Source Files\src\ch02</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\lib\fileio.c">
       <Filter>Source Files\lib</Filter>
     </ClCompile>
@@ -133,6 +142,48 @@
     </ClCompile>
     <ClCompile Include="..\..\lib\nrutil.c">
       <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch05\1-eulsum.c">
+      <Filter>Source Files\src\ch05</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch05\3-ddpoly.c">
+      <Filter>Source Files\src\ch05</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch05\3-poldiv.c">
+      <Filter>Source Files\src\ch05</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch05\3-polynomial.c">
+      <Filter>Source Files\src\ch05</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch05\7-dfridr.c">
+      <Filter>Source Files\src\ch05</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch05\8-chebev.c">
+      <Filter>Source Files\src\ch05</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch05\8-chebft.c">
+      <Filter>Source Files\src\ch05</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch05\9-chint.c">
+      <Filter>Source Files\src\ch05</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch05\tst5.c">
+      <Filter>Source Files\src\ch05</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch05\9-chder.c">
+      <Filter>Source Files\src\ch05</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch05\12-pade.c">
+      <Filter>Source Files\src\ch05</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch05\10-chebpc.c">
+      <Filter>Source Files\src\ch05</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch07\4-irbit2.c">
+      <Filter>Source Files\src\ch07</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\ch07\tst7.c">
+      <Filter>Source Files\src\ch07</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
