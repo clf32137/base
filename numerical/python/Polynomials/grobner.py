@@ -3,6 +3,9 @@
 from colors import *
 from sympy import *
 
+def s_polynomial(f, g):
+    return expand(lcm(LM(f), LM(g))*(1/LT(f)*f - 1/LT(g)*g))
+
 x=Symbol('x')
 y=Symbol('y')
 
