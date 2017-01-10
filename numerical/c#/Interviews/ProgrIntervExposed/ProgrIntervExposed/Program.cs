@@ -30,14 +30,16 @@ namespace ProgrIntervExposed
 
             PrintConfigurations(arr, 0, res);
 
+            // Binary Search Trees.
             Node n1 = new Node(null, null, 1);
             Node n4 = new Node(null, null, 4);
             Node n3 = new Node(n1, n4, 3);
             Node n7 = new Node(null, null, 7);
             Node n12 = new Node(null, null, 12);
             Node n10 = new Node(n7, n12, 10);
-            Node n5 = new Node(n3, n10, 3);
+            Node n5 = new Node(n3, n10, 5);
 
+            Stack<Node> stk = new Stack<Node>();
 
             Console.Read();
         }
