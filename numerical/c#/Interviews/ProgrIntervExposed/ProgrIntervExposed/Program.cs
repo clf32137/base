@@ -2,6 +2,7 @@
 using ProgrIntervExposed.Tree;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,8 +18,7 @@ namespace ProgrIntervExposed
             int[] res = new int[arr.Length];
             bool[] used = new bool[arr.Length];
             Permutations.PermuteArr(arr, res, used, 0, 0);
-            //List <int> lst = new List<int>(arr);
-            //PermuteArr(lst, 0);
+            //Permutations.PermuteArr(new List<int>(arr), 0);
 
             // Combinations of array.
             Console.Out.WriteLine("Now combinations");
@@ -40,7 +40,12 @@ namespace ProgrIntervExposed
             Node n10 = new Node(n7, n12, 10);
             Node n5 = new Node(n3, n10, 5);
 
+            // Data structures.
             Stack<Node> stk = new Stack<Node>();
+            Queue<Node> qu = new Queue<Node>();
+            Dictionary<string, int> dict = new Dictionary<string, int>();
+            SortedDictionary<string, int> sdict = new SortedDictionary<string, int>();
+            List<int> lst = new List<int>();
 
             Console.Read();
         }             
