@@ -20,5 +20,41 @@ namespace ProgrIntervExposed.Tree
             this.Right = right;
             this.Value = value;
         }
+
+        public static void PreorderTraverseNoRecurse(Node root)
+        {
+            Stack<Node> stk = new Stack<Node>();
+            Node popped;
+            while (root != null)
+            {
+                Console.Out.WriteLine(root.Value);
+                if (root.Left != null)
+                {
+                    if (root.Right != null)
+                    {
+                        stk.Push(root.Right);
+                    }
+                    root = root.Left;
+                }
+                else if (root.Right != null)
+                {
+                    root = root.Right;
+                }
+                else
+                {
+                    if (stk.Count != 0)
+                    {
+                        popped = stk.Pop();
+                        root = popped;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+
+
     }
 }
