@@ -1,5 +1,6 @@
 ﻿using ProgrIntervExposed.Recursion;
 using ProgrIntervExposed.Tree;
+using ProgrIntervExposed.Arrays;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -40,6 +41,12 @@ namespace ProgrIntervExposed
             Node n10 = new Node(n7, n12, 10);
             Node n5 = new Node(n3, n10, 5);
 
+            // Arrays and strings.
+            String testStr = "abcdab";
+
+            double[,] input = new double[,] { { 1, 2, 1}, {3, 4, 1} };
+            ArraysStrings.CumulativeSum(input);
+
             // Data structures.
             Stack<Node> stk = new Stack<Node>();
             Queue<Node> qu = new Queue<Node>();
@@ -48,7 +55,6 @@ namespace ProgrIntervExposed
             List<int> lst = new List<int>();
 
             Console.Read();
-        }             
-        
+        }
     }
 }
