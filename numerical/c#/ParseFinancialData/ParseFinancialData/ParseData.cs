@@ -19,7 +19,8 @@ namespace ParseFinancialData
         /// <param name="directoryPath"></param>
         public ParseData (string directoryPath)
         {
-            HashSet<DataRecord> allRecords = new HashSet<DataRecord>();
+            XlsReader x = new XlsReader("..\\..\\data\\curr_data_file.xlsx");
+            HashSet<DataRecord> allRecords = x.existingData;
             StringBuilder csv = new StringBuilder();
             foreach (var filePath in Directory.GetFiles(directoryPath, "*.csv"))
             {

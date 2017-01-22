@@ -8,12 +8,16 @@ namespace ProgrIntervExposed.Recursion
 {
     class Permutations
     {
+        private static UInt64 counter = 0;
         /// Permute an array.
         public static void PermuteArr(int[] arr, int[] res, bool[] used, int indx, int n)
         {
             if (n >= arr.Length)
             {
-                Console.Out.WriteLine(string.Join(",", res));
+                counter += 1;
+                //Console.Out.WriteLine(counter + ":" + string.Join(",", res));
+                if ( counter == 1000000)
+                    Console.Out.WriteLine(counter + ":" + string.Join(",", res));
                 return;
             }
 

@@ -15,9 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from testsite.views import hello
+from testsite.views import hello, current_datetime, display_meta
+
+from books.views import PublisherListView
+from books import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^hello/$', hello),
+    url(r'^time/$', current_datetime),
+    url(r'^publishers/$', PublisherListView.as_view(), name='publisher_list'),
+    url(r'^request_details/$', display_meta),
+    url(r'^search-form/$', views.search_form),
+    url(r'^search/$', views.search),
 ]

@@ -15,7 +15,7 @@ namespace ProgrIntervExposed
         static void Main(string[] args)
         {
             // Permutations of an array.
-            int[] arr = new int[] { 0, 1, 2 };
+            int[] arr = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             int[] res = new int[arr.Length];
             bool[] used = new bool[arr.Length];
             Permutations.PermuteArr(arr, res, used, 0, 0);
@@ -30,7 +30,7 @@ namespace ProgrIntervExposed
                 Console.Out.WriteLine(st);
             }
 
-            Configurations.PrintConfigurations(arr, 0, res);
+            // Configurations.PrintConfigurations(arr, 0, res);
 
             // Binary Search Trees.
             Node n1 = new Node(null, null, 1);
@@ -44,8 +44,13 @@ namespace ProgrIntervExposed
             // Arrays and strings.
             String testStr = "abcdab";
 
-            double[,] input = new double[,] { { 1, 2, 1}, {3, 4, 1} };
-            ArraysStrings.CumulativeSum(input);
+            double[,] input = new double[,] { { 1, 9}, {15, 20} };
+            // ArraysStrings.CumulativeSum(input);
+
+            double[,] optimals = ArraysStrings.OptimalPath(input);
+
+            Random random = new Random();
+            double x = random.NextDouble();
 
             // Data structures.
             Stack<Node> stk = new Stack<Node>();
