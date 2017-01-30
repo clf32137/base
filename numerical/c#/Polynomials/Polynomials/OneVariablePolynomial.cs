@@ -145,7 +145,7 @@ namespace Polynomials
         }
 
         /// <summary>
-        /// Divides the polynomial with a 
+        /// Divides the polynomial with the divisor.
         /// </summary>
         /// <param name="divisor">The divisor. Denoted by g in the CLO book.</param>
         /// <returns>The quotient and remainder in the form of a tuple.</returns>
