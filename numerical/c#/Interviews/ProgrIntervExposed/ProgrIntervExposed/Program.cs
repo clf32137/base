@@ -1,15 +1,15 @@
-﻿using ProgrIntervExposed.Recursion;
-using ProgrIntervExposed.Tree;
-using ProgrIntervExposed.Arrays;
+﻿using InterviewPrep.Recursion;
+using InterviewPrep.Tree;
+using InterviewPrep.Arrays;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static ProgrIntervExposed.Arrays.ArraysStrings;
+using static InterviewPrep.Arrays.ArraysStrings;
 
-namespace ProgrIntervExposed
+namespace InterviewPrep
 {
     class Program
     {
@@ -36,6 +36,18 @@ namespace ProgrIntervExposed
             int[,] mat = new int[,] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 11 }, {9, 20, 100 } };
             Tuple<int, int> searchIndex = ArraysStrings.ElementSearch2D(mat, 20, 0, mat.GetLength(0)-1, 0, mat.GetLength(1) - 1);
             
+            int[,] binary = new int[,] 
+                                {
+                                        {0, 1, 1, 0, 1},
+                                        {1, 1, 0, 1, 0},
+                                        {0, 1, 1, 1, 0},
+                                        {1, 1, 1, 1, 0},
+                                        {1, 1, 1, 1, 1},
+                                        {0, 0, 0, 0, 0}
+                                };
+
+            int max1s = ArraysStrings.MaxSubmatrixOfOnes(binary);
+
             // Don't run this with large arrays.
             // Configurations.PrintConfigurations(arr, 0, res);
 

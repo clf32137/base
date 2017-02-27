@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProgrIntervExposed.Tree
+namespace InterviewPrep.Tree
 {
     public class Node
     {
@@ -54,7 +54,5 @@ namespace ProgrIntervExposed.Tree
                 }
             }
         }
-
-
     }
 }
