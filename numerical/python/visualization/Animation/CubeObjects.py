@@ -1,5 +1,6 @@
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageMath
+import sys
 
 class Vertice():
     def __init__(self, i = 0, n = 4):
@@ -327,7 +328,11 @@ def teserract_body_diagonal(width = 15, j = 70):
 def render_intro():
     im = Image.new("RGB", (2048, 2048), "black")
     draw = ImageDraw.Draw(im,'RGBA')
-    font = ImageFont.truetype("arial.ttf", 30)
+    if "linux" in sys.platform:
+        font = ImageFont.truetype("FreeMono.ttf", 28, encoding="unic")
+    else:
+        font = ImageFont.truetype("arial.ttf", 30)
+        
     width = 9
     [vx,vy] = np.array([0,0])*scale + shift[:2]
     draw.ellipse( (vx-width,vy-width,vx+width,vy+width), fill = "red", outline = "red")
@@ -382,11 +387,11 @@ def render_intro():
         draw = ImageDraw.Draw(im,'RGBA')
         r = rotation(3, -j*np.pi/50.0)
         draw = render_scene(draw,r,9,True)
-        draw = translate_square(k, draw)
+        draw = translate_square(r, k, draw)
         im.save('Images\\RotatingCube\\im' + str(37 + int(k*10)) + '.png')
     im = Image.new("RGB", (2048, 2048), "black")
     draw = ImageDraw.Draw(im,'RGBA')
-    draw = translate_square(k, draw, 1)
+    draw = translate_square(r, k, draw, 1)
     im.save('Images\\RotatingCube\\im' + str(47) + '.png')
 
 def render_scene(draw, r = np.eye(3), width = 9, renderCube = False, drawCubeConnectors = -1):
@@ -420,8 +425,10 @@ def new_vector(r, v):
     v = v + np.array([1000, 1000, 0])
     return v
 
-def translate_square(z, draw, drawCubeConnectors = -1):
+def translate_square(r, z, draw, drawCubeConnectors = -1):
     rgba = (255,0,0,80)
+    c1 = Cube(3)
+    width = 9
     [v1,v2,v3] = new_vector(r, (c1.vertice_matrix[0] + np.array([0,0,z]))* scale + shift[:3])
     draw.ellipse((v1-width,v2-width,v1+width,v2+width), fill = "red", outline = (255,0,0))
     [u1,u2,u3] = new_vector(r, (c1.vertice_matrix[1] + np.array([0,0,z])) * scale + shift[:3])
