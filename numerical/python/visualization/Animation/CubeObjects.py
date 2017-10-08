@@ -3,6 +3,8 @@ from PIL import Image, ImageDraw, ImageFont, ImageMath
 import sys
 from HyperCube import *
 from scipy.spatial import ConvexHull
+from Sphere import *
+from RotateCube import *
 
 class Vertice():
     def __init__(self, i = 0, n = 4):
@@ -442,12 +444,16 @@ def cube_body_diagonal_scene(draw):
         im_ind = im_ind + 1
         #scale = scale - 20
 
+'''
+@MoneyShot
+    Draws a four dimensional teserract with two tetrahedral and one octahedral planes visible.
+'''
 def teserract_body_diagonal(width = 15, j = 70):
     c1 = Cube(4)
-    for j in range(91):
+    for j in range(45,46):
         r = rotation(4, np.pi*2*j/80.0)
         [im, draw] = c1.plot_edges(r)
-        write4DEqn(draw)
+        #write4DEqn(draw)
         rotated_vertices = np.transpose(np.dot(r,np.transpose(c1.vertice_matrix)))*scale + shift[:4]
         hexag = rotated_vertices[[i.index for i in c1.vertices[c1.vertice_coordinate_sums == 2]]]
         sqr1 = rotated_vertices[[i.index for i in c1.vertices[c1.vertice_coordinate_sums == 3]]]
@@ -496,7 +502,7 @@ def tetrahedron(draw, r, offset = [500,1000,0], rgb = (216,52,52)):
         #draw = ImageDraw.Draw(im,'RGBA')
         tet = np.dot(tet_orig,r)
         for i in tet:
-            ver = i * 300 + offset            
+            ver = i * 300 + offset
             draw.ellipse((ver[0]-150,ver[1]-150,ver[0]+150,ver[1]+150), fill = rgba)
             draw.ellipse((ver[0]-5,ver[1]-5,ver[0]+5,ver[1]+5), fill = rgb)
         for i in range(len(tet)):
@@ -506,7 +512,7 @@ def tetrahedron(draw, r, offset = [500,1000,0], rgb = (216,52,52)):
                 draw.line((ver1[0],ver1[1],ver2[0],ver2[1]), fill = rgb, width = 2)
         #im.save('Images\\RotatingCube\\im' + str(j) + '.png')
 
-def doublepyramid(draw, r):
+def octahedron(draw, r):
     tet_orig = np.array([
             [0,0,0],
             [1,0,0],
@@ -554,7 +560,7 @@ def fourDExplanation(j = 0, k = 0):
     #draw.text((610,220), "0", font = font_small, fill = "orange")
     draw.text((600,211), "4", font = font_small, fill = "orange")
     r = general_rotation(np.array([1,2,0.4]), np.pi*2*k/80.0)
-    doublepyramid(draw, r)
+    octahedron(draw, r)
     tetrahedron(draw, np.eye(3))
     tetrahedron(draw, np.eye(3), [500,1550,0],(0,0,255))
     im.save('Images\\RotatingCube\\im' + str(j) + '.png')
@@ -1081,6 +1087,7 @@ def tst():
         im.save('Images\\RotatingCube\\im' + str(j) + '.png')
 
 '''
+@MoneyShot
 Generates larger and larger cubes showing their cutting planes representing polynomial terms.
 args:
     numTerms: The number of values each dimension can take.
