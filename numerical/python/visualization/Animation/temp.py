@@ -1,13 +1,14 @@
+import numpy as np
 
 '''
 @MoneyShot
     A visualization of a plane and its gradient.
 '''
-def threePointPlane(j = 4 + 46/3.0, im_ind = 0):
+def threePointPlane(j = 4 + 46/3.0, im_ind = 0, draw1 = None, im = None):
     global scale
-    scale = 200 + 14 * 10 - 14 * 10
+    scale = 60
     global shift
-    shift = np.array([1000, 1000 - 14 * 80 + 14 * 80, 0])
+    shift = np.array([1200, 580, 0])
     font = ImageFont.truetype("arial.ttf", 75)
     #dimn = (np.cos(im_ind * np.pi /10.0))
     #dimn = 1 + 10.0 * np.sin(im_ind * np.pi /60.0)
@@ -20,8 +21,11 @@ def threePointPlane(j = 4 + 46/3.0, im_ind = 0):
     r = np.dot(r, rot)
     r1 = np.eye(4)
     r1[:3,:3] = r
-    im = Image.new("RGB", (2048, 2048), "black")
-    draw = ImageDraw.Draw(im, 'RGBA')
+    if draw1 is None:
+        im = Image.new("RGB", (2048, 2048), "black")
+        draw = ImageDraw.Draw(im, 'RGBA')
+    else:
+        draw = draw1
     render_scene_4d_axis(draw, r1, 4, scale = scale, shift = shift)
     pt1 = np.dot(r,np.array([a,0,0])) * scale + shift[:3]
     pt2 = np.dot(r,np.array([0,b,0])) * scale + shift[:3]
@@ -83,52 +87,53 @@ def threePointPlane(j = 4 + 46/3.0, im_ind = 0):
     draw.ellipse((pt[0]-width,pt[1]-width,pt[0]+width,pt[1]+width),fill=(102,255,51))
     #arrowV1(draw, r, pt_1, pt_1 - 6*np.array([1/a,1/b,1/c]), rgb = (136, 77, 255))
     #snapGridToPoint(draw, r, im_ind)
-    im = im.rotate(180)
-    im = im.transpose(Image.FLIP_LEFT_RIGHT)
-    draw = ImageDraw.Draw(im, 'RGBA')
-    z_top_pos = np.dot(r, np.array([0, 0, -5])) * np.array([1,-1,0]) * scale + shift[:3]
-    draw.text((z_top_pos[0] - 40, z_top_pos[1] + 40), 'z', font=font, fill='yellow')
-    x_top_pos = np.dot(r, np.array([5, 0, 0])) * np.array([1,-1,0]) * scale + shift[:3]
-    draw.text((x_top_pos[0] - 40, x_top_pos[1] + 40), 'x', font=font, fill='yellow')
-    y_top_pos = np.dot(r, np.array([0, 5, 0])) * np.array([1,-1,0]) * scale + shift[:3]
-    draw.text((y_top_pos[0] - 40, y_top_pos[1] + 40), 'y', font=font, fill='yellow')
-    #writeStaggeredText("In summary, direction perpendicular to orange subspace\n 1) Causes z to change the most.\n 2) Is the gradient", draw, im_ind, pos = (30,1270))
-    #draw.text((935,545), '(0,0,c)', font=font)
-    #draw.text((1265,805), '(a,0,0)', font=font)
-    #draw.text((465,1075), '(0,b,0)', font=font)
-    #draw_equation(draw, im_ind)    
-    writeLatex(im,'z = c \\left( 1 - \\frac{x}{a} - \\frac{y}{b} \\right)', (40,40), (253,253,253))
-    '''
-    writeLatex(im, '\\frac{\\partial z}{\\partial x} = - \\frac{c}{a}', (1550, 90), (253,253,253))
-    writeLatex(im, '\\frac{\\partial z}{\\partial y} = - \\frac{c}{b}', (1550, 250), (253,253,253))
-    writeLatex(im, '\\vec{\\Delta}z = -c[\\frac{1}{a},\\frac{1}{b}]', (1450, 250+170), (253,253,253))
-    writeLatex(im, '\\vec{\\Delta}z \propto [\\frac{1}{a},\\frac{1}{b}]', (1450, 250+340), (253,253,253))
-    #writeLatex(im, '\\frac{\\partial z}{\\partial y} = - \\frac{c}{b}', (1550, 250), (253,253,253))
-    #writeLatex(im, '\\left[\\frac{1}{a}, \\frac{1}{b}\\right]', (1550, 210), (0,255,0))
-    #writeLatex(im,'\\frac{x}{a} + \\frac{y}{b} + \\frac{z}{c} = 1', (40, 40), (253,253,253))    
-    pp = np.array([810,180]) + (np.array([5,660]) - np.array([810,180])) *10.0/10.0
-    writeLatex(im,'[x, y, z]', (pp[0], pp[1]), (253,253,253))
-    writeLatex(im,': \\vec{v}', (pp[0]+330, pp[1]), (255,20,147))
-    pp_1 = np.array([810,180]) + (np.array([5,860]) - np.array([810,180])) * 10.0/10.0
-    writeLatex(im, '\\left[ \\frac{1}{a}, \\frac{1}{b}, \\frac{1}{c}\\right]', (pp_1[0], pp_1[1]), (253,253,253))
-    writeLatex(im, ': \\vec{n}', (pp_1[0] + 330, pp_1[1]), (0,128,255))
-    writeLatex(im, '\\vec{v} .', (910, 370), (255,20,147))
-    writeLatex(im, '\\vec{n}', (910 + 100, 370), (0,128,255))
-    writeLatex(im, ' = 1', (910 + 2*100, 370), (253,253,253))
-    writeLatex(im, '\\vec{p}.', (940 , 500), (255,0,0))
-    writeLatex(im, '\\vec{n}', (940+70 , 500), (0,128,255))
-    writeLatex(im, ' = 0', (940+2*70 , 500), (253,253,253))
-    #writeLatex(im, '\\vec{p}.', (940 , 500), (255,0,0))
-    #writeLatex(im, '\\vec{n} + s \\vec{n}.\\vec{n} ', (940+70 , 500), (0,128,255))
-    #writeLatex(im, ' = 1', (940+2*220 , 500), (253,253,253))
-    #writeLatex(im, '2\\vec{p}.', (1000 , 630), (255,0,0))
-    #writeLatex(im, '\\vec{n} + s \\vec{n}.\\vec{n} ', (1000 + 110 , 630), (0,128,255))
-    #writeLatex(im, ' = 1', (1000+2*250 , 630), (253,253,253))
-    '''
-    im.thumbnail((512, 512), Image.ANTIALIAS)
-    #im = im.crop((0,0,2048,1200))
-    #im.save('Images\\RotatingCube\\im' + str(20 + 19 - im_ind) + '.png')
-    im.save('Images\\RotatingCube\\im' + str(im_ind) + '.png')
+    if draw1 is not None:
+        im = im.rotate(180)
+        im = im.transpose(Image.FLIP_LEFT_RIGHT)
+        draw = ImageDraw.Draw(im, 'RGBA')
+        z_top_pos = np.dot(r, np.array([0, 0, -5])) * np.array([1,-1,0]) * scale + shift[:3]
+        draw.text((z_top_pos[0] - 40, z_top_pos[1] + 40), 'z', font=font, fill='yellow')
+        x_top_pos = np.dot(r, np.array([5, 0, 0])) * np.array([1,-1,0]) * scale + shift[:3]
+        draw.text((x_top_pos[0] - 40, x_top_pos[1] + 40), 'x', font=font, fill='yellow')
+        y_top_pos = np.dot(r, np.array([0, 5, 0])) * np.array([1,-1,0]) * scale + shift[:3]
+        draw.text((y_top_pos[0] - 40, y_top_pos[1] + 40), 'y', font=font, fill='yellow')
+        #writeStaggeredText("In summary, direction perpendicular to orange subspace\n 1) Causes z to change the most.\n 2) Is the gradient", draw, im_ind, pos = (30,1270))
+        #draw.text((935,545), '(0,0,c)', font=font)
+        #draw.text((1265,805), '(a,0,0)', font=font)
+        #draw.text((465,1075), '(0,b,0)', font=font)
+        #draw_equation(draw, im_ind)    
+        writeLatex(im,'z = c \\left( 1 - \\frac{x}{a} - \\frac{y}{b} \\right)', (40,40), (253,253,253))
+        '''
+        writeLatex(im, '\\frac{\\partial z}{\\partial x} = - \\frac{c}{a}', (1550, 90), (253,253,253))
+        writeLatex(im, '\\frac{\\partial z}{\\partial y} = - \\frac{c}{b}', (1550, 250), (253,253,253))
+        writeLatex(im, '\\vec{\\Delta}z = -c[\\frac{1}{a},\\frac{1}{b}]', (1450, 250+170), (253,253,253))
+        writeLatex(im, '\\vec{\\Delta}z \propto [\\frac{1}{a},\\frac{1}{b}]', (1450, 250+340), (253,253,253))
+        #writeLatex(im, '\\frac{\\partial z}{\\partial y} = - \\frac{c}{b}', (1550, 250), (253,253,253))
+        #writeLatex(im, '\\left[\\frac{1}{a}, \\frac{1}{b}\\right]', (1550, 210), (0,255,0))
+        #writeLatex(im,'\\frac{x}{a} + \\frac{y}{b} + \\frac{z}{c} = 1', (40, 40), (253,253,253))    
+        pp = np.array([810,180]) + (np.array([5,660]) - np.array([810,180])) *10.0/10.0
+        writeLatex(im,'[x, y, z]', (pp[0], pp[1]), (253,253,253))
+        writeLatex(im,': \\vec{v}', (pp[0]+330, pp[1]), (255,20,147))
+        pp_1 = np.array([810,180]) + (np.array([5,860]) - np.array([810,180])) * 10.0/10.0
+        writeLatex(im, '\\left[ \\frac{1}{a}, \\frac{1}{b}, \\frac{1}{c}\\right]', (pp_1[0], pp_1[1]), (253,253,253))
+        writeLatex(im, ': \\vec{n}', (pp_1[0] + 330, pp_1[1]), (0,128,255))
+        writeLatex(im, '\\vec{v} .', (910, 370), (255,20,147))
+        writeLatex(im, '\\vec{n}', (910 + 100, 370), (0,128,255))
+        writeLatex(im, ' = 1', (910 + 2*100, 370), (253,253,253))
+        writeLatex(im, '\\vec{p}.', (940 , 500), (255,0,0))
+        writeLatex(im, '\\vec{n}', (940+70 , 500), (0,128,255))
+        writeLatex(im, ' = 0', (940+2*70 , 500), (253,253,253))
+        #writeLatex(im, '\\vec{p}.', (940 , 500), (255,0,0))
+        #writeLatex(im, '\\vec{n} + s \\vec{n}.\\vec{n} ', (940+70 , 500), (0,128,255))
+        #writeLatex(im, ' = 1', (940+2*220 , 500), (253,253,253))
+        #writeLatex(im, '2\\vec{p}.', (1000 , 630), (255,0,0))
+        #writeLatex(im, '\\vec{n} + s \\vec{n}.\\vec{n} ', (1000 + 110 , 630), (0,128,255))
+        #writeLatex(im, ' = 1', (1000+2*250 , 630), (253,253,253))
+        '''
+        im.thumbnail((512, 512), Image.ANTIALIAS)
+        #im = im.crop((0,0,2048,1200))
+        #im.save('Images\\RotatingCube\\im' + str(20 + 19 - im_ind) + '.png')
+        im.save('Images\\RotatingCube\\im' + str(im_ind) + '.png')
 
 '''
     Returns a triangular function oscillating between an upper and lower bound (hard coded for now).
@@ -196,7 +201,6 @@ def demonstrateDotProduct(im_ind = 0):
         writeLatex(im, 'a_z b_z)', (932,1400), (253,253,253))
     im.save('Images\\RotatingCube\\im' + str(im_ind) + '.png')
 
-
 def intermeriateWhiteEffect(draw, r, im_ind, a, b, c):
     pt1 = np.dot(r,np.array([a,0,0])) * scale + shift[:3]
     pt2 = np.dot(r,np.array([0,b,0])) * scale + shift[:3]
@@ -212,7 +216,6 @@ def intermeriateWhiteEffect(draw, r, im_ind, a, b, c):
     pt5_2 = pt4 + (pt1 - pt4) * im_ind / 10.0
     pt6_2 = pt4 + (pt2 - pt4) * im_ind / 10.0
     draw.polygon([ (pt5_1[0], pt5_1[1]), (pt6_1[0], pt6_1[1]), (pt6_2[0], pt6_2[1]), (pt5_2[0], pt5_2[1])], 'white')
-
 
 def projectArrowOnPlane(draw, r, a=2.5*410/200, b=2.5*410/200, c=-2.5*410/200, pt = np.array([1.25,1.25,0])*410/200):
     grad = np.array([c/a, c/b, 0])
@@ -230,7 +233,6 @@ def projectArrowOnPlane(draw, r, a=2.5*410/200, b=2.5*410/200, c=-2.5*410/200, p
     for i in range(len(polyg)):
         draw.line((polyg[i][0], polyg[i][1], polyg[(i+1)%len(polyg)][0], polyg[(i+1)%len(polyg)][1]), fill = (204, 102, 255, 150), width = 4)
     draw.polygon(polyg, (204, 102, 255, 120))
-
 
 def arrowWithProjection(im, draw, r, pt_1, pt_2, pt_proj = None, plane = np.array([2.5,2.5,-2.5])*410.0/200.0):
     [a,b,c] = plane    
@@ -285,5 +287,21 @@ def snapGridToPoint(draw, r, im_ind, pt = np.array([ 0.65196929, -1.17690135,  2
     else:
         font = ImageFont.truetype("arial.ttf", 75)
         draw.text((pt_big[0], pt_big[1]), 'z = 0', font = font, fill = 'green')
+
+
+def createChannelArt(im_ind = 0):
+    im = Image.new("RGB", (2560, 1440), "black")
+    draw = ImageDraw.Draw(im, 'RGBA')
+    threePointPlane(draw1 = draw, im = im)
+    #General3DCube(numTerms = 10, pos = [2000, 20,0], draw1 = draw, scale1 = 20)
+    General3DCube(numTerms=8, im_ind = 3)
+    im1 = Image.open('C:\Users\\rohit\Documents\GitHub\\base\\numerical\python\\visualization\Animation\Images\RotatingCube\\im3.png')
+    im1.thumbnail((300, 300), Image.ANTIALIAS)
+    pasteImage(im1, im, posn = np.array([1350,480,0]))
+    im_sam = Image.open('C:\Users\\rohit\Documents\GitHub\\base\\numerical\python\\visualization\Animation\Images\SamuraiBest\SamuraiWalking\Waving\\im0.png')
+    im_sam.thumbnail((256, 330), Image.ANTIALIAS)
+    pasteImage(im_sam, im, posn = np.array([913,520,0]))
+    im.save('Images\\RotatingCube\\im' + str(im_ind) + '.png')
+
 
 

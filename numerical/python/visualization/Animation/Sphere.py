@@ -124,7 +124,6 @@ def render_sphere():
         im.save('Images\\Rotation\\im' + str(im_ind) + '.png')
         im_ind = im_ind + 1
 
-
 '''
 A sequence of intermediate rotations that take the system from an initial rotated state (oldr) to a final one (newr).
 '''
@@ -204,6 +203,30 @@ def project_circle_on_plane(
             #draw.line((pt1Up[0]*scale + shift[0], pt1Up[1]*scale+shift[1], pt2Up[0]*scale+shift[0], pt2Up[1]*scale+shift[1]), fill=(102,255,51,100), width=5)
         # The vertical lines clibing up.
         draw.line((pt2[0]*scale + shift1[0], pt2[1]*scale+shift1[1], pt2Up[0]*scale+shift[0], pt2Up[1]*scale+shift[1]), fill=(51, 102, 255,100), width=5)
+        pt1 = pt2
+        pt1Up = pt2Up
+
+
+def project_circle_on_surface(draw, r, fn, center=np.array([0,0]), radius=0.75, start = np.array([0.0, 0.75, 0.0]), arcExtent = 180.0, shift = np.array([1000,1000,0]), scale=300):
+    center = np.concatenate((center, np.array([0])), axis=0)
+    center1 = np.dot(r, center) * scale
+    shift1 = shift[:3] + center1
+    pt1 = np.dot(r, start)
+    [x,y] = np.array([0.0, radius])
+    z = fn(np.matrix([x,y]))
+    pt1Up = np.dot(r, np.array([x,y,z]))
+    theta = np.pi * 2.0 / 180
+    rot = general_rotation(np.dot(r, np.array([0,0,1])), theta)
+    for j in np.arange(0, arcExtent):
+        pt2 = np.dot(rot, pt1)
+        pt2Orig = np.dot(np.transpose(r), pt2) + center
+        [x,y] = pt2Orig[:2]
+        z = fn(np.matrix([x,y]))
+        pt2Up = np.dot(r, np.array([x,y,z]))
+        if sum((pt1Up - pt2Up)**2 ) < 0.1:
+            draw.line((pt1Up[0]*scale + shift[0], pt1Up[1]*scale+shift[1], pt2Up[0]*scale+shift[0], pt2Up[1]*scale+shift[1]), fill=(102, 102, 255,100), width=7)
+        # The vertical lines clibing up.
+        draw.line((pt2[0]*scale + shift1[0], pt2[1]*scale+shift1[1], pt2Up[0]*scale+shift[0], pt2Up[1]*scale+shift[1]), fill=(51, 102, 255,100), width=8)
         pt1 = pt2
         pt1Up = pt2Up
 

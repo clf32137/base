@@ -14,7 +14,7 @@ def paraboloid():
         orthogonal_vec = np.dot(r2, np.array([0,1,0]))
         orthogonal_vec = orthogonal_vec/sum(orthogonal_vec**2) # Should be unnecessary since rotation doesn't change magnitude.
         for j in range(4,5): # Controls the rotation of the paraboloid.
-            r = rotation(3,2*np.pi*j/30.0)
+            r = rotation(3, 2*np.pi*j/30.0)
             r1[:3,:3] = r
             im = Image.new("RGB", (2048, 2048), "black")
             draw = ImageDraw.Draw(im, 'RGBA')
@@ -86,8 +86,7 @@ def generalParaboloid(coeffs = [1.0,1.0,0], draw = None, j = 4, scale = 200):
     if draw is None:
         im = Image.new("RGB", (2048, 2048), "black")
         draw = ImageDraw.Draw(im, 'RGBA')
-    render_scene_4d_axis(draw, r1, 4)
-    
+    render_scene_4d_axis(draw, r1, 4)    
     # Now we create the paraboloid one x-y cross section at a time.
     for z in np.arange(0.001, 3.5, 0.01):
         radius1 = np.sqrt(z)
@@ -158,7 +157,6 @@ def paraboloid_dirty(im_ind = 0, scale = 200, shift = np.array([1000,1000,0]), o
             im_lazer = Image.open('C:\Users\\rohit\Documents\GitHub\\base\\numerical\python\\visualization\Animation\Images\Objects\\lazer_dot.png')
             im_lazer.thumbnail((60,60), Image.ANTIALIAS)
             #pasteImage(im_lazer, im, (1050,y_posn))
-            
             for z in np.arange(0.001, 3.5, 0.01):
                 #generalized_circle(draw, np.array([0,0,z]), np.array([0,0,1]), np.sqrt(z), r, rgba = (255,20,147,50))
                 pt1 = np.dot(r, np.array([-np.sqrt(z),0,z]))
@@ -329,6 +327,8 @@ Returns the z-coordinate of a point on a plane that is tangent to the paraboloid
 def z_plane(x, y, x1, y1):
     return 2*x1*x + 2*y1*y - (x1**2 + y1**2)
 
+'''
+'''
 def helix(ind):
     theta = np.pi/4
     r = np.sqrt(2)

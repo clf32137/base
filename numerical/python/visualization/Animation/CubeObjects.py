@@ -6,6 +6,12 @@ from scipy.spatial import ConvexHull
 from Sphere import *
 from RotateCube import *
 
+#shift = np.array([170,400, 380]) # (for 1024, 1024)
+#scale = 300
+dim = 4
+shift = np.array([1000,1000, 0, 0, 0])
+scale = 500
+
 class Vertice():
     def __init__(self, i = 0, n = 4):
         self.dim = n
@@ -248,7 +254,7 @@ class Cube():
             [v1, v2] = [ np.dot(r, edge.vertice1.binary), np.dot(r, edge.vertice2.binary)]
             [v1x,v1y] = (shift[:self.dim] + scale * v1)[0:2]
             [v2x,v2y] = (shift[:self.dim] + scale * v2)[0:2]
-            draw.line((v1x, v1y, v2x, v2y), fill=(255,165,0,90), width=3)
+            draw.line((v1x, v1y, v2x, v2y), fill=(255,165,0), width=2)
         return [im, draw]
         #im.save('Images\\RotatingCube\\im' + str(j) + '.png')
 
@@ -270,12 +276,6 @@ class Cube():
                 body.plot(r, draw, colors[bi])
                 indx = indx + 1        
         im.save('Images\\RotatingCube\\im' + str(j) + '.png')
-
-#shift = np.array([170,400, 380]) # (for 1024, 1024)
-#scale = 300
-dim = 4
-shift = np.array([1000,1000, 0, 0, 0])
-scale = 200
 
 def rotate_object(n=5):
     c1 = Cube(n)
@@ -448,45 +448,103 @@ def cube_body_diagonal_scene(draw):
 @MoneyShot
     Draws a four dimensional teserract with two tetrahedral and one octahedral planes visible.
 '''
-def teserract_body_diagonal(width = 15, j = 70):
+def teserract_body_diagonal(width = 15, im_ind = 70, scale = 500, shift = np.array([1000,1000,0,0,0])):
     c1 = Cube(4)
-    for j in range(45,46):
-        r = rotation(4, np.pi*2*j/80.0)
-        [im, draw] = c1.plot_edges(r)
-        #write4DEqn(draw)
-        rotated_vertices = np.transpose(np.dot(r,np.transpose(c1.vertice_matrix)))*scale + shift[:4]
-        hexag = rotated_vertices[[i.index for i in c1.vertices[c1.vertice_coordinate_sums == 2]]]
-        sqr1 = rotated_vertices[[i.index for i in c1.vertices[c1.vertice_coordinate_sums == 3]]]
-        try:
-            draw.polygon(jarvis_convex_hull(sqr1), (255,0,0,60))
-        except:
-            continue
-        for ver in c1.vertices[c1.vertice_coordinate_sums==3]:
-            ver.plot(r, draw, (255,0,0), 10)
-            for ver1 in c1.vertices[c1.vertice_coordinate_sums==3]:
-                e = Edge(ver,ver1)
-                e.plot(r,draw,(255,0,0))
-        try:
-            draw.polygon(jarvis_convex_hull(hexag), (0,255,0,80))
-        except:
-            continue
-        for ed in [(5,3),(5,6),(5,9),(5,12),(10,3),(10,6),(10,9),(10,12),(3,6),(3,9),(12,6),(12,9)]:
-            v1 = rotated_vertices[ed[0]]
-            v2 = rotated_vertices[ed[1]]
-            draw.line((v1[0], v1[1], v2[0], v2[1]), fill = (0,255,0), width=2)
-        for ver in c1.vertices[c1.vertice_coordinate_sums==2]:
-            ver.plot(r, draw, (0,255,0), 10)
-        sqr2 = rotated_vertices[[i.index for i in c1.vertices[c1.vertice_coordinate_sums == 1]]]
-        try:
-            draw.polygon(jarvis_convex_hull(sqr2), (0,0,255,60))
-        except:
-            continue
-        for ver in c1.vertices[c1.vertice_coordinate_sums == 1]:
-            ver.plot(r, draw, (0,0,255), 10)
-            for ver1 in c1.vertices[c1.vertice_coordinate_sums == 1]:
-                e = Edge(ver,ver1)
-                e.plot(r,draw,(0,0,255))
-        im.save('Images\\RotatingCube\\im' + str(j) + '.png')
+    #for j in range(45,46):
+    r = np.eye(4)
+    r[:3,:3] = rotation(3, np.pi*2*27/80.0)
+    r1 = rotation(4, np.pi*2*im_ind/80.0)
+    r = np.dot(r, r1)
+    [im, draw] = c1.plot_edges(r)
+    #write4DEqn(draw)
+    rotated_vertices = np.transpose(np.dot(r,np.transpose(c1.vertice_matrix)))*scale + shift[:4]
+    hexag = rotated_vertices[[i.index for i in c1.vertices[c1.vertice_coordinate_sums == 2]]]
+    sqr1 = rotated_vertices[[i.index for i in c1.vertices[c1.vertice_coordinate_sums == 3]]]
+    try:
+        draw.polygon(jarvis_convex_hull(sqr1), (255,0,0,60))
+    except:
+        print "err"
+    for ver in c1.vertices[c1.vertice_coordinate_sums == 3]:
+        ver.plot(r, draw, (255,0,0), 10)
+        for ver1 in c1.vertices[c1.vertice_coordinate_sums == 3]:
+            e = Edge(ver,ver1)
+            e.plot(r,draw,(255,0,0), width=2)
+    try:
+        draw.polygon(jarvis_convex_hull(hexag), (0,255,0,30))
+    except:
+        print "err"
+    
+    for ver in c1.vertices[c1.vertice_coordinate_sums == 1]:
+        ver.plot(r, draw, (0,0,255), 10)
+        for ver1 in c1.vertices[c1.vertice_coordinate_sums == 1]:
+            e = Edge(ver,ver1)
+            e.plot(r,draw,(0,0,255))
+    for ed in [(5,3),(5,6),(5,9),(5,12),(10,3),(10,6),(10,9),(10,12),(3,6),(3,9),(12,6),(12,9)]:
+        v1 = rotated_vertices[ed[0]]
+        v2 = rotated_vertices[ed[1]]
+        draw.line((v1[0], v1[1], v2[0], v2[1]), fill = (0,255,0), width=4)
+    for ver in c1.vertices[c1.vertice_coordinate_sums==2]:
+        ver.plot(r, draw, (0,255,0), 10)
+    sqr2 = rotated_vertices[[i.index for i in c1.vertices[c1.vertice_coordinate_sums == 1]]]
+    try:
+        draw.polygon(jarvis_convex_hull(sqr2), (0,0,255,60))
+    except:
+        print "err"
+    v1 = rotated_vertices[0]
+    v2 = rotated_vertices[15]
+    draw.line((v1[0], v1[1], v2[0], v2[1]), fill = (255,255,255), width=2)
+    im.save('Images\\RotatingCube\\im' + str(im_ind) + '.png')
+
+
+'''
+@MoneyShot
+    Draws a four dimensional teserract with two tetrahedral and one octahedral planes visible.
+'''
+def teserract_body_diagonal2(width = 15, im_ind = 70, scale = 500, shift = np.array([1000,1000,0,0,0])):
+    c1 = Cube(4)
+    r = np.eye(4)
+    r[:3,:3] = rotation(3, np.pi*2*27/80.0)
+    r1 = rotation(4, np.pi*2*im_ind/80.0)
+    r = np.dot(r, r1)
+    [im, draw] = c1.plot_edges(r)
+    rotated_vertices = np.transpose(np.dot(r,np.transpose(c1.vertice_matrix)))*scale + shift[:4]
+    hexag = rotated_vertices[[i.index for i in c1.vertices[c1.vertice_coordinate_sums == 2]]]
+    sqr1 = rotated_vertices[[i.index for i in c1.vertices[c1.vertice_coordinate_sums == 3]]]
+    try:
+        draw.polygon(jarvis_convex_hull(sqr1), (255,0,0,60))
+    except:
+        print "err"
+    for ver in c1.vertices[c1.vertice_coordinate_sums == 3]:
+        ver.plot(r, draw, (255,0,0), 10)
+        for ver1 in c1.vertices[c1.vertice_coordinate_sums == 3]:
+            e = Edge(ver,ver1)
+            e.plot(r,draw,(255,0,0), width=2)
+    try:
+        draw.polygon(jarvis_convex_hull(hexag), (0,255,0,30))
+    except:
+        print "err"
+    
+    for ver in c1.vertices[c1.vertice_coordinate_sums == 1]:
+        ver.plot(r, draw, (0,0,255), 10)
+        for ver1 in c1.vertices[c1.vertice_coordinate_sums == 1]:
+            e = Edge(ver,ver1)
+            e.plot(r,draw,(0,0,255))
+    for ed in [(5,3),(5,6),(5,9),(5,12),(10,3),(10,6),(10,9),(10,12),(3,6),(3,9),(12,6),(12,9)]:
+        v1 = rotated_vertices[ed[0]]
+        v2 = rotated_vertices[ed[1]]
+        draw.line((v1[0], v1[1], v2[0], v2[1]), fill = (0,255,0), width=4)
+    for ver in c1.vertices[c1.vertice_coordinate_sums==2]:
+        ver.plot(r, draw, (0,255,0), 10)
+    sqr2 = rotated_vertices[[i.index for i in c1.vertices[c1.vertice_coordinate_sums == 1]]]
+    try:
+        draw.polygon(jarvis_convex_hull(sqr2), (0,0,255,60))
+    except:
+        print "err"
+    v1 = rotated_vertices[0]
+    v2 = rotated_vertices[15]
+    draw.line((v1[0], v1[1], v2[0], v2[1]), fill = (255,255,255), width=2)
+    im.save('Images\\RotatingCube\\im' + str(im_ind) + '.png')
+
 
 def tetrahedron(draw, r, offset = [500,1000,0], rgb = (216,52,52)):
     tet_orig = np.array([
@@ -565,7 +623,6 @@ def fourDExplanation(j = 0, k = 0):
     tetrahedron(draw, np.eye(3), [500,1550,0],(0,0,255))
     im.save('Images\\RotatingCube\\im' + str(j) + '.png')
 
-
 def write4DEqn(draw):
     font = ImageFont.truetype("arial.ttf", 100)
     font_small = ImageFont.truetype("arial.ttf", 60)
@@ -578,7 +635,6 @@ def write4DEqn(draw):
     draw.text((1506, 211), "3", font=font_small, fill = "orange")
     draw.text((1674, 211), "4", font=font_small, fill = "orange")
     draw.text((600,211), "4", font = font_small, fill = "orange")
-
 
 def make_transparent():
     img = Image.open('C:\Users\\rohit\Documents\GitHub\\base\\numerical\python\\visualization\Animation\Images\RotatingCube\Temp4\\im22.png')
@@ -998,7 +1054,6 @@ def render_xy_plane(draw, r = np.eye(4), width = 5):
         draw.line((x_axis_start[0],x_axis_start[1],x_axis_end[0],x_axis_end[1]), fill=(248,50,0,70), width=width)
         draw.line((y_axis_start[0],y_axis_start[1],y_axis_end[0],y_axis_end[1]), fill=(248,50,0,70), width=width)
 
-
 def render_scene_4d(draw, r = np.eye(4), width = 9, translate = 0, body = 0):
     x_axis_start = new_vector_4d(r, np.array([0, 1000, 0, 0]))
     x_axis_end = new_vector_4d(r, np.array([2048, 1000, 0, 0]))
@@ -1093,10 +1148,15 @@ args:
     numTerms: The number of values each dimension can take.
     pos: The position on the image where the leftmost edge of the cube should be.
 '''
-def General3DCube(numTerms, im_ind = 0, pos = [300,700,0]):
+def General3DCube(numTerms, im_ind = 0, pos = [300,700,0], draw1 = None, scale1 = 100):
+    global scale
+    scale = scale1
     for j in range(30,31):
-        im = Image.new("RGB", (2048, 2048), "black")
-        draw = ImageDraw.Draw(im, 'RGBA')
+        if draw1 is None:
+            im = Image.new("RGB", (2048, 2048), "black")
+            draw = ImageDraw.Draw(im, 'RGBA')
+        else:
+            draw = draw1
         r = rotation(3, j/80.0 * np.pi*2)
         ## Vertices
         vertices = [GeneralBase(i,numTerms) for i in range(numTerms**3)]
@@ -1123,7 +1183,8 @@ def General3DCube(numTerms, im_ind = 0, pos = [300,700,0]):
             for vv in sqr1:
                 [vx,vy] = vv[:2]
                 draw.ellipse( (vx-11,vy-11,vx+11,vy+11), fill = rgb, outline = rgb)
-        im.save('Images\\RotatingCube\\im' + str(im_ind) + '.png')
+        if draw1 is None:
+            im.save('Images\\RotatingCube\\im' + str(im_ind) + '.png')
         im_ind = im_ind + 1
 
 

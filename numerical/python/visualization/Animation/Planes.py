@@ -36,12 +36,10 @@ def plane(im_ind = 0, rgba = (120,80,200,150)):
     im.save('Images\\RotatingCube\\im' + str(im_ind) + '.png')
     im_ind = im_ind + 1
 
-
 def drawLine(draw, r, pt1, pt2):
     pt1 = np.dot(r, pt1) * scale + shift[:3]
     pt2 = np.dot(r, pt2) * scale + shift[:3]
     draw.line((pt1[0], pt1[1], pt2[0], pt2[1]), fill = (255,102,55,100), width = 3)
-
 
 '''
 A visualization of a plane and its gradient.
@@ -109,7 +107,6 @@ def threePointPlane(j = 4, im_ind = 0):
     #draw_equation(draw, im_ind)
     writeLatex(im,'z = c \\left( 1 - \\frac{x}{a} - \\frac{y}{b} \\right)',(1268,293),(253,253,253))
     im.save('Images\\RotatingCube\\im' + str(im_ind) + '.png')
-
 
 def draw_equation(draw, im_ind = 0):
     font = ImageFont.truetype("arial.ttf", 75)
@@ -239,11 +236,11 @@ def drawXYGrid(draw, r, meshLen = 0.5, extent = 1.0, shift = np.array([1000.0,10
     for x in np.arange(-5.0,upper,meshLen):
         pt1 = np.dot(r, np.array([x,-5.0,0]))*scale + shift[:3]
         pt2 = np.dot(r,np.array([x,5.0,0]))*scale + shift[:3]
-        draw.line((pt1[0],pt1[1],pt2[0],pt2[1]),(102,255,51),width=2)
+        draw.line((pt1[0],pt1[1],pt2[0],pt2[1]),(102,255,51, 120),width=2)
     for y in np.arange(-5.0,upper,meshLen):
         pt1 = np.dot(r, np.array([-5.0,y,0]))*scale + shift[:3]
         pt2 = np.dot(r,np.array([5.0,y,0]))*scale + shift[:3]
-        draw.line((pt1[0],pt1[1],pt2[0],pt2[1]),(102,255,51),width=2)
+        draw.line((pt1[0],pt1[1],pt2[0],pt2[1]),(102,255,51, 120),width=2)
 
 
 

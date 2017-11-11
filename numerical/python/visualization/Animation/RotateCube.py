@@ -5,87 +5,89 @@ from HyperCube import *
 from scipy.spatial import ConvexHull
 
 
-for j in range(0,50):
-    im = Image.new("RGB", (2048, 2048), (1,1,1))
-    draw = ImageDraw.Draw(im)
+def tst():
+    for j in range(0,50):
+        im = Image.new("RGB", (2048, 2048), (1,1,1))
+        draw = ImageDraw.Draw(im)
 
-    theta = -j/50.0 * np.pi*1.5
-    phi = -j/50.0 * np.pi*1.5
-    alp = -j/50.0 * np.pi*1.5
+        theta = -j/50.0 * np.pi*1.5
+        phi = -j/50.0 * np.pi*1.5
+        alp = -j/50.0 * np.pi*1.5
 
-    r1 = np.array(
-    [
-        [np.cos(theta), -np.sin(theta),0],
-        [np.sin(theta), np.cos(theta),0],
-        [0,0,1]
-    ])
-    r2 = np.array(
-    [
-        [1,0,0],
-        [0, np.cos(phi), -np.sin(phi)],
-        [0,np.sin(phi), np.cos(phi)]
-    ])
-    r3 = np.array(
-    [
-        [np.cos(alp), 0, -np.sin(alp)],
-        [0, 1, 0],
-        [np.sin(alp), 0, np.cos(alp)]
-    ])
+        r1 = np.array(
+        [
+            [np.cos(theta), -np.sin(theta),0],
+            [np.sin(theta), np.cos(theta),0],
+            [0,0,1]
+        ])
+        r2 = np.array(
+        [
+            [1,0,0],
+            [0, np.cos(phi), -np.sin(phi)],
+            [0,np.sin(phi), np.cos(phi)]
+        ])
+        r3 = np.array(
+        [
+            [np.cos(alp), 0, -np.sin(alp)],
+            [0, 1, 0],
+            [np.sin(alp), 0, np.cos(alp)]
+        ])
 
-    r = np.dot(r3,np.dot(r1,r2))
-    ## Edges
-    edges = np.array([
-        [[0,0,0], [0,1,0]],
-        [[0,1,0], [0,1,1]],
-        [[0,0,1], [0,1,1]],
-        [[0,0,0], [0,0,1]],
+        r = np.dot(r3,np.dot(r1,r2))
+        ## Edges
+        edges = np.array([
+            [[0,0,0], [0,1,0]],
+            [[0,1,0], [0,1,1]],
+            [[0,0,1], [0,1,1]],
+            [[0,0,0], [0,0,1]],
 
-        [[1,0,0], [1,1,0]],
-        [[1,1,0], [1,1,1]],
-        [[1,0,1], [1,1,1]],
-        [[1,0,0], [1,0,1]],
+            [[1,0,0], [1,1,0]],
+            [[1,1,0], [1,1,1]],
+            [[1,0,1], [1,1,1]],
+            [[1,0,0], [1,0,1]],
 
-        [[0,0,1], [1,0,1]],
-        [[0,1,1], [1,1,1]],
-        [[0,0,0], [1,0,0]],
-        [[0,1,0], [1,1,0]]
-    ])
+            [[0,0,1], [1,0,1]],
+            [[0,1,1], [1,1,1]],
+            [[0,0,0], [1,0,0]],
+            [[0,1,0], [1,1,0]]
+        ])
 
-    i = 0
-    for e in edges:
-        v1 = np.dot(r, e[0])
-        v2 = np.dot(r, e[1])
-        [v1x,v1y] = 1000 + 500 * v1[:2] # Projection on x-y plane
-        [v2x,v2y] = 1000 + 500 * v2[:2] # Projection on x-y plane
-        if is_inside(r, v1 - np.array([0,0,0.5]) ) or is_inside(r, v2 - np.array([0,0,0.5])):
-            width = 1
-        else:
-            width = 3
+        i = 0
+        for e in edges:
+            v1 = np.dot(r, e[0])
+            v2 = np.dot(r, e[1])
+            [v1x,v1y] = 1000 + 500 * v1[:2] # Projection on x-y plane
+            [v2x,v2y] = 1000 + 500 * v2[:2] # Projection on x-y plane
+            if is_inside(r, v1 - np.array([0,0,0.5]) ) or is_inside(r, v2 - np.array([0,0,0.5])):
+                width = 1
+            else:
+                width = 3
 
-        if i < 8:
-            draw.line((v1x, v1y, v2x, v2y), fill='orange', width=width)
-        else:
-            draw.line((v1x, v1y, v2x, v2y), fill='orange', width=width)
-        i = i + 1
+            if i < 8:
+                draw.line((v1x, v1y, v2x, v2y), fill='orange', width=width)
+            else:
+                draw.line((v1x, v1y, v2x, v2y), fill='orange', width=width)
+            i = i + 1
 
-    ## Vertices
-    vertices = np.array([
-        [0,0,0],
-        [0,1,0],
-        [0,1,1],
-        [0,0,1],
-        [1,0,0],
-        [1,1,0],
-        [1,1,1],
-        [1,0,1]
-    ])
+        ## Vertices
+        vertices = np.array([
+            [0,0,0],
+            [0,1,0],
+            [0,1,1],
+            [0,0,1],
+            [1,0,0],
+            [1,1,0],
+            [1,1,1],
+            [1,0,1]
+        ])
 
-    for v in vertices:
-        vv = np.dot(r,v)
-        [vx,vy] = 1000 + 500 * vv[:2] # Projection on y-z plane
-        if not is_inside(r, vv - np.array([0,0,0.5])):
-            draw.ellipse( (vx-3,vy-3,vx+3,vy+3), fill = 'red', outline = 'red')
-    im.save('Images\\RotatingCube\\im' + str(j) + '.bmp')
+        for v in vertices:
+            vv = np.dot(r,v)
+            [vx,vy] = 1000 + 500 * vv[:2] # Projection on y-z plane
+            if not is_inside(r, vv - np.array([0,0,0.5])):
+                draw.ellipse( (vx-3,vy-3,vx+3,vy+3), fill = 'red', outline = 'red')
+        im.save('Images\\RotatingCube\\im' + str(j) + '.bmp')
+
 
 def BiggerCube(im_ind = 12):
     for j in range(3,4):
