@@ -10,6 +10,11 @@ namespace Polynomials
     {
         static void Main(string[] args)
         {
+            if (string.Concat("abc", string.Empty) == "abc")
+            {
+                System.Console.WriteLine("toldya!");
+            }
+
             Program p = new Program();
 
             p.TestOneVariablePolynomialDivision();
