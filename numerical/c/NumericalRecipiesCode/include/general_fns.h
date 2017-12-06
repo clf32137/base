@@ -25,4 +25,4 @@
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
 void pprint1d_float(float *a, int n);
-
+void pprint2d_float(float **a, int ros, int cols);

@@ -10,3 +10,4 @@ C:\Users\rohit\Documents\GitHub\base\numerical\c#\ParseFinancialData\ParseFinanc
 C:\Users\rohit\Documents\GitHub\base\numerical\c#\ParseFinancialData\ParseFinancialData\bin\Debug\ParseFinancialData.exe
 C:\Users\rohit\Documents\GitHub\base\numerical\c#\ParseFinancialData\ParseFinancialData\bin\Debug\ParseFinancialData.pdb
 C:\Users\rohit\Documents\GitHub\base\numerical\c#\ParseFinancialData\ParseFinancialData\obj\Debug\ParseFinancialData.csprojResolveAssemblyReference.cache
+C:\Users\rohit\Documents\GitHub\base\numerical\c#\ParseFinancialData\ParseFinancialData\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll

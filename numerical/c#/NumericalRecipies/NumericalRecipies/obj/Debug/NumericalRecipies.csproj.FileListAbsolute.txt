@@ -24,3 +24,9 @@ E:\git\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\NumericalRecip
 E:\git\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\NumericalRecipies.pdb
 E:\git\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\MathNet.Numerics.dll
 E:\git\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\MathNet.Numerics.xml
+C:\Users\rohit\Documents\GitHub\base\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\NumericalRecipies.exe.config
+C:\Users\rohit\Documents\GitHub\base\numerical\c#\NumericalRecipies\NumericalRecipies\obj\Debug\NumericalRecipies.exe
+C:\Users\rohit\Documents\GitHub\base\numerical\c#\NumericalRecipies\NumericalRecipies\obj\Debug\NumericalRecipies.pdb
+C:\Users\rohit\Documents\GitHub\base\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\NumericalRecipies.exe
+C:\Users\rohit\Documents\GitHub\base\numerical\c#\NumericalRecipies\NumericalRecipies\bin\Debug\NumericalRecipies.pdb
+C:\Users\rohit\Documents\GitHub\base\numerical\c#\NumericalRecipies\NumericalRecipies\obj\Debug\NumericalRecipies.csprojResolveAssemblyReference.cache

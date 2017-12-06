@@ -19,6 +19,8 @@ namespace ParseFinancialData
         /// <param name="directoryPath"></param>
         public ParseData (string directoryPath)
         {
+            XlsReader x = new XlsReader("..\\..\\data\\curr_data_file.xlsx");
+            HashSet<DataRecord> allRecords = x.existingData;
             StringBuilder csv = new StringBuilder();
             foreach (var filePath in Directory.GetFiles(directoryPath, "*.csv"))
             {
@@ -31,17 +33,20 @@ namespace ParseFinancialData
                         if (values.Length > 1 && !String.IsNullOrEmpty(values[0]))
                         {
                             dr = new DataRecord(values, fileName);
-                            //Loop through all properties and append to csv.
-                            foreach (PropertyInfo propertyInfo in typeof(DataRecord).GetProperties())
-                            {
-                                if (propertyInfo.CanRead)
+                            if (allRecords.Add(dr))
+                            { // Only if this is a new record do we need to add it to the result CSV file.
+                                //Loop through all properties and append to csv.
+                                foreach (PropertyInfo propertyInfo in typeof(DataRecord).GetProperties())
                                 {
-                                    object value = propertyInfo.GetValue(dr);
-                                    string data = value.ToString().Replace(",","");
-                                    csv = csv.Append(data + ",");
+                                    if (propertyInfo.CanRead)
+                                    {
+                                        object value = propertyInfo.GetValue(dr);
+                                        string data = value.ToString().Replace(",", "");
+                                        csv = csv.Append(data + ",");
+                                    }
                                 }
+                                csv.Append("\n");
                             }
-                            csv.Append("\n");
                         }
                     }
                 }
@@ -49,6 +54,12 @@ namespace ParseFinancialData
             //Consider moving this inside the foreach at some point to avoid storing large amounts of data in memory.
             CsvWriter cw = new CsvWriter(directoryPath + "\\out\\parsedData.csv", csv);
         }
+
+        /// <summary>
+        /// Extracts just the filename from the full path.
+        /// </summary>
+        /// <param name="filePath">The full filepath.</param>
+        /// <returns>The filename along with extension as a string.</returns>
         private string ExtractNameFromPath(string filePath)
         {
             string[] parts = filePath.Split('\\');

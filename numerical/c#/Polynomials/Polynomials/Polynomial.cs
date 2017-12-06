@@ -14,11 +14,11 @@ namespace Polynomials
     /// A polynomial can be defined as an ordered list of monomials.
     /// </summary>
     class Polynomial
-    {
+    {        
         public SortedDictionary<Monomial, double> monomialData;
         public bool IsZero = true;
-        private double zeroThreshold = 1e-4;
-        
+        private double zeroThreshold = 1e-4;        
+
         /// <summary>
         /// Instatiates an instance of Polynomial class with a single monomial.
         /// </summary>
@@ -42,7 +42,7 @@ namespace Polynomials
         {
             if (monomialData.Count > 0)
             {
-                this.IsZero = false; 
+                this.IsZero = false;
                 this.monomialData = monomialData;
             }
         }
@@ -55,6 +55,10 @@ namespace Polynomials
             monomialData = new SortedDictionary<Monomial, double>();
         }
 
+        /// <summary>
+        /// Copies contents of another polynomial to this one. Deep copy.
+        /// </summary>
+        /// <param name="other">The other polynomial of which we need a deep copy.</param>
         public Polynomial(Polynomial other)
         {
             this.IsZero = other.IsZero;
@@ -92,7 +96,10 @@ namespace Polynomials
             return true;
         }
 
-
+        /// <summary>
+        /// Gets a hash code for the polynomial. This allows us to put it into dictionaries.
+        /// </summary>
+        /// <returns>The hash code as an integer.</returns>
         public override int GetHashCode()
         {
             int hash = 17;
@@ -150,11 +157,31 @@ namespace Polynomials
         /// <summary>
         /// Gets the leading coefficient of this polynomial.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The leading coefficient of the current polynomial.</returns>
         public double GetLeadingCoefficient()
         {
             Monomial leadingMonomial = this.GetLeadingTerm();
             return this.monomialData[leadingMonomial];
+        }
+
+        /// <summary>
+        /// Loops through all monomials in the polynomial and divides by the coefficient of the leading monomial.
+        /// This makes the leading coefficient one.
+        /// </summary>
+        /// <returns>Nothing, just edits the existing polynomial.</returns>
+        public void MakeLeadingTermCoefficientOne()
+        {
+            double leadingCoefficient = this.GetLeadingCoefficient();
+            List<Monomial> allEntries = new List<Monomial>();
+            foreach (var monomial in this.monomialData.Keys)
+            {
+                allEntries.Add(monomial);
+            }
+
+            foreach (var monomial in allEntries)
+            {
+                this.monomialData[monomial] /= leadingCoefficient;
+            }
         }
 
         /// <summary>
@@ -309,37 +336,6 @@ namespace Polynomials
             List<Polynomial> quotients = this.DivideBy(divisorList);
             return quotients[quotients.Count - 1]; // The last element in the list is the remainder
         }
-        
-        /// <summary>
-        /// Computes the Groebner basis for a polynomial ideal using Buchbergers algorithm as per section 2.7 of CLO.
-        /// </summary>
-        /// <param name="basis">The basis that defines the ideal.</param>
-        /// <returns>The Groebner basis.</returns>
-        public static PolynomialBasis GroebnerBasis(params Polynomial[] basis)
-        {
-            PolynomialBasis groebner = new PolynomialBasis(basis);
-            PolynomialBasis groebnerTemp = new PolynomialBasis(basis);
-            do
-            {
-                groebnerTemp = new PolynomialBasis(groebner); // G' := G
-
-                List<Polynomial> groebnerTempList = groebnerTemp.polynomialData.ToList();
-                for (int i = 0; i < groebnerTemp.polynomialData.Count; i++)
-                {
-                    for (int j = (i+1); j < groebnerTemp.polynomialData.Count; j++)
-                    {
-                        Polynomial s = groebnerTempList[i].GetSPolynomial(groebnerTempList[j]).GetRemainder(groebnerTemp);
-                        if (!s.IsZero)
-                        {
-                            groebner.polynomialData.Add(s);
-                        }
-                    }
-                }
-            }
-            while (!groebner.Equals(groebnerTemp));
-
-            return groebner;
-        }
 
         /// <summary>
         /// Gets the S-polynomial as defined in section 2.6 of CLO
@@ -394,7 +390,7 @@ namespace Polynomials
                 }
                 else if(Math.Abs(other.monomialData[m]) > this.zeroThreshold ) // You have to be this tall to enter this ride.
                 {
-                    this.AddMonomial(m, other.monomialData[m]); // Add a new term with its coefficient.
+                    this.AddMonomial(m, coefficient * other.monomialData[m]); // Add a new term with its coefficient.
                 }
             }
         }

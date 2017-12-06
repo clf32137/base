@@ -34,6 +34,14 @@ void pprint1d_float(float *a, int n)
 { 
 	int k;
 	for(k=0; k < n; k++)
-		printf(ANSI_COLOR_BLUE "%.2f%s", a[k], k < n - 1 ? "\t" : "\n" ANSI_COLOR_RESET);
+		printf(ANSI_COLOR_MAGENTA "%.2f%s", a[k], k < n - 1 ? "\t" : "\n" ANSI_COLOR_RESET);
 }
 
+void pprint2d_float(float **a, int ros, int cols)
+{
+	int i, j;
+	for (i = 0; i<ros; i++)
+		for (j = 0; j<cols; j++)
+			printf("%lf%s", a[i + 1][j + 1], j < cols - 1 ? "\t" : "\n");
+	printf("\n");
+}

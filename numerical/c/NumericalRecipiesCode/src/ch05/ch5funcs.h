@@ -9,5 +9,7 @@ float chebev(float a, float b, float c[], float x, int m);
 float chebev_debug(float a, float b, float c[],  float x, int m);
 void chder(float a, float b, float c[],float cder[], int n);
 void chint(float a, float b, float c[], float cint[], int n);
+void pade(float cof[], int n, float *resid);
+void pade_debug(float cof[], int n, float *resid);
 
 

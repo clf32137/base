@@ -22,11 +22,20 @@ namespace Polynomials
             this.powers = new int[numVariables];
         }
 
+        /// <summary>
+        /// Instantiates the Monomial class.
+        /// </summary>
+        /// <param name="powers">An array with the powers of each of the variables.</param>
+        /// <param name="coefficient">The coefficient of the monomial.</param>
         public Monomial(int[] powers, double coefficient = 1)
         {
             this.powers = powers;
         }
 
+        /// <summary>
+        /// Instantiates the Monomial class.
+        /// </summary>
+        /// <param name="m"></param>
         public Monomial(Monomial m)
         {
             int[] newPowers = new int[m.powers.Length];
@@ -71,8 +80,7 @@ namespace Polynomials
                 }
             }
 
-            return 0;
-            
+            return 0;            
         }
 
         int IComparable.CompareTo(object obj)
@@ -111,7 +119,7 @@ namespace Polynomials
         /// Checks to see if this polynomial divides the dividend polynomial.
         /// This polynomial plays the role of would be divisor.
         /// </summary>
-        /// <param name="divisor"></param>
+        /// <param name="divisor">The dividend to be checked for divisibility.</param>
         /// <returns></returns>
         public bool Divides(Monomial dividend)
         {
@@ -128,7 +136,7 @@ namespace Polynomials
         }
 
         /// <summary>
-        /// Is this polynomial divisible by the monomial in the argument. In other words can we write this = h.divisor?
+        /// Is this monomial divisible by the monomial in the argument. In other words can we write this = h.divisor?
         /// </summary>
         /// <param name="divisor">The dividing monomial</param>
         /// <returns>true if divisibility is possible</returns>
@@ -174,11 +182,38 @@ namespace Polynomials
         /// <returns>The LCM monomial.</returns>
         public Monomial LCM(Monomial other)
         {
+            if (this.powers.Length != other.powers.Length)
+            {
+                throw new Exception("The two monomials don't have the same variables.");
+            }
+
             int[] result = new int[this.powers.Length];
 
             for (int i = 0; i < this.powers.Length; i++)
             {
                 result[i] = Math.Max(this.powers[i], other.powers[i]); // Assuming here that the polynomials have the same number of variables.
+            }
+
+            return new Monomial(result);
+        }
+
+        /// <summary>
+        /// Multiplies this monomial to the other monomial.
+        /// </summary>
+        /// <param name="other">The monomial to be multiplied.</param>
+        /// <returns>A monomial which is the result of the multiplication of the two monomials.</returns>
+        public Monomial Multiply(Monomial other)
+        {
+            if (this.powers.Length != other.powers.Length)
+            {
+                throw new Exception("The two monomials don't have the same variables.");
+            }
+
+            int[] result = new int[this.powers.Length];
+
+            for (int i = 0; i < this.powers.Length; i++)
+            {
+                result[i] = this.powers[i] + other.powers[i];
             }
 
             return new Monomial(result);
