@@ -15,7 +15,7 @@ def sphere():
         im_ind = im_ind + 1
 
 
-def render_sphere(r,draw):
+def render_sphere(draw, r, scale=235.5, shift = np.array([1009, 998, 0])):
     pltcircle(shift[:2],scale,scale,draw)
     for i in range(4):
         c = np.cos(i*np.pi/8)
@@ -42,6 +42,12 @@ def pltcircle(center, xradius, yradius, draw):
     [bottomrightx, bottomrighty] = [center[0] + xradius, center[1] + yradius]
     draw.ellipse((topleftx, toplefty, bottomrightx, bottomrighty), outline = "red")
 
+'''
+Returns a three dimensional rotation matrix given the axis to rotate about and the angle to rotate by.
+args:
+    a: The axis to rotate about
+    theta: The angle to rotate by.
+'''
 def general_rotation(a, theta):
     c = np.cos(theta)
     s = np.sin(theta)
@@ -55,6 +61,16 @@ def general_rotation(a, theta):
         ])
 
 '''
+A wrapper to general_rotation named more appropriately. Returns a rotation matrix that rotates about an axis by an angle.
+args:
+    a: The axis to rotate about
+    theta: The angle to rotate by. 
+'''
+def axisangle(a, theta):
+    return general_rotation(a,theta)
+
+
+'''
 '''
 def matrix_to_axisangle(m):
     theta = np.arccos(( m[0,0] + m[1,1] + m[2,2] - 1)/2)
@@ -62,6 +78,8 @@ def matrix_to_axisangle(m):
     y = (m[0,2] - m[2,0])/np.sqrt((m[2,1] - m[1,2])**2+(m[0,2] - m[2,0])**2+(m[1,0] - m[0,1])**2)
     z = (m[1,0] - m[0,1])/np.sqrt((m[2,1] - m[1,2])**2+(m[0,2] - m[2,0])**2+(m[1,0] - m[0,1])**2)
     return (theta, np.array([x,y,z]))
+
+
 
 '''
 '''
@@ -74,6 +92,25 @@ def generalized_circle(draw, center, vec, radius, r, scale = 200, shift = np.arr
     orthogonal_vec = orthogonal_vec/sum(orthogonal_vec**2)**0.5
     pt1 = center + radius * orthogonal_vec
     pt1 = np.dot(r,pt1)
+    theta = np.pi * 2.0 / 80.0
+    r1 = general_rotation(np.dot(r,vec),theta)
+    for j in range(0,80):       
+        pt2 = np.dot(r1,pt1)
+        #draw.ellipse( (pt2[0]-2,pt2[1]-2,pt2[0]+2,pt2[1]+2), fill = (68,193,195), outline = (68,193,195))
+        draw.line((pt1[0]*scale + shift[0], pt1[1]*scale+shift[1], pt2[0]*scale+shift[0], pt2[1]*scale+shift[1]), fill=rgba, width=width)
+        pt1 = pt2
+
+'''
+'''
+def generalized_circle2(draw, center, vec, radius, r, scale = 200, shift = np.array([1000,1000,0]), rgba = (255,122,0,50), width=5):
+    vec = vec/sum(vec**2)**0.5
+    if vec[0] == 0 and vec[1] == 0:
+        orthogonal_vec = np.array([1,1,0])
+    else:
+        orthogonal_vec = np.array([vec[0], -vec[1], 0]) 
+    orthogonal_vec = orthogonal_vec/sum(orthogonal_vec**2)**0.5
+    pt1 = np.dot(r,center) + radius * np.dot(r,orthogonal_vec)
+    #pt1 = np.dot(r,pt1)
     theta = np.pi * 2.0 / 80.0
     r1 = general_rotation(np.dot(r,vec),theta)
     for j in range(0,80):       
@@ -125,11 +162,9 @@ def render_sphere():
         im_ind = im_ind + 1
 
 '''
-A sequence of intermediate rotations that take the system from an initial rotated state (oldr) to a final one (newr).
+@Legacy
 '''
-def transition(im_ind = 0):
-    oldr = general_rotation(np.array([1,0,0]),np.pi/2)
-    newr = rotation(3,2*np.pi*4/30.0)
+def transition(im_ind = 0, oldr = general_rotation(np.array([1,0,0]),np.pi/2), newr = rotation(3,2*np.pi*4/30.0) ):
     transn = np.dot(newr,np.transpose(oldr))
     (theta, vec) = matrix_to_axisangle(transn)
     axis_r = np.eye(4)
@@ -143,6 +178,33 @@ def transition(im_ind = 0):
         parabola(draw, rr)
         im.save('Images\\RotatingCube\\im' + str(im_ind) + '.png')
         im_ind = im_ind + 1
+
+
+'''
+A sequence of intermediate rotations that take the system from an initial rotated state (oldr) to a final one (newr).
+args:
+    i: 1 means complete rotation to new coordinates, 0 means old rotation.
+    oldr: Old rotation matrix.
+    newr: New rotation matrix.
+'''
+def rotation_transition(i = 0, oldr = general_rotation(np.array([1,0,0]),np.pi/2), newr = rotation(3,2*np.pi*4/30.0)):
+    transn = np.dot(newr,np.transpose(oldr))
+    (theta, vec) = matrix_to_axisangle(transn)
+    r = general_rotation(vec, i*theta)
+    return np.dot(r, oldr)
+
+'''
+What rotation matrix is needed to rotate an old vector to a new vector.
+args:
+    oldvec: The vector we are starting with.
+    newvec: The vector to which we are rotating.
+'''
+def rotate_vec2vec(oldvec, newvec):
+    axis = np.cross(oldvec, newvec)
+    oldvec1 = oldvec / np.sqrt(sum(oldvec**2))
+    newvec1 = newvec / np.sqrt(sum(newvec**2))
+    theta = np.arccos(sum(oldvec1*newvec1))
+    return axisangle(axis, theta)
 
 '''
 Draws a circle in the x-y plane.

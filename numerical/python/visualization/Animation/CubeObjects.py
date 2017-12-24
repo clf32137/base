@@ -19,8 +19,11 @@ class Vertice():
         self.binary = self.to_binary()
         global scale
 
-    def plot(self,r,draw,rgba,width=3):
-        vv = np.dot(r,self.binary)
+    def plot(self,r,draw,rgba,width=3, offset = None, scale=500, shift=np.array([1000,1000,0,0])):
+        if offset is None:
+            vv = np.dot(r,self.binary)
+        else:
+            vv = np.dot(r,self.binary + offset[:self.dim])
         [vx,vy] = (shift[:self.dim] + scale * vv)[0:2] # Projection on x-y plane
         draw.ellipse( (vx-width,vy-width,vx+width,vy+width), fill = rgba, outline = rgba)
 
@@ -52,10 +55,18 @@ class Edge():
         self.dim = v1.dim
         global scale
 
-    def plot(self, r, draw, rgba, width = 3):
-        [v1, v2] = [np.dot(r, self.vertice1.binary), np.dot(r, self.vertice2.binary)]
-        [v1x,v1y] = (shift[:self.dim] + scale * v1)[0:2]
-        [v2x,v2y] = (shift[:self.dim] + scale * v2)[0:2]
+    '''
+    Plots the edge
+    args:
+        offset: The amount by which the whole edge should be shifted in primitive coordinates.
+    '''
+    def plot(self, r, draw, rgba, width = 3, offset = None, scale=500, shift = np.array([1000,1000,1000,1000])):
+        if offset is None:
+            [v1, v2] = [np.dot(r, self.vertice1.binary), np.dot(r, self.vertice2.binary)]
+        else:
+            [v1, v2] = [np.dot(r, self.vertice1.binary+offset), np.dot(r, self.vertice2.binary+offset)]
+        [v1x, v1y] = (shift[:self.dim] + scale * v1)[0:2]
+        [v2x, v2y] = (shift[:self.dim] + scale * v2)[0:2]
         draw.line((v1x, v1y, v2x, v2y), fill=rgba, width=width)
 
     def plot_vid_ready(self,r,draw,rgba,width=2):
@@ -154,6 +165,7 @@ class Body():
         self.face4.plot(r, draw, rgba, True)
         self.face5.plot(r, draw, rgba, True)
         self.face6.plot(r, draw, rgba, True)
+
 
 class Cube():    
     def __init__(self, n = 4, r = None):
@@ -258,6 +270,27 @@ class Cube():
         return [im, draw]
         #im.save('Images\\RotatingCube\\im' + str(j) + '.png')
 
+    def plot_edges2(self, draw, r = None, seq = False, offset = None,fill=(255,165,5),scale=500,shift=np.array([1000,1000,0,0])):
+        if offset is None:
+            offset = np.zeros(self.dim)
+        if r == None:
+            r = rotation(self.dim)
+        if seq:
+            self.generate_sequential_edges()
+            edges = self.sequential_edges
+        else:
+            edges = self.edges
+        for edge in edges:
+            if edge.vertice1.index == 0:
+                [v1, v2] = [np.dot(r, edge.vertice1.binary + offset), np.dot(r, edge.vertice2.binary + offset)]
+            elif edge.vertice2.index == 2**(self.dim) - 1:
+                [v1, v2] = [np.dot(r, edge.vertice1.binary - offset), np.dot(r, edge.vertice2.binary - offset)]
+            else:
+                [v1, v2] = [np.dot(r, edge.vertice1.binary), np.dot(r, edge.vertice2.binary)]
+            [v1x,v1y] = (shift[:self.dim] + scale * v1)[0:2]
+            [v2x,v2y] = (shift[:self.dim] + scale * v2)[0:2]
+            draw.line((v1x, v1y, v2x, v2y), fill=fill, width=4)
+
     def plot_faces(self, r = None, j = 0, body_indice = None):
         if r == None:
             r = rotation(self.dim)
@@ -274,8 +307,9 @@ class Cube():
                 j = j + bi * 10**indx + 1
                 body = self.bodies[bi]
                 body.plot(r, draw, colors[bi])
-                indx = indx + 1        
+                indx = indx + 1
         im.save('Images\\RotatingCube\\im' + str(j) + '.png')
+
 
 def rotate_object(n=5):
     c1 = Cube(n)
@@ -495,112 +529,6 @@ def teserract_body_diagonal(width = 15, im_ind = 70, scale = 500, shift = np.arr
     draw.line((v1[0], v1[1], v2[0], v2[1]), fill = (255,255,255), width=2)
     im.save('Images\\RotatingCube\\im' + str(im_ind) + '.png')
 
-
-'''
-@MoneyShot
-    Draws a four dimensional teserract with two tetrahedral and one octahedral planes visible.
-'''
-def teserract_body_diagonal2(width = 15, im_ind = 70, scale = 500, shift = np.array([1000,1000,0,0,0])):
-    c1 = Cube(4)
-    r = np.eye(4)
-    r[:3,:3] = rotation(3, np.pi*2*27/80.0)
-    r1 = rotation(4, np.pi*2*im_ind/80.0)
-    r = np.dot(r, r1)
-    [im, draw] = c1.plot_edges(r)
-    rotated_vertices = np.transpose(np.dot(r,np.transpose(c1.vertice_matrix)))*scale + shift[:4]
-    hexag = rotated_vertices[[i.index for i in c1.vertices[c1.vertice_coordinate_sums == 2]]]
-    sqr1 = rotated_vertices[[i.index for i in c1.vertices[c1.vertice_coordinate_sums == 3]]]
-    try:
-        draw.polygon(jarvis_convex_hull(sqr1), (255,0,0,60))
-    except:
-        print "err"
-    for ver in c1.vertices[c1.vertice_coordinate_sums == 3]:
-        ver.plot(r, draw, (255,0,0), 10)
-        for ver1 in c1.vertices[c1.vertice_coordinate_sums == 3]:
-            e = Edge(ver,ver1)
-            e.plot(r,draw,(255,0,0), width=2)
-    try:
-        draw.polygon(jarvis_convex_hull(hexag), (0,255,0,30))
-    except:
-        print "err"
-    
-    for ver in c1.vertices[c1.vertice_coordinate_sums == 1]:
-        ver.plot(r, draw, (0,0,255), 10)
-        for ver1 in c1.vertices[c1.vertice_coordinate_sums == 1]:
-            e = Edge(ver,ver1)
-            e.plot(r,draw,(0,0,255))
-    for ed in [(5,3),(5,6),(5,9),(5,12),(10,3),(10,6),(10,9),(10,12),(3,6),(3,9),(12,6),(12,9)]:
-        v1 = rotated_vertices[ed[0]]
-        v2 = rotated_vertices[ed[1]]
-        draw.line((v1[0], v1[1], v2[0], v2[1]), fill = (0,255,0), width=4)
-    for ver in c1.vertices[c1.vertice_coordinate_sums==2]:
-        ver.plot(r, draw, (0,255,0), 10)
-    sqr2 = rotated_vertices[[i.index for i in c1.vertices[c1.vertice_coordinate_sums == 1]]]
-    try:
-        draw.polygon(jarvis_convex_hull(sqr2), (0,0,255,60))
-    except:
-        print "err"
-    v1 = rotated_vertices[0]
-    v2 = rotated_vertices[15]
-    draw.line((v1[0], v1[1], v2[0], v2[1]), fill = (255,255,255), width=2)
-    im.save('Images\\RotatingCube\\im' + str(im_ind) + '.png')
-
-
-def tetrahedron(draw, r, offset = [500,1000,0], rgb = (216,52,52)):
-    tet_orig = np.array([
-            [0,0,0],
-            [1,0,0],
-            [0.5,0.866025,0],
-            [0.5,0.288675,0.8164925]
-        ])
-    rgba = rgb + (100,)
-    for j in range(0,1):
-        #r = general_rotation(np.array([1,1,0]), np.pi*2*j/80.0)
-        #im = Image.new("RGB", (2048, 2048), "black")
-        #draw = ImageDraw.Draw(im,'RGBA')
-        tet = np.dot(tet_orig,r)
-        for i in tet:
-            ver = i * 300 + offset
-            draw.ellipse((ver[0]-150,ver[1]-150,ver[0]+150,ver[1]+150), fill = rgba)
-            draw.ellipse((ver[0]-5,ver[1]-5,ver[0]+5,ver[1]+5), fill = rgb)
-        for i in range(len(tet)):
-            for k in range(i,len(tet)):
-                ver1 = tet[i] * 300 + offset
-                ver2 = tet[k] * 300 + offset
-                draw.line((ver1[0],ver1[1],ver2[0],ver2[1]), fill = rgb, width = 2)
-        #im.save('Images\\RotatingCube\\im' + str(j) + '.png')
-
-def octahedron(draw, r):
-    tet_orig = np.array([
-            [0,0,0],
-            [1,0,0],
-            [0,1,0],
-            [1,1,0],
-            [0.5,0.5,0.7071],
-            [0.5,0.5,-0.7071]#0.7071
-        ])
-    offset = [1500,1000,0]
-    for j in range(0,1):
-        #r = general_rotation(np.array([1,2,0.4]), np.pi*2*j/80.0)
-        #im = Image.new("RGB", (2048, 2048), "black")
-        #draw = ImageDraw.Draw(im,'RGBA')
-        tet = np.dot(tet_orig, r)
-        for i in tet:
-            ver = i * 300 + offset
-            draw.ellipse((ver[0]-150,ver[1]-150,ver[0]+150,ver[1]+150), fill = (43,183,31,100))
-            draw.ellipse((ver[0]-5,ver[1]-5,ver[0]+5,ver[1]+5), fill = (43,183,31))
-        indxs = [0,1,3,2]
-        for i in range(4):
-            k = indxs[(i) % 4]
-            l = indxs[(i+1) % 4]
-            ver1 = tet[k] * 300 + offset
-            ver2 = tet[l] * 300 + offset
-            draw.line((ver1[0],ver1[1],ver2[0],ver2[1]), fill = (0,255,0,80), width = 2)
-            ver_top = tet[4] * 300 + offset
-            draw.line((ver1[0],ver1[1],ver_top[0],ver_top[1]), fill = (0,255,0,80), width = 2)
-            ver_top = tet[5] * 300 + offset
-            draw.line((ver1[0],ver1[1],ver_top[0],ver_top[1]), fill = (0,255,0,80), width = 2)
-        #im.save('Images\\RotatingCube\\im' + str(j) + '.png')
 
 def fourDExplanation(j = 0, k = 0):
     im = Image.new("RGB", (2048, 2048), "black")
@@ -1148,7 +1076,7 @@ args:
     numTerms: The number of values each dimension can take.
     pos: The position on the image where the leftmost edge of the cube should be.
 '''
-def General3DCube(numTerms, im_ind = 0, pos = [300,700,0], draw1 = None, scale1 = 100):
+def General3DCube(numTerms, im_ind = 0, pos = [300,700,0], draw1 = None, scale1 = 300):
     global scale
     scale = scale1
     for j in range(30,31):
@@ -1165,7 +1093,7 @@ def General3DCube(numTerms, im_ind = 0, pos = [300,700,0], draw1 = None, scale1 
         # Draw edges.
         for i in range(len(vertices)):
             for dim in range(3):
-                if vertices[i][dim] < (numTerms - 1) and i + numTerms**dim <= len(vertices) - 1: 
+                if vertices[i][dim] < (numTerms - 1) and i + numTerms**dim <= len(vertices) - 1:
                     v1 = rotated_vertices[i]
                     v2 = rotated_vertices[i + numTerms**dim]
                     draw.line((v1[0], v1[1], v2[0], v2[1]), fill="yellow", width=2)
