@@ -928,6 +928,24 @@ def pasteImage(img, bigim, posn, whiteBackground = False, color = None):
                         mainpixdata[x+posn[0], y+posn[1]] = color
 
 
+
+def get_pixels(impath = 'C:\\Users\\rohit\\Desktop\Tetroid.PNG'):
+    im = Image.open(impath)
+    pixdata = im.load()
+
+    width, height = im.size
+
+    s = {}
+    for i in range(height):
+        for j in range(width):
+            if pixdata[j,i] in s:
+                s[pixdata[j,i]] += 1
+            else:
+                s[pixdata[j,i]] = 1
+    print(sorted(dict.items(), key=lambda kv: kv[1], reverse=True))
+
+
+
 '''
 Obtains RGB values for a heatmap of values between min and max.
 '''
@@ -938,4 +956,27 @@ def heat_rgb(minimum, maximum, value):
     r = int(max(0, 255*(ratio - 1)))
     g = 255 - b - r
     return (r, g, b)
+
+'''
+'''
+def rgb_to_hsv(r, g, b):
+    r, g, b = r/255.0, g/255.0, b/255.0
+    mx = max(r, g, b)
+    mn = min(r, g, b)
+    df = mx-mn
+    if mx == mn:
+        h = 0
+    elif mx == r:
+        h = (60 * ((g-b)/df) + 360) % 360
+    elif mx == g:
+        h = (60 * ((b-r)/df) + 120) % 360
+    elif mx == b:
+        h = (60 * ((r-g)/df) + 240) % 360
+    if mx == 0:
+        s = 0
+    else:
+        s = (df/mx)*100
+    v = mx*100
+    return h, s, v
+
 
